@@ -336,38 +336,46 @@ To continue from where you left off: `/titan:resume`
 
 ### Step 13: Display Completion Summary
 
-Print:
+Print (as markdown, NOT in a code block):
 
-```
-╔══════════════════════════════════════════════════════════════╗
-║  ✓ TITAN — INITIALIZATION COMPLETE                          ║
-╚══════════════════════════════════════════════════════════════╝
+---
 
-  Project:  [project name]
-  Domain:   [domain]
-  Type:     [greenfield|brownfield]
-  Profile:  [profile]
+## ✓ TITAN — INITIALIZATION COMPLETE
 
-  Created:
-    ✓ .titan/              Project state directory
-    ✓ .titan/config.yaml   Configuration
-    ✓ .titan/STATE.md      Project state tracker
-    ✓ .titan/KNOWLEDGE.md  Knowledge base
-    ✓ .titan/DECISIONS.md  Decision log
-    ✓ CLAUDE.md            Claude Code project rules
-    ✓ AGENTS.md            OpenCode project rules
+| Setting | Value |
+|---------|-------|
+| **Project** | [project name] |
+| **Domain** | [domain] |
+| **Type** | [greenfield\|brownfield] |
+| **Profile** | [profile] |
 
-  What's Next:
-  ─────────────────────────────────────────────────
-  Run /titan:02-vision to define your project's vision,
-  requirements, architecture, and roadmap.
+**Created:**
 
-  [If brownfield]: First consider running /titan:scan
-  to analyze your existing codebase.
-  ─────────────────────────────────────────────────
+| Status | File | Purpose |
+|--------|------|---------|
+| ✓ | `.titan/` | Project state directory |
+| ✓ | `.titan/config.yaml` | Configuration |
+| ✓ | `.titan/STATE.md` | Project state tracker |
+| ✓ | `.titan/KNOWLEDGE.md` | Knowledge base |
+| ✓ | `.titan/DECISIONS.md` | Decision log |
+| ✓ | `CLAUDE.md` | Claude Code project rules |
+| ✓ | `AGENTS.md` | OpenCode project rules |
 
-  Phase 1 of 8 ▓▓░░░░░░░░░░░░░░ 12%
-```
+Step 1 of 8 ▓▓░░░░░░░░░░░░░░ 12%
+
+---
+
+### ★ Recommended
+
+> Run `/titan:02-vision` to define your project's vision, requirements, architecture, and roadmap.
+
+### Other options
+
+| Command | Action |
+|---------|--------|
+| `/titan:scan` | Deep-scan an existing codebase first (brownfield projects) |
+
+---
 
 ## Outputs
 

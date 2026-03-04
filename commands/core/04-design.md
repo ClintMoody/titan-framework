@@ -358,28 +358,27 @@ Ensure all approved mockup files are present in `design/mockups/` at the project
 
 ### Step 9: Display Completion Summary
 
-```
-╔══════════════════════════════════════════════════════════════╗
-║  ✓ TITAN — DESIGN COMPLETE                                  ║
-╚══════════════════════════════════════════════════════════════╝
+Print (as markdown, NOT in a code block):
 
-  Artifacts Created:
-    ✓ design/BRIEF.md                Design brief
-    ✓ design/SPEC.md                 Design specification
-    ✓ design/mockups/[N] files       Approved HTML mockups
+---
 
-  Design Summary:
-    Screens:    [N] screens designed and approved
-    Iterations: [N] total revision rounds
-    Style:      [brief visual description, e.g., "Clean, dark-themed dashboard"]
+## ✓ TITAN — DESIGN COMPLETE
 
-  What's Next:
-  ─────────────────────────────────────────────────
-  → Run /titan:05-plan to create Phase 1 execution plan.
-    The plan will reference these approved mockups as
-    implementation targets.
-  ─────────────────────────────────────────────────
-```
+**Artifacts Created:**
+
+| Status | File | Content |
+|--------|------|---------|
+| ✓ | `design/BRIEF.md` | Design brief |
+| ✓ | `design/SPEC.md` | Design specification |
+| ✓ | `design/mockups/` | [N] approved HTML mockups |
+
+| Summary | Detail |
+|---------|--------|
+| **Screens** | [N] screens designed and approved |
+| **Iterations** | [N] total revision rounds |
+| **Style** | [brief visual description, e.g., "Clean, dark-themed dashboard"] |
+
+---
 
 ### Step 10: Update State
 
@@ -431,19 +430,23 @@ Add design decisions to `.titan/DECISIONS.md`:
 
 ## What's Next
 
-After design is complete, display:
+After design is complete, display (as markdown, NOT in a code block):
 
-```
-─────────────────────────────────────────────────
-★ Recommended: Run /titan:05-plan to create the Phase 1 execution plan.
-  Your approved designs will be used as implementation targets.
+---
 
-Other options:
-  /titan:03-explore   — Research technologies or unknowns before planning
-  /titan:04-design    — Re-run to iterate on designs or add more screens
-  /titan:progress  — See full project dashboard and current position
-─────────────────────────────────────────────────
-```
+### ★ Recommended
+
+> Run `/titan:05-plan` to create the **Phase 1 execution plan**. Your approved designs will be used as implementation targets.
+
+### Other options
+
+| Command | Action |
+|---------|--------|
+| `/titan:03-explore` | Research technologies or unknowns before planning |
+| `/titan:04-design` | Re-run to iterate on designs or add more screens |
+| `/titan:progress` | See full project dashboard and current position |
+
+---
 
 ## Tips
 

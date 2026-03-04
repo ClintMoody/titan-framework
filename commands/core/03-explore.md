@@ -242,35 +242,47 @@ If the exploration resulted in any technology or architectural decisions, add th
 
 ### Step 9: Display Completion Summary
 
-```
-╔══════════════════════════════════════════════════════════════╗
-║  ✓ TITAN — EXPLORATION COMPLETE                             ║
-╚══════════════════════════════════════════════════════════════╝
+Print (as markdown, NOT in a code block):
 
-  Topic:    [exploration topic]
-  Questions Researched: [N]
-  Confidence: [overall confidence level]
+---
 
-  Key Findings:
-    [1-2 sentence summary of most important finding]
-    [1-2 sentence summary of second most important finding]
+## ✓ TITAN — EXPLORATION COMPLETE
 
-  Recommendations:
-    → [Primary recommendation]
+| Detail | Value |
+|--------|-------|
+| **Topic** | [exploration topic] |
+| **Questions Researched** | [N] |
+| **Confidence** | [overall confidence level] |
 
-  [If novel problem detected]:
-  ⚠ Novel problem detected. Consider /titan:investigate for
-    deeper analysis before proceeding.
+**Key Findings:**
+- [1-2 sentence summary of most important finding]
+- [1-2 sentence summary of second most important finding]
 
-  What's Next:
-  ─────────────────────────────────────────────────
-  [Context-dependent guidance]:
-  - If ready to build: /titan:05-plan to create execution plan
-  - If UI needed: /titan:04-design for mockups
-  - If deeper analysis needed: /titan:investigate
-  - If more research needed: /titan:03-explore again
-  ─────────────────────────────────────────────────
-```
+**Recommendation:** [Primary recommendation]
+
+[If novel problem detected:]
+> ⚠ **Novel problem detected.** Consider `/titan:investigate` for deeper analysis before proceeding.
+
+---
+
+### ★ Recommended
+
+> [Context-dependent guidance — most applicable option:]
+> - **Ready to build:** Run `/titan:05-plan` to create execution plan
+> - **UI needed:** Run `/titan:04-design` for mockups
+> - **Deeper analysis needed:** Run `/titan:investigate`
+> - **More research needed:** Run `/titan:03-explore` again
+
+### Other options
+
+| Command | Action |
+|---------|--------|
+| `/titan:05-plan` | Create execution plan for the next phase |
+| `/titan:04-design` | Design UI screens referenced in the plan |
+| `/titan:investigate` | Deeper novel problem analysis |
+| `/titan:03-explore` | Research additional topics |
+
+---
 
 ### Step 10: Update STATE.md
 

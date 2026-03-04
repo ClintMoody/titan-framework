@@ -365,48 +365,56 @@ Print: "✓ ARCHITECTURE.md created."
 
 ### Step 5: Review and Confirm
 
-Display a summary:
+Display a summary.
 
-```
-╔══════════════════════════════════════════════════════════════╗
-║  ✓ TITAN — VISION DEFINITION COMPLETE                       ║
-╚══════════════════════════════════════════════════════════════╝
+Print (as markdown, NOT in a code block):
 
-  Artifacts Created:
-    ✓ .titan/PROJECT.md        Vision, scope, constraints
-    ✓ .titan/REQUIREMENTS.md   [X] functional + [Y] non-functional requirements
-    ✓ .titan/ROADMAP.md        [N] phases defined
-    ✓ .titan/ARCHITECTURE.md   System design and technology stack
+---
 
-  Project Summary:
-    Vision:     [one-line vision]
-    Domain:     [domain]
-    Phases:     [N] phases planned
-    Tech Stack: [key technologies]
-    Complexity: [overall estimate]
+## ✓ TITAN — VISION DEFINITION COMPLETE
 
-  ⟳ Recommended: Run /clear before your next command.
-    Vision is conversation-heavy. Clearing context gives the
-    next step fresh, focused attention. Your state is saved.
+**Artifacts Created:**
 
-  What's Next:
-  ─────────────────────────────────────────────────
-  ★ If your project has unknowns or novel challenges:
-    → Run /titan:03-explore to research before planning.
+| Status | File | Content |
+|--------|------|---------|
+| ✓ | `.titan/PROJECT.md` | Vision, scope, constraints |
+| ✓ | `.titan/REQUIREMENTS.md` | [X] functional + [Y] non-functional requirements |
+| ✓ | `.titan/ROADMAP.md` | [N] phases defined |
+| ✓ | `.titan/ARCHITECTURE.md` | System design and technology stack |
 
-  ★ If your project has a UI component:
-    → Run /titan:04-design to create mockups.
+| Summary | Detail |
+|---------|--------|
+| **Vision** | [one-line vision] |
+| **Domain** | [domain] |
+| **Phases** | [N] phases planned |
+| **Tech Stack** | [key technologies] |
+| **Complexity** | [overall estimate] |
 
-  ★ If you're ready to start building:
-    → Run /titan:05-plan to create Phase 1 execution plan.
+Step 2 of 8 ▓▓▓▓░░░░░░░░░░░░ 25%
 
-  Other options:
-    /titan:scan       — Deep-scan an existing codebase first
-    /titan:progress   — See full project dashboard
-  ─────────────────────────────────────────────────
+> ⟳ **Clear context before your next command.** Vision is conversation-heavy. Clearing context gives the next step fresh, focused attention. Your state is saved.
 
-  Phase 2 of 8 ▓▓▓▓░░░░░░░░░░░░ 25%
-```
+---
+
+### ★ Recommended
+
+> **If your project has unknowns or novel challenges:**
+> Run `/titan:03-explore` to research before planning.
+>
+> **If your project has a UI component:**
+> Run `/titan:04-design` to create mockups.
+>
+> **If you're ready to start building:**
+> Run `/titan:05-plan` to create Phase 1 execution plan.
+
+### Other options
+
+| Command | Action |
+|---------|--------|
+| `/titan:scan` | Deep-scan an existing codebase first |
+| `/titan:progress` | See full project dashboard |
+
+---
 
 ### Step 6: Update State
 
