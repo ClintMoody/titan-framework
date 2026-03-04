@@ -45,14 +45,14 @@ TITAN's core workflow is 8 numbered steps. Follow them in order. It's that simpl
 
 | Step | Command | What Happens |
 |------|---------|-------------|
-| **01** | `/titan:init` | Start your project. TITAN sets up everything. |
-| **02** | `/titan:vision` | Define what you're building and why. AI personas interview you to extract a clear vision, requirements, architecture, and **phased roadmap** — a numbered list of every phase you'll build, in order, with goals and milestones. |
-| **03** | `/titan:explore` | Research the unknown. Study prior art, evaluate technologies, map the problem space. |
-| **04** | `/titan:design` | Design your UI/UX through conversation. See real HTML mockups in your browser. Iterate until perfect. |
-| **05** | `/titan:plan` | Create a detailed execution plan for the **current phase** from your roadmap. Tasks, waves, acceptance criteria, boundaries. |
-| **06** | `/titan:build` | Execute the plan. Parallel AI agents build while you watch (or help). Atomic commits keep history clean. |
-| **07** | `/titan:verify` | Prove it works. Mandatory reconciliation + adversarial review. Nothing ships unverified. |
-| **08** | `/titan:ship` | Release. Tag. Celebrate. Move to the next milestone. |
+| **01** | `/titan:01-init` | Start your project. TITAN sets up everything. |
+| **02** | `/titan:02-vision` | Define what you're building and why. AI personas interview you to extract a clear vision, requirements, architecture, and **phased roadmap** — a numbered list of every phase you'll build, in order, with goals and milestones. |
+| **03** | `/titan:03-explore` | Research the unknown. Study prior art, evaluate technologies, map the problem space. |
+| **04** | `/titan:04-design` | Design your UI/UX through conversation. See real HTML mockups in your browser. Iterate until perfect. |
+| **05** | `/titan:05-plan` | Create a detailed execution plan for the **current phase** from your roadmap. Tasks, waves, acceptance criteria, boundaries. |
+| **06** | `/titan:06-build` | Execute the plan. Parallel AI agents build while you watch (or help). Atomic commits keep history clean. |
+| **07** | `/titan:07-verify` | Prove it works. Mandatory reconciliation + adversarial review. Nothing ships unverified. |
+| **08** | `/titan:08-ship` | Release. Tag. Celebrate. Move to the next milestone. |
 
 **Repeat steps 05-07** for each phase in your roadmap. That's the entire workflow.
 
@@ -60,7 +60,7 @@ TITAN's core workflow is 8 numbered steps. Follow them in order. It's that simpl
 
 TITAN always tells you exactly what to do next.
 
-**Your roadmap is your map.** During step 02 (`/titan:vision`), TITAN interviews you and builds a phased roadmap — a numbered list of everything that needs to be built, broken into logical phases with clear goals. This roadmap lives in `.titan/ROADMAP.md` and is your project's table of contents.
+**Your roadmap is your map.** During step 02 (`/titan:02-vision`), TITAN interviews you and builds a phased roadmap — a numbered list of everything that needs to be built, broken into logical phases with clear goals. This roadmap lives in `.titan/ROADMAP.md` and is your project's table of contents.
 
 **Every command ends with guidance.** After each command completes, TITAN shows you:
 1. **The recommended next action** — the single best thing to do right now
@@ -72,6 +72,17 @@ TITAN always tells you exactly what to do next.
 - `/titan:progress` — Full dashboard showing every phase, your current position, and what's next
 - `/titan:resume` — Restores your context and tells you exactly where to pick up
 - `/titan:help` — Complete command reference with contextual guidance
+
+### Clear Context Between Major Steps
+
+AI context windows fill up during long conversations. TITAN tells you when to clear context (`/clear`) so each step gets fresh, focused attention. Key moments to clear:
+
+- **After `/titan:02-vision`** — Vision is conversation-heavy. Clear before planning.
+- **Before `/titan:05-plan`** — The planner spawns a researcher agent that works best with clean context.
+- **Before `/titan:06-build`** — Build agents are spawned fresh anyway, but a clean orchestrator helps.
+- **Before `/titan:07-verify`** — Verification must be adversarial. Fresh context prevents bias from the build phase.
+
+TITAN will remind you at these transitions. Your project state is always safe in `.titan/STATE.md` — clearing context loses nothing.
 
 ---
 
@@ -207,7 +218,7 @@ bash uninstall.sh --global --purge      # Also remove .titan/ project data
 
 ## Project Structure
 
-After `/titan:init`, your project gets:
+After `/titan:01-init`, your project gets:
 
 ```
 your-project/
@@ -250,14 +261,14 @@ TITAN takes FORGE's 9.1/10 foundation and makes it:
 ## Quick Start
 
 ```
-/titan:init          # Start here
-/titan:vision        # Define your product
-/titan:explore       # Research unknowns
-/titan:design        # Design the UI
-/titan:plan          # Plan the first phase
-/titan:build         # Build it
-/titan:verify        # Prove it works
-/titan:ship          # Ship it
+/titan:01-init          # Start here
+/titan:02-vision        # Define your product
+/titan:03-explore       # Research unknowns
+/titan:04-design        # Design the UI
+/titan:05-plan          # Plan the first phase
+/titan:06-build         # Build it
+/titan:07-verify        # Prove it works
+/titan:08-ship          # Ship it
 ```
 
 That's it. You just built world-class software.

@@ -18,14 +18,14 @@ Every command starts with its stage banner:
 
 | Command | Banner Text |
 |---------|------------|
-| `/titan:init` | INITIALIZING |
-| `/titan:vision` | VISION |
-| `/titan:explore` | EXPLORING |
-| `/titan:design` | DESIGN |
-| `/titan:plan` | PLANNING |
-| `/titan:build` | BUILDING |
-| `/titan:verify` | VERIFYING |
-| `/titan:ship` | SHIPPING |
+| `/titan:01-init` | INITIALIZING |
+| `/titan:02-vision` | VISION |
+| `/titan:03-explore` | EXPLORING |
+| `/titan:04-design` | DESIGN |
+| `/titan:05-plan` | PLANNING |
+| `/titan:06-build` | BUILDING |
+| `/titan:07-verify` | VERIFYING |
+| `/titan:08-ship` | SHIPPING |
 | `/titan:scan` | SCANNING CODEBASE |
 | `/titan:quick` | QUICK TASK |
 | `/titan:debug` | DEBUGGING |

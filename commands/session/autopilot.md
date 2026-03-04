@@ -196,7 +196,7 @@ When all phases in the execution plan are complete:
   Verification: All passed
 
   Next: Run /titan:progress for full dashboard
-        or /titan:ship if all phases are complete.
+        or /titan:08-ship if all phases are complete.
 ```
 
 ## Safety Rules
@@ -224,7 +224,7 @@ All outputs from the individual commands are produced (PLAN.md, commits, SUMMARY
 
 | Error | Resolution |
 |-------|-----------|
-| No phases defined | Direct user to `/titan:vision` to create ROADMAP.md |
+| No phases defined | Direct user to `/titan:02-vision` to create ROADMAP.md |
 | Context running low mid-phase | Pause autopilot, create handoff, suggest `/titan:pause` then resume |
 | Git conflicts | Stop autopilot, present conflicts to user |
 | Agent spawn failure | Retry once, then fall back to in-session execution |
@@ -236,7 +236,7 @@ After autopilot completes all phases, display:
 
 ```
 ─────────────────────────────────────────────────
-★ Recommended: Run /titan:ship to release the milestone.
+★ Recommended: Run /titan:08-ship to release the milestone.
   All phases are built and verified.
 
 Other options:
@@ -255,7 +255,7 @@ If autopilot was stopped mid-run, display:
   Autopilot will pick up from Phase NN, Task TN.
 
 Other options:
-  /titan:build     — Continue building manually (more control)
+  /titan:06-build     — Continue building manually (more control)
   /titan:debug     — Debug the issue that stopped autopilot
   /titan:progress  — See what was completed vs. what remains
   /titan:pause     — Save state and come back later
@@ -267,4 +267,4 @@ Other options:
 - Autopilot works best for well-defined phases with clear acceptance criteria.
 - For exploratory or research-heavy phases, manual execution gives better results.
 - You can start autopilot mid-phase — it picks up where the current PLAN.md left off.
-- If you're unsure about a phase, run `/titan:plan` manually first, review it, then start autopilot from the build step.
+- If you're unsure about a phase, run `/titan:05-plan` manually first, review it, then start autopilot from the build step.

@@ -5,7 +5,7 @@ description: On-demand adversarial code review — targeted at specific files or
 
 # /titan:review — Adversarial Code Review
 
-> Use anytime you want a quality review of specific code — not just during `/titan:verify`. Great for reviewing a PR, a specific file, or recent changes before committing.
+> Use anytime you want a quality review of specific code — not just during `/titan:07-verify`. Great for reviewing a PR, a specific file, or recent changes before committing.
 
 ## Prerequisites
 
@@ -124,8 +124,8 @@ Other options:
   /titan:test      — Generate or run tests to confirm fixes
   /titan:audit     — Full multi-dimensional audit (if review found security concerns)
   /titan:refactor  — Refactor if the review found structural issues
-  /titan:build     — Continue building (if review passed)
-  /titan:verify    — Proceed to verification (if review was the final check)
+  /titan:06-build     — Continue building (if review passed)
+  /titan:07-verify    — Proceed to verification (if review was the final check)
 ─────────────────────────────────────────────────
 ```
 

@@ -16,7 +16,7 @@ description: Novel problem solving -- systematic approach to unknowns
 
 ## Prerequisites
 
-- `.titan/` directory exists (run `/titan:init` first)
+- `.titan/` directory exists (run `/titan:01-init` first)
 - A clear sense that you face an UNKNOWN -- you cannot just look up the answer
 - STATE.md is accessible and writable
 
@@ -316,7 +316,7 @@ Full report: .titan/investigations/NNN-slug/INVESTIGATION.md
 
 - `/titan:investigate` --> `/titan:experiment`: When confidence is MEDIUM or LOW, chain to experiment to validate the recommendation with hands-on prototyping.
 - `/titan:investigate` --> `/titan:learn`: When research reveals a technology the team is unfamiliar with, chain to learn for a deep dive before committing.
-- `/titan:investigate` --> `/titan:plan`: When confidence is HIGH and the approach is clear, chain directly to planning the implementation.
+- `/titan:investigate` --> `/titan:05-plan`: When confidence is HIGH and the approach is clear, chain directly to planning the implementation.
 
 ## Tips
 

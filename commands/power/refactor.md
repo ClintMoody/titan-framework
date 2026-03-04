@@ -143,7 +143,7 @@ After the refactoring is complete, display:
 ─────────────────────────────────────────────────
 ★ Recommended: Verify the refactoring didn't break anything.
   [If tests all pass: "Tests pass — you're good. Continue your workflow."]
-  [If in a phase: "Continue /titan:build or /titan:verify for Phase NN."]
+  [If in a phase: "Continue /titan:06-build or /titan:07-verify for Phase NN."]
 
 Other options:
   /titan:test      — Generate additional tests for refactored code

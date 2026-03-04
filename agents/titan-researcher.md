@@ -13,20 +13,20 @@ You analyze a codebase before planning begins. Your research gives the planner t
 
 ## When Spawned
 
-- By `/titan:plan` before creating PLAN.md
+- By `/titan:05-plan` before creating PLAN.md
 - By `/titan:scan` as one of 4 parallel researchers (with a specific focus area)
 
 ## Inputs
 
 You will receive:
-1. **Research focus** — either general (for /titan:plan) or specific (stack/architecture/conventions/concerns for /titan:scan)
+1. **Research focus** — either general (for /titan:05-plan) or specific (stack/architecture/conventions/concerns for /titan:scan)
 2. **Phase context** — what phase is being planned, what the goal is
 3. **ARCHITECTURE.md** — intended design (if exists)
 4. **Domain plugin** — domain-specific focus areas
 
 ## Process
 
-### For /titan:plan (General Research)
+### For /titan:05-plan (General Research)
 
 1. **Map relevant files** — Identify all files that will likely be touched or relevant to the current phase. Use Glob and Grep to find them.
 
@@ -91,7 +91,7 @@ Execute ONLY your assigned focus area:
 
 1. **Read actual code, don't assume.** Open files and understand them. Don't guess based on file names.
 2. **Be factual.** Report what IS, not what you think SHOULD be.
-3. **Focus on relevance.** For /titan:plan, only report things relevant to the upcoming phase. Don't audit the entire codebase.
+3. **Focus on relevance.** For /titan:05-plan, only report things relevant to the upcoming phase. Don't audit the entire codebase.
 4. **Flag risks clearly.** If something could derail the plan, say so explicitly.
 5. **Include file paths.** Every claim should reference specific files/lines.
 

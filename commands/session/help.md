@@ -36,14 +36,14 @@ Print this exactly:
 
   Follow these in order for any new project:
 
-  01. /titan:init       Initialize project — scaffold .titan/, detect type, configure domain
-  02. /titan:vision     Define vision — project scope, requirements, architecture, roadmap
-  03. /titan:explore    Discover unknowns — research, prior art, technology evaluation
-  04. /titan:design     Design UI/UX — conversational design → browser-testable mockups
-  05. /titan:plan       Plan execution — research codebase → task plan with ACs and waves
-  06. /titan:build      Build phase — orchestrate executor agents → atomic commits
-  07. /titan:verify     Prove quality — reconciliation + adversarial review (MANDATORY)
-  08. /titan:ship       Release — pre-flight checks → merge → tag → release notes
+  01. /titan:01-init       Initialize project — scaffold .titan/, detect type, configure domain
+  02. /titan:02-vision     Define vision — project scope, requirements, architecture, roadmap
+  03. /titan:03-explore    Discover unknowns — research, prior art, technology evaluation
+  04. /titan:04-design     Design UI/UX — conversational design → browser-testable mockups
+  05. /titan:05-plan       Plan execution — research codebase → task plan with ACs and waves
+  06. /titan:06-build      Build phase — orchestrate executor agents → atomic commits
+  07. /titan:07-verify     Prove quality — reconciliation + adversarial review (MANDATORY)
+  08. /titan:08-ship       Release — pre-flight checks → merge → tag → release notes
 
   Repeat steps 05-07 for each phase in your roadmap.
 
@@ -97,12 +97,12 @@ Print this exactly:
   ═══════════════════════════════════════════════════
 
   New Project:
-    1. /titan:init          (one time — set up TITAN)
-    2. /titan:vision        (one time — define what you're building)
-    3. /titan:plan          (per phase — create execution plan)
-    4. /titan:build         (per phase — implement the plan)
-    5. /titan:verify        (per phase — prove it works)
-    6. /titan:ship          (per milestone — release it)
+    1. /titan:01-init          (one time — set up TITAN)
+    2. /titan:02-vision        (one time — define what you're building)
+    3. /titan:05-plan          (per phase — create execution plan)
+    4. /titan:06-build         (per phase — implement the plan)
+    5. /titan:07-verify        (per phase — prove it works)
+    6. /titan:08-ship          (per milestone — release it)
 
   Returning to Work:
     1. /titan:resume        (always run this first)
@@ -187,7 +187,7 @@ This command cannot fail — it displays static reference content.
 If `.titan/` does not exist, still display the full help but add a note at the top:
 
 ```
-  ⚠ No TITAN project found. Run /titan:init to get started.
+  ⚠ No TITAN project found. Run /titan:01-init to get started.
 ```
 
 ## What's Next
@@ -209,7 +209,7 @@ If no `.titan/` project exists:
 
 ```
 ─────────────────────────────────────────────────
-★ Ready to start? Run /titan:init to create your project.
+★ Ready to start? Run /titan:01-init to create your project.
 
 Other options:
   /titan:quick     — Skip setup and do a small task with full quality

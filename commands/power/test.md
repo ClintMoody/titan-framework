@@ -128,14 +128,14 @@ After tests are generated and passing, display:
 ```
 ─────────────────────────────────────────────────
 ★ Recommended: Continue with your current workflow.
-  [If mid-build: "Continue /titan:build for Phase NN."]
-  [If pre-verify: "Run /titan:verify — your test coverage is stronger now."]
+  [If mid-build: "Continue /titan:06-build for Phase NN."]
+  [If pre-verify: "Run /titan:07-verify — your test coverage is stronger now."]
   [If standalone: "Run /titan:progress to see your current position."]
 
 Other options:
   /titan:review    — Review the code alongside its new tests
-  /titan:build     — Continue building the current phase
-  /titan:verify    — Verify the current phase
+  /titan:06-build     — Continue building the current phase
+  /titan:07-verify    — Verify the current phase
   /titan:audit     — Run a full quality audit
 ─────────────────────────────────────────────────
 ```

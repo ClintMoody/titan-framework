@@ -67,6 +67,8 @@ AI context windows are large but finite. TITAN treats context like a fighter pil
 
 **Work unit sizing** targets 50% of context per plan, with 2-3 tasks maximum. This ensures quality never degrades because the AI "ran out of room."
 
+**Context clearing** between major steps gives each phase fresh attention. TITAN recommends clearing context after vision (conversation-heavy), before building (orchestrator needs headroom), and before verification (adversarial review must not be biased by the build). All project state is persisted in `.titan/` — clearing context loses nothing.
+
 **Design rule:** Every command must work within context constraints. If it requires more context than available, it must split the work, not degrade the quality.
 
 ### 5. Every Decision Gets A Receipt

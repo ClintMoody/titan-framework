@@ -12,7 +12,7 @@ description: Scientific debugging with persistent hypothesis tracking
 
 ## Prerequisites
 
-- `.titan/` directory exists (run `/titan:init` first)
+- `.titan/` directory exists (run `/titan:01-init` first)
 - A reproducible (or at least describable) bug, error, or unexpected behavior
 - STATE.md is accessible and writable
 
@@ -322,8 +322,8 @@ After the bug is fixed, display:
 ```
 ─────────────────────────────────────────────────
 ★ Recommended: Return to your main workflow.
-  [If mid-build: "Continue with /titan:build for Phase NN."]
-  [If mid-verify: "Continue with /titan:verify for Phase NN."]
+  [If mid-build: "Continue with /titan:06-build for Phase NN."]
+  [If mid-verify: "Continue with /titan:07-verify for Phase NN."]
   [If standalone: "Run /titan:progress to see your current position."]
 
 Other options:

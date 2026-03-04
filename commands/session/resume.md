@@ -15,7 +15,7 @@ description: Continue from previous session — restore context from HANDOFF.md 
 If `.titan/` does not exist, print:
 ```
 ⚠ No TITAN project found in this directory.
-  Run /titan:init to initialize a new project.
+  Run /titan:01-init to initialize a new project.
 ```
 And stop.
 
@@ -134,14 +134,14 @@ Use this decision table to determine the single best next action:
 | Current State | Suggested Action |
 |---------------|-----------------|
 | Mid-build (tasks in progress) | "Continue building: [specific task description]" |
-| Plan exists, build not started | "Start building phase [NN]: run `/titan:build`" |
-| Phase build complete, not verified | "Verify phase [NN]: run `/titan:verify`" |
-| Phase verified, next phase planned | "Start planning next phase: run `/titan:plan`" |
-| Phase verified, no next phase | "Plan next phase from ROADMAP.md or run `/titan:ship` if complete" |
+| Plan exists, build not started | "Start building phase [NN]: run `/titan:06-build`" |
+| Phase build complete, not verified | "Verify phase [NN]: run `/titan:07-verify`" |
+| Phase verified, next phase planned | "Start planning next phase: run `/titan:05-plan`" |
+| Phase verified, no next phase | "Plan next phase from ROADMAP.md or run `/titan:08-ship` if complete" |
 | Blocker exists | "Resolve blocker: [blocker description]" |
-| No active phase | "Define project vision: run `/titan:vision`" |
-| Vision exists, no exploration | "Explore the problem space: run `/titan:explore`" |
-| Exploration done, no design | "Design the solution: run `/titan:design`" |
+| No active phase | "Define project vision: run `/titan:02-vision`" |
+| Vision exists, no exploration | "Explore the problem space: run `/titan:03-explore`" |
+| Exploration done, no design | "Design the solution: run `/titan:04-design`" |
 
 Present the suggestion:
 
@@ -177,8 +177,8 @@ No new artifacts are created. Existing HANDOFF.md is archived if present.
 
 | Error | Resolution |
 |-------|-----------|
-| No `.titan/` directory | Direct user to `/titan:init` |
-| STATE.md missing | Check if HANDOFF.md exists; if neither, suggest `/titan:init` |
+| No `.titan/` directory | Direct user to `/titan:01-init` |
+| STATE.md missing | Check if HANDOFF.md exists; if neither, suggest `/titan:01-init` |
 | STATE.md corrupted/unparseable | Attempt to recover from HANDOFF.md or git history |
 | HANDOFF.md references files that no longer exist | Warn user, suggest checking git log for changes |
 | Git not available | Skip git-related checks, continue with state files only |

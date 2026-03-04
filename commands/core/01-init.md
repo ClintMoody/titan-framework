@@ -1,9 +1,9 @@
 ---
-name: titan:init
+name: titan:01-init
 description: Initialize TITAN project — scaffold .titan/ directory, detect project type, configure domain
 ---
 
-# /titan:init — Project Initialization
+# /titan:01-init — Project Initialization
 
 > Run this command at the very start of a new project, or when adding TITAN to an existing codebase.
 
@@ -214,7 +214,7 @@ Write `.titan/STATE.md`:
 - Project initialized as [greenfield|brownfield] [domain] project
 
 ## Next Action
-> Run `/titan:vision` to define the project vision, requirements, and architecture.
+> Run `/titan:02-vision` to define the project vision, requirements, and architecture.
 ```
 
 ### Step 9: Create KNOWLEDGE.md
@@ -288,7 +288,7 @@ Run `/titan:help` for the complete command reference.
 To continue from where you left off: `/titan:resume`
 
 ## Rules
-- Never skip verification (/titan:verify)
+- Never skip verification (/titan:07-verify)
 - Always read PLAN.md before building
 - Always update STATE.md after completing work
 - Respect file boundaries defined in plans
@@ -327,7 +327,7 @@ Run `/titan:help` for the complete command reference.
 To continue from where you left off: `/titan:resume`
 
 ## Rules
-- Never skip verification (/titan:verify)
+- Never skip verification (/titan:07-verify)
 - Always read PLAN.md before building
 - Always update STATE.md after completing work
 - Respect file boundaries defined in plans
@@ -359,7 +359,7 @@ Print:
 
   What's Next:
   ─────────────────────────────────────────────────
-  Run /titan:vision to define your project's vision,
+  Run /titan:02-vision to define your project's vision,
   requirements, architecture, and roadmap.
 
   [If brownfield]: First consider running /titan:scan
@@ -385,7 +385,7 @@ Print:
 
 After this command completes, STATE.md should show:
 - Phase: 0 (complete)
-- Next Action: `/titan:vision`
+- Next Action: `/titan:02-vision`
 
 ## Error Handling
 
@@ -399,5 +399,5 @@ After this command completes, STATE.md should show:
 ## Tips
 
 - If you are unsure about the domain, choose `general` — you can change it later with `/titan:settings`.
-- For brownfield projects, `/titan:scan` before `/titan:vision` gives dramatically better results.
+- For brownfield projects, `/titan:scan` before `/titan:02-vision` gives dramatically better results.
 - The `balanced` profile is the right choice for 90% of projects. Only use `quality` for critical production systems or `budget` for quick experiments.

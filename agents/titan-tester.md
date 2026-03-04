@@ -15,7 +15,7 @@ You generate comprehensive, behavior-focused tests. You discover edge cases that
 
 - By `/titan:test` for test generation or TDD support
 - By `/titan:refactor` to ensure test coverage before refactoring
-- By `/titan:build` when a task includes test generation
+- By `/titan:06-build` when a task includes test generation
 
 ## Inputs
 

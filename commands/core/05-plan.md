@@ -3,7 +3,7 @@ name: titan:05-plan
 description: Create a detailed execution plan for the current phase with tasks, waves, acceptance criteria, and boundaries.
 ---
 
-# /titan:plan — Phase Execution Planning
+# /titan:05-plan — Phase Execution Planning
 
 > Create the execution blueprint for the current phase. This command analyzes the codebase,
 > maps acceptance criteria to concrete tasks, organizes work into parallel waves, and produces
@@ -13,14 +13,14 @@ description: Create a detailed execution plan for the current phase with tasks, 
 
 Before running, verify ALL of the following exist. If any are missing, STOP and tell the user which prerequisite is unmet and which command to run.
 
-- `.titan/STATE.md` exists (created by `/titan:init`)
-- `.titan/ROADMAP.md` exists with at least one phase defined (created by `/titan:vision`)
-- `.titan/REQUIREMENTS.md` exists with BDD acceptance criteria (created by `/titan:vision`)
-- `.titan/ARCHITECTURE.md` exists (created by `/titan:vision`)
-- `.titan/config.yaml` exists (created by `/titan:init`)
+- `.titan/STATE.md` exists (created by `/titan:01-init`)
+- `.titan/ROADMAP.md` exists with at least one phase defined (created by `/titan:02-vision`)
+- `.titan/REQUIREMENTS.md` exists with BDD acceptance criteria (created by `/titan:02-vision`)
+- `.titan/ARCHITECTURE.md` exists (created by `/titan:02-vision`)
+- `.titan/config.yaml` exists (created by `/titan:01-init`)
 - STATE.md shows current step is `plan` or current phase status is `pending`
 
-If STATE.md shows step is `build` or `verify`, warn the user: "Phase NN already has a plan. Run `/titan:build` to execute it, or confirm you want to re-plan."
+If STATE.md shows step is `build` or `verify`, warn the user: "Phase NN already has a plan. Run `/titan:06-build` to execute it, or confirm you want to re-plan."
 
 ---
 
@@ -317,7 +317,7 @@ Boundaries: [count files/dirs protected]
 Please review .titan/phases/NN-phase-name/PLAN.md
 
 Options:
-  [approve]  — Accept this plan and proceed (run /titan:build next)
+  [approve]  — Accept this plan and proceed (run /titan:06-build next)
   [modify]   — Request changes to specific tasks or structure
   [re-plan]  — Discard and re-plan with different parameters
   [split]    — Break this phase into smaller sub-phases
@@ -358,7 +358,7 @@ Set the PLAN.md frontmatter `status` from `draft` to `approved`.
 - STATE.md `Step` set to `build (ready)`
 - STATE.md `Status` set to `active`
 - STATE.md `Last Action` set to plan approval description
-- STATE.md `Next Action` set to `Run /titan:build to execute Phase NN`
+- STATE.md `Next Action` set to `Run /titan:06-build to execute Phase NN`
 
 ---
 
@@ -366,12 +366,12 @@ Set the PLAN.md frontmatter `status` from `draft` to `approved`.
 
 | Situation | Response |
 |-----------|----------|
-| ROADMAP.md has no pending phases | "All phases are complete. Run `/titan:ship` to release, or add new phases to ROADMAP.md." |
-| REQUIREMENTS.md has no ACs for this phase | "No acceptance criteria mapped to Phase NN. Either update REQUIREMENTS.md or re-run `/titan:vision` to add requirements." |
+| ROADMAP.md has no pending phases | "All phases are complete. Run `/titan:08-ship` to release, or add new phases to ROADMAP.md." |
+| REQUIREMENTS.md has no ACs for this phase | "No acceptance criteria mapped to Phase NN. Either update REQUIREMENTS.md or re-run `/titan:02-vision` to add requirements." |
 | Researcher reports critical blockers | Present blockers to user. Offer: fix blockers first, plan around them, or skip phase. |
 | Estimated scope exceeds 50% context | Auto-split into sub-phases. Present split for approval. |
 | User rejects plan | Ask what to change. Apply modifications. Re-validate. Re-present. |
-| EXPLORATION.md not found for phase | Proceed without exploration context. Note in plan: "No prior exploration. Consider running `/titan:explore` if unknowns exist." |
+| EXPLORATION.md not found for phase | Proceed without exploration context. Note in plan: "No prior exploration. Consider running `/titan:03-explore` if unknowns exist." |
 | Phase directory already has PLAN.md | Ask: "Phase NN already has a plan. Overwrite? [yes/no]" |
 
 ---
@@ -382,12 +382,16 @@ After the plan is approved, display:
 
 ```
 ─────────────────────────────────────────────────
-★ Recommended: Run /titan:build to execute Phase NN.
+⟳ Recommended: Run /clear before building.
+  A clean context window lets the build orchestrator work
+  at full capacity. Your plan is saved in PLAN.md.
+
+★ Recommended: Run /titan:06-build to execute Phase NN.
   [X] tasks across [Y] waves are ready to go.
 
 Other options:
-  /titan:explore   — Research unknowns before building (if the plan revealed gaps)
-  /titan:design    — Design UI screens referenced in the plan (if not done yet)
+  /titan:03-explore   — Research unknowns before building (if the plan revealed gaps)
+  /titan:04-design    — Design UI screens referenced in the plan (if not done yet)
   /titan:audit     — Run a security audit before building security-sensitive features
   /titan:progress  — See full project dashboard and current position
 ─────────────────────────────────────────────────
@@ -395,7 +399,7 @@ Other options:
 
 ## Tips
 
-- Run `/titan:explore` before `/titan:plan` if the phase involves unfamiliar technologies or novel problems.
+- Run `/titan:03-explore` before `/titan:05-plan` if the phase involves unfamiliar technologies or novel problems.
 - If you find yourself wanting more than 3 tasks, the phase is probably too big. Let TITAN split it.
 - Boundary definitions save enormous debugging time. Be generous with what you protect.
 - The researcher agent's output is your best friend — it finds patterns and conventions you'd otherwise miss.

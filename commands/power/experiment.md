@@ -9,7 +9,7 @@ description: Try multiple approaches in isolation — prototype, measure, compar
 
 ## Prerequisites
 
-- `.titan/` directory exists (run `/titan:init` if not)
+- `.titan/` directory exists (run `/titan:01-init` if not)
 - Ideally, an INVESTIGATION.md with candidate approaches — but not required. You can experiment ad hoc.
 - Git repository with clean working tree (uncommitted changes will be stashed)
 

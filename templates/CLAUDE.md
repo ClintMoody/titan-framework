@@ -136,7 +136,7 @@ Guidelines:
 - A task should have **clear, testable acceptance criteria**
 - A task should produce **one atomic commit**
 
-If a task feels too big, use `/titan:plan` to decompose further.
+If a task feels too big, use `/titan:05-plan` to decompose further.
 
 ---
 

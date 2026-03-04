@@ -73,14 +73,14 @@ Parallel execution, fresh-context agents, wave-based task distribution — these
 
 | # | Command | Phase | What It Does |
 |---|---------|-------|-------------|
-| 01 | `/titan:init` | Setup | Scaffold `.titan/`, detect brownfield/greenfield, configure domain |
-| 02 | `/titan:vision` | Define | Progressive persona chain → PROJECT.md, REQUIREMENTS.md, ARCHITECTURE.md, ROADMAP.md |
-| 03 | `/titan:explore` | Discover | Deep research, prior art, technology evaluation, novel problem mapping |
-| 04 | `/titan:design` | Design | Conversational UI/UX → iterative HTML mockups → approved specs |
-| 05 | `/titan:plan` | Plan | Researcher agent → execution plan with waves, ACs, boundaries |
-| 06 | `/titan:build` | Execute | Thin orchestrator → parallel executor agents + in-session work |
-| 07 | `/titan:verify` | Prove | Reconciliation + adversarial review + knowledge capture (MANDATORY) |
-| 08 | `/titan:ship` | Release | Pre-flight → merge → tag → release notes → celebrate |
+| 01 | `/titan:01-init` | Setup | Scaffold `.titan/`, detect brownfield/greenfield, configure domain |
+| 02 | `/titan:02-vision` | Define | Progressive persona chain → PROJECT.md, REQUIREMENTS.md, ARCHITECTURE.md, ROADMAP.md |
+| 03 | `/titan:03-explore` | Discover | Deep research, prior art, technology evaluation, novel problem mapping |
+| 04 | `/titan:04-design` | Design | Conversational UI/UX → iterative HTML mockups → approved specs |
+| 05 | `/titan:05-plan` | Plan | Researcher agent → execution plan with waves, ACs, boundaries |
+| 06 | `/titan:06-build` | Execute | Thin orchestrator → parallel executor agents + in-session work |
+| 07 | `/titan:07-verify` | Prove | Reconciliation + adversarial review + knowledge capture (MANDATORY) |
+| 08 | `/titan:08-ship` | Release | Pre-flight → merge → tag → release notes → celebrate |
 
 ---
 
@@ -190,7 +190,7 @@ anti_patterns:
 
 ---
 
-## Project Structure (Created by `/titan:init`)
+## Project Structure (Created by `/titan:01-init`)
 
 ```
 project-root/
@@ -206,7 +206,7 @@ project-root/
 │   ├── phases/
 │   │   ├── 01-phase-name/
 │   │   │   ├── PLAN.md         # Execution plan
-│   │   │   ├── EXPLORATION.md  # Research findings (from /titan:explore)
+│   │   │   ├── EXPLORATION.md  # Research findings (from /titan:03-explore)
 │   │   │   ├── SUMMARY.md      # Post-verify reconciliation
 │   │   │   ├── EVALUATION.md   # Post-verify adversarial review
 │   │   │   └── ...
@@ -448,8 +448,8 @@ This system ensures that even problems nobody has solved before get systematic, 
 | Novel Problems | No dedicated workflow | investigate + experiment commands |
 | Agents | 4 | 9 (5 new specialists) |
 | Learning | None | /titan:learn + knowledge accumulation |
-| Verification | Separate reconcile + evaluate | Combined /titan:verify (both in one) |
-| Exploration | None | /titan:explore as core step 03 |
+| Verification | Separate reconcile + evaluate | Combined /titan:07-verify (both in one) |
+| Exploration | None | /titan:03-explore as core step 03 |
 | Audit | None | Security + performance + accessibility |
 | Refactoring | None | Dedicated /titan:refactor |
 | Commands | 24 | 24 (restructured: 8 core + 10 power + 6 session) |

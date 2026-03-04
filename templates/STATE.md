@@ -12,7 +12,7 @@
 | **Phase**    | `00`                           |
 | **Step**     | `initialization`               |
 | **Status**   | `not-started`                  |
-| **Last Action** | Project initialized by `/titan:init` |
+| **Last Action** | Project initialized by `/titan:01-init` |
 | **Updated**  | `{{TIMESTAMP}}`                |
 | **Context**  | ◆ Green (0%)                   |
 | **Profile**  | `balanced`                     |
@@ -126,7 +126,7 @@ Detailed log of phase transitions:
 
 > **What to do next:**
 >
-> Run `/titan:explore` to analyze the codebase and gather context for planning.
+> Run `/titan:03-explore` to analyze the codebase and gather context for planning.
 >
 > **Context:** The project has been initialized with TITAN. No phases have been
 > executed yet. The exploration phase will identify the tech stack, existing

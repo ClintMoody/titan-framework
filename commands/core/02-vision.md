@@ -1,16 +1,16 @@
 ---
-name: titan:vision
+name: titan:02-vision
 description: Define project vision, requirements, architecture, and roadmap through AI persona interviews
 ---
 
-# /titan:vision — Vision Definition
+# /titan:02-vision — Vision Definition
 
-> Run this command after `/titan:init` to define what you are building, why, and how. This is the most important command in the entire framework. Everything that follows is built on the foundation laid here.
+> Run this command after `/titan:01-init` to define what you are building, why, and how. This is the most important command in the entire framework. Everything that follows is built on the foundation laid here.
 
 ## Prerequisites
 
-- `.titan/` directory exists (run `/titan:init` first)
-- `.titan/STATE.md` shows Phase 0 complete or Next Action points to `/titan:vision`
+- `.titan/` directory exists (run `/titan:01-init` first)
+- `.titan/STATE.md` shows Phase 0 complete or Next Action points to `/titan:02-vision`
 - If brownfield project: `/titan:scan` is recommended first (but not required)
 
 If prerequisites are not met, inform the user and suggest the correct command.
@@ -385,16 +385,24 @@ Display a summary:
     Tech Stack: [key technologies]
     Complexity: [overall estimate]
 
+  ⟳ Recommended: Run /clear before your next command.
+    Vision is conversation-heavy. Clearing context gives the
+    next step fresh, focused attention. Your state is saved.
+
   What's Next:
   ─────────────────────────────────────────────────
-  If your project has unknowns or novel challenges:
-    → Run /titan:explore to research before planning.
+  ★ If your project has unknowns or novel challenges:
+    → Run /titan:03-explore to research before planning.
 
-  If your project has a UI component:
-    → Run /titan:design to create mockups.
+  ★ If your project has a UI component:
+    → Run /titan:04-design to create mockups.
 
-  If you're ready to start building:
-    → Run /titan:plan to create Phase 1 execution plan.
+  ★ If you're ready to start building:
+    → Run /titan:05-plan to create Phase 1 execution plan.
+
+  Other options:
+    /titan:scan       — Deep-scan an existing codebase first
+    /titan:progress   — See full project dashboard
   ─────────────────────────────────────────────────
 
   Phase 2 of 8 ▓▓▓▓░░░░░░░░░░░░ 25%
@@ -415,9 +423,9 @@ Add to Completed Phases:
 Add relevant decisions to the Active Decisions table and to `.titan/DECISIONS.md` — especially technology choices from the architecture phase.
 
 Update Next Action based on context:
-- If project has unknowns: "Run `/titan:explore` to research unknowns before planning."
-- If project has UI: "Run `/titan:design` to create UI mockups."
-- Otherwise: "Run `/titan:plan` to create Phase 1 execution plan."
+- If project has unknowns: "Run `/titan:03-explore` to research unknowns before planning."
+- If project has UI: "Run `/titan:04-design` to create UI mockups."
+- Otherwise: "Run `/titan:05-plan` to create Phase 1 execution plan."
 
 ## Outputs
 
@@ -435,14 +443,14 @@ Update Next Action based on context:
 | User says "skip" during persona | Wrap up current persona with whatever info was gathered, note gaps, move to next persona |
 | User says "done" during persona | Finalize current persona's artifact with available info, note areas needing further definition |
 | User provides very short answers | Ask specific follow-up questions to draw out more detail. "Can you tell me more about [specific aspect]?" |
-| User is unsure about technical choices | Offer 2-3 concrete recommendations with trade-offs. Let them choose or defer to /titan:explore. |
+| User is unsure about technical choices | Offer 2-3 concrete recommendations with trade-offs. Let them choose or defer to /titan:03-explore. |
 | User wants to change earlier answers | Allow it. "Of course — what would you like to change in [artifact]?" Update the file. |
 | Brownfield project | Reference scan results (if `/titan:scan` was run) during architecture discussion |
 
 ## Tips
 
 - The quality of your vision directly determines the quality of everything that follows. Invest time here.
-- It is OK to say "I don't know" — that is exactly what `/titan:explore` is for.
+- It is OK to say "I don't know" — that is exactly what `/titan:03-explore` is for.
 - If you realize mid-interview that the scope is too large, the Product Strategist persona should help the user cut scope ruthlessly.
 - Each persona should refer to what previous personas discovered — they are building on each other's work.
 - Technology choices made here should be recorded as decisions in DECISIONS.md. They can be revisited, but not silently changed.

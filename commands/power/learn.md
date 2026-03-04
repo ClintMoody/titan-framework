@@ -9,7 +9,7 @@ description: Deep research on a technology, pattern, or concept before using it
 
 ## Prerequisites
 
-- `.titan/` directory exists (run `/titan:init` if not)
+- `.titan/` directory exists (run `/titan:01-init` if not)
 - A topic you want to learn about
 
 ## Process
@@ -131,15 +131,15 @@ After the research is complete, display:
 ```
 ─────────────────────────────────────────────────
 ★ Recommended: Apply what you learned.
-  [If pre-planning: "Run /titan:plan to plan the phase with this knowledge."]
-  [If mid-build: "Continue /titan:build — your KNOWLEDGE.md is updated."]
+  [If pre-planning: "Run /titan:05-plan to plan the phase with this knowledge."]
+  [If mid-build: "Continue /titan:06-build — your KNOWLEDGE.md is updated."]
   [If standalone: "Run /titan:progress to see your current position."]
 
 Other options:
   /titan:learn       — Research another related topic
   /titan:investigate — Investigate if the topic raises novel problems
   /titan:experiment  — Try multiple approaches based on what you learned
-  /titan:explore     — Broader exploration of the problem space
+  /titan:03-explore     — Broader exploration of the problem space
 ─────────────────────────────────────────────────
 ```
 
