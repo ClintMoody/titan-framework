@@ -124,6 +124,25 @@ Ask if they have follow-up questions. Engage in a teaching conversation if they 
 - **No good sources found:** Report what was found, suggest alternative search terms, ask user if they have specific resources to review
 - **Topic already researched:** Check if `.titan/knowledge/[slug].md` exists. If so, offer to update or show existing research.
 
+## What's Next
+
+After the research is complete, display:
+
+```
+─────────────────────────────────────────────────
+★ Recommended: Apply what you learned.
+  [If pre-planning: "Run /titan:plan to plan the phase with this knowledge."]
+  [If mid-build: "Continue /titan:build — your KNOWLEDGE.md is updated."]
+  [If standalone: "Run /titan:progress to see your current position."]
+
+Other options:
+  /titan:learn       — Research another related topic
+  /titan:investigate — Investigate if the topic raises novel problems
+  /titan:experiment  — Try multiple approaches based on what you learned
+  /titan:explore     — Broader exploration of the problem space
+─────────────────────────────────────────────────
+```
+
 ## Tips
 
 - Learning BEFORE implementing saves 10x the time learning DURING implementation.

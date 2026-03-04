@@ -429,6 +429,22 @@ Add design decisions to `.titan/DECISIONS.md`:
 - **During `/titan:build`:** Executor agents reference mockups and SPEC.md for pixel-accurate implementation.
 - **During `/titan:verify`:** Verifier checks implementation against approved mockups and SPEC.md.
 
+## What's Next
+
+After design is complete, display:
+
+```
+─────────────────────────────────────────────────
+★ Recommended: Run /titan:plan to create the Phase 1 execution plan.
+  Your approved designs will be used as implementation targets.
+
+Other options:
+  /titan:explore   — Research technologies or unknowns before planning
+  /titan:design    — Re-run to iterate on designs or add more screens
+  /titan:progress  — See full project dashboard and current position
+─────────────────────────────────────────────────
+```
+
 ## Tips
 
 - Start with the most complex screen. If you can get that right, simpler screens follow quickly.

@@ -109,6 +109,26 @@ If yes: apply fixes directly, one at a time, with atomic commits if in a git rep
 - **Diff is empty:** Report "no changes to review" and suggest what to try
 - **Too much code to review at once:** Split into focused reviews by module/feature
 
+## What's Next
+
+After the review is complete, display:
+
+```
+─────────────────────────────────────────────────
+★ Recommended: Address the findings.
+  [If fixes were applied: "Run /titan:test to verify the fixes."]
+  [If fixes were declined: "Continue with your current workflow."]
+  [If NEEDS-WORK: "Fix the critical/important issues before proceeding."]
+
+Other options:
+  /titan:test      — Generate or run tests to confirm fixes
+  /titan:audit     — Full multi-dimensional audit (if review found security concerns)
+  /titan:refactor  — Refactor if the review found structural issues
+  /titan:build     — Continue building (if review passed)
+  /titan:verify    — Proceed to verification (if review was the final check)
+─────────────────────────────────────────────────
+```
+
 ## Tips
 
 - Run `/titan:review` before committing significant changes — catch issues early.

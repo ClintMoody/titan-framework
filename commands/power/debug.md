@@ -315,6 +315,25 @@ When resuming a session:
 | DEEP | Rapid mode. Test highest-confidence hypothesis first. Save session state frequently. |
 | CRITICAL | Save session state immediately. Record current hypotheses and progress. Exit with instructions for fresh session to continue. |
 
+## What's Next
+
+After the bug is fixed, display:
+
+```
+─────────────────────────────────────────────────
+★ Recommended: Return to your main workflow.
+  [If mid-build: "Continue with /titan:build for Phase NN."]
+  [If mid-verify: "Continue with /titan:verify for Phase NN."]
+  [If standalone: "Run /titan:progress to see your current position."]
+
+Other options:
+  /titan:test      — Generate tests to prevent this bug from recurring
+  /titan:review    — Review the fix before committing
+  /titan:audit     — Run a security audit if the bug was security-related
+  /titan:investigate — Research more broadly if root cause is still unclear
+─────────────────────────────────────────────────
+```
+
 ## Tips
 
 - The most common debugging mistake is jumping to a fix without confirming the root cause. TITAN forces you to hypothesize and experiment first. Trust the process.

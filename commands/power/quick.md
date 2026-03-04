@@ -257,6 +257,24 @@ All acceptance criteria passing.
 
 If ANY limit is exceeded, halt and redirect to `/titan:plan`.
 
+## What's Next
+
+After the quick task completes, display:
+
+```
+─────────────────────────────────────────────────
+★ Recommended: Return to your main workflow.
+  [If a phase is active: "Continue with /titan:build for Phase NN."]
+  [If no phase is active: "Run /titan:progress to see where you left off."]
+
+Other options:
+  /titan:quick     — Run another small task
+  /titan:test      — Generate tests for the code you just changed
+  /titan:review    — Review the changes before committing
+  /titan:progress  — See full project dashboard and current position
+─────────────────────────────────────────────────
+```
+
 ## Tips
 
 - Chain quick tasks: `/titan:quick` three times in a row is totally fine for a burst of small fixes.

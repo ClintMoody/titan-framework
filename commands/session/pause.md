@@ -193,6 +193,22 @@ Print:
 | Git commit fails (hooks) | Warn user, suggest manual commit; state files are still written |
 | HANDOFF.md already exists | Overwrite it — the new one is more current |
 
+## What's Next
+
+After the session is saved, display:
+
+```
+─────────────────────────────────────────────────
+★ Session saved. When you return, run:
+
+  /titan:resume    — Restores full context and tells you exactly
+                     where to pick up.
+
+  Everything is saved in STATE.md and HANDOFF.md.
+  You can close this session safely.
+─────────────────────────────────────────────────
+```
+
 ## Tips
 
 - Always run `/titan:pause` before ending a session, especially before long breaks.

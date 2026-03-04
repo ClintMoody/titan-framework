@@ -389,6 +389,36 @@ What's next?
 
 ---
 
+## What's Next
+
+After shipping, display based on the roadmap state:
+
+**If more phases remain in the roadmap:**
+```
+─────────────────────────────────────────────────
+★ Recommended: Run /titan:plan to plan Phase NN — [Next Phase Name].
+  Your roadmap shows [X] phases remaining.
+
+Other options:
+  /titan:vision    — Revisit the roadmap if priorities have shifted
+  /titan:explore   — Research unknowns before planning the next phase
+  /titan:progress  — See full project dashboard and current position
+  /titan:pause     — Save state and take a break — you've earned it
+─────────────────────────────────────────────────
+```
+
+**If the roadmap is complete (all phases shipped):**
+```
+─────────────────────────────────────────────────
+★ Congratulations — your roadmap is complete!
+
+What now?
+  /titan:vision    — Define a new milestone with new goals
+  /titan:audit     — Run a comprehensive quality audit of the shipped product
+  /titan:progress  — Review the full project history
+─────────────────────────────────────────────────
+```
+
 ## Tips
 
 - Ship early, ship often. Small milestones with 2-3 phases ship cleaner than large milestones with 10 phases.

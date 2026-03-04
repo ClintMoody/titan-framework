@@ -121,6 +121,25 @@ If any tests fail unexpectedly, investigate and fix.
 4. **No test interdependence** — Tests must run independently in any order
 5. **Mock at boundaries** — Mock external services, not internal implementation
 
+## What's Next
+
+After tests are generated and passing, display:
+
+```
+─────────────────────────────────────────────────
+★ Recommended: Continue with your current workflow.
+  [If mid-build: "Continue /titan:build for Phase NN."]
+  [If pre-verify: "Run /titan:verify — your test coverage is stronger now."]
+  [If standalone: "Run /titan:progress to see your current position."]
+
+Other options:
+  /titan:review    — Review the code alongside its new tests
+  /titan:build     — Continue building the current phase
+  /titan:verify    — Verify the current phase
+  /titan:audit     — Run a full quality audit
+─────────────────────────────────────────────────
+```
+
 ## Error Handling
 
 - **No test framework installed:** Recommend one based on the language/framework, offer to install

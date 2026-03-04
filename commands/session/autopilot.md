@@ -230,6 +230,38 @@ All outputs from the individual commands are produced (PLAN.md, commits, SUMMARY
 | Agent spawn failure | Retry once, then fall back to in-session execution |
 | User cancels mid-run | Save current state, update STATE.md, exit cleanly |
 
+## What's Next
+
+After autopilot completes all phases, display:
+
+```
+─────────────────────────────────────────────────
+★ Recommended: Run /titan:ship to release the milestone.
+  All phases are built and verified.
+
+Other options:
+  /titan:audit     — Run a comprehensive audit before shipping
+  /titan:progress  — See full project dashboard
+  /titan:review    — Do a final manual review of the entire codebase
+  /titan:pause     — Save state and take a break before shipping
+─────────────────────────────────────────────────
+```
+
+If autopilot was stopped mid-run, display:
+
+```
+─────────────────────────────────────────────────
+★ Recommended: Fix the issue, then run /titan:autopilot to continue.
+  Autopilot will pick up from Phase NN, Task TN.
+
+Other options:
+  /titan:build     — Continue building manually (more control)
+  /titan:debug     — Debug the issue that stopped autopilot
+  /titan:progress  — See what was completed vs. what remains
+  /titan:pause     — Save state and come back later
+─────────────────────────────────────────────────
+```
+
 ## Tips
 
 - Autopilot works best for well-defined phases with clear acceptance criteria.

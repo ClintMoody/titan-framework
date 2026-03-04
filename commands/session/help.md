@@ -190,6 +190,32 @@ If `.titan/` does not exist, still display the full help but add a note at the t
   ⚠ No TITAN project found. Run /titan:init to get started.
 ```
 
+## What's Next
+
+After displaying help, if `.titan/STATE.md` exists, read it and display:
+
+```
+─────────────────────────────────────────────────
+★ Based on your current project state:
+  [Read STATE.md Next Action field and display it here]
+
+Other options:
+  /titan:progress  — Full project dashboard with phase details
+  /titan:resume    — Restore full context from last session
+─────────────────────────────────────────────────
+```
+
+If no `.titan/` project exists:
+
+```
+─────────────────────────────────────────────────
+★ Ready to start? Run /titan:init to create your project.
+
+Other options:
+  /titan:quick     — Skip setup and do a small task with full quality
+─────────────────────────────────────────────────
+```
+
 ## Tips
 
 - Bookmark the Golden Path — those 8 commands cover 95% of development work.

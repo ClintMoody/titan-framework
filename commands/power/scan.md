@@ -396,6 +396,23 @@ Suggested next step: [recommendation]
 | DEEP | Run only Stack + Concerns agents (highest value). Note skipped agents. |
 | CRITICAL | Do NOT run scan. Save state and suggest resuming with fresh context. |
 
+## What's Next
+
+After the scan completes, display:
+
+```
+─────────────────────────────────────────────────
+★ Recommended: Run /titan:plan to plan the next phase.
+  The scan results will inform the planner's decisions.
+
+Other options:
+  /titan:learn       — Deep-dive into an unfamiliar technology found in the scan
+  /titan:refactor    — Address concerns or tech debt identified in the scan
+  /titan:investigate — Research a novel problem the scan uncovered
+  /titan:progress    — See full project dashboard and current position
+─────────────────────────────────────────────────
+```
+
 ## Tips
 
 - Run `/titan:scan` before `/titan:plan` on any brownfield project. The research output gives the planner critical context about conventions to follow and risks to avoid.

@@ -46,15 +46,32 @@ TITAN's core workflow is 8 numbered steps. Follow them in order. It's that simpl
 | Step | Command | What Happens |
 |------|---------|-------------|
 | **01** | `/titan:init` | Start your project. TITAN sets up everything. |
-| **02** | `/titan:vision` | Define what you're building and why. AI personas interview you to extract a clear vision, requirements, architecture, and roadmap. |
+| **02** | `/titan:vision` | Define what you're building and why. AI personas interview you to extract a clear vision, requirements, architecture, and **phased roadmap** — a numbered list of every phase you'll build, in order, with goals and milestones. |
 | **03** | `/titan:explore` | Research the unknown. Study prior art, evaluate technologies, map the problem space. |
 | **04** | `/titan:design` | Design your UI/UX through conversation. See real HTML mockups in your browser. Iterate until perfect. |
-| **05** | `/titan:plan` | Create a detailed execution plan for the current phase. Tasks, waves, acceptance criteria, boundaries. |
+| **05** | `/titan:plan` | Create a detailed execution plan for the **current phase** from your roadmap. Tasks, waves, acceptance criteria, boundaries. |
 | **06** | `/titan:build` | Execute the plan. Parallel AI agents build while you watch (or help). Atomic commits keep history clean. |
 | **07** | `/titan:verify` | Prove it works. Mandatory reconciliation + adversarial review. Nothing ships unverified. |
 | **08** | `/titan:ship` | Release. Tag. Celebrate. Move to the next milestone. |
 
 **Repeat steps 05-07** for each phase in your roadmap. That's the entire workflow.
+
+### You Are Never Lost
+
+TITAN always tells you exactly what to do next.
+
+**Your roadmap is your map.** During step 02 (`/titan:vision`), TITAN interviews you and builds a phased roadmap — a numbered list of everything that needs to be built, broken into logical phases with clear goals. This roadmap lives in `.titan/ROADMAP.md` and is your project's table of contents.
+
+**Every command ends with guidance.** After each command completes, TITAN shows you:
+1. **The recommended next action** — the single best thing to do right now
+2. **Other available options** — alternatives for when your situation doesn't match the default
+
+**TITAN tracks your position.** The file `.titan/STATE.md` always knows which phase you're on, what step you're at, and what to do next. You never have to remember where you left off.
+
+**If you're ever unsure, run one of these:**
+- `/titan:progress` — Full dashboard showing every phase, your current position, and what's next
+- `/titan:resume` — Restores your context and tells you exactly where to pick up
+- `/titan:help` — Complete command reference with contextual guidance
 
 ---
 

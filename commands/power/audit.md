@@ -222,6 +222,39 @@ Run `/titan:audit` (security dimension at minimum) ALWAYS after:
 - Webhook handlers added
 - GitHub Actions or CI/CD workflow changes
 
+## What's Next
+
+After the audit report is presented, display based on results:
+
+**If critical/important issues were found:**
+```
+─────────────────────────────────────────────────
+★ Recommended: Fix the [X] critical and [Y] important issues.
+  [If fixes were auto-applied: "Review the applied fixes, then continue."]
+  [If fixes need manual work: "Address the findings before shipping."]
+
+Other options:
+  /titan:debug     — Debug a specific issue from the audit
+  /titan:refactor  — Refactor code flagged for structural issues
+  /titan:test      — Add tests for areas with low coverage
+  /titan:ship      — Ship (only if all critical issues are resolved)
+─────────────────────────────────────────────────
+```
+
+**If the audit is clean:**
+```
+─────────────────────────────────────────────────
+★ Recommended: Continue with your workflow.
+  [If pre-ship: "Run /titan:ship — your codebase is audit-clean."]
+  [If mid-build: "Continue /titan:build for Phase NN."]
+
+Other options:
+  /titan:ship      — Ship the milestone
+  /titan:verify    — Run verification if not done yet
+  /titan:progress  — See full project dashboard and current position
+─────────────────────────────────────────────────
+```
+
 ## Tips
 
 - Run `/titan:audit` before every `/titan:ship` — it catches what `/titan:verify` might miss.

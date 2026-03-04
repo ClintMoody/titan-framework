@@ -376,6 +376,23 @@ Set the PLAN.md frontmatter `status` from `draft` to `approved`.
 
 ---
 
+## What's Next
+
+After the plan is approved, display:
+
+```
+─────────────────────────────────────────────────
+★ Recommended: Run /titan:build to execute Phase NN.
+  [X] tasks across [Y] waves are ready to go.
+
+Other options:
+  /titan:explore   — Research unknowns before building (if the plan revealed gaps)
+  /titan:design    — Design UI screens referenced in the plan (if not done yet)
+  /titan:audit     — Run a security audit before building security-sensitive features
+  /titan:progress  — See full project dashboard and current position
+─────────────────────────────────────────────────
+```
+
 ## Tips
 
 - Run `/titan:explore` before `/titan:plan` if the phase involves unfamiliar technologies or novel problems.

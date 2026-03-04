@@ -355,6 +355,37 @@ These rules are NON-NEGOTIABLE. Violating them defeats the purpose of the agent 
 
 ---
 
+## What's Next
+
+After all tasks are complete, display:
+
+```
+─────────────────────────────────────────────────
+★ Recommended: Run /titan:verify to verify Phase NN.
+  This is mandatory — nothing ships without verification.
+
+Other options:
+  /titan:plan      — Re-plan if tasks revealed the plan was wrong
+  /titan:debug     — Debug a specific issue discovered during build
+  /titan:progress  — See full project dashboard and current position
+  /titan:pause     — Save state if you need to stop for now
+─────────────────────────────────────────────────
+```
+
+If some tasks are blocked, display:
+
+```
+─────────────────────────────────────────────────
+★ Recommended: Resolve blockers, then continue /titan:build.
+
+Other options:
+  /titan:verify    — Verify what's been built so far (partial verification)
+  /titan:plan      — Re-plan with different approach to blocked tasks
+  /titan:debug     — Investigate the root cause of blockers
+  /titan:investigate — Research if the blocker involves a novel problem
+─────────────────────────────────────────────────
+```
+
 ## Tips
 
 - Trust the thin orchestrator pattern. The urge to "just do it myself" is strong, but fresh-context agents produce better code because they aren't fatigued.

@@ -259,6 +259,22 @@ verification:
 | Invalid input | Show valid options, re-prompt |
 | Write permission error | Alert user, suggest manual edit |
 
+## What's Next
+
+After settings are saved, display:
+
+```
+─────────────────────────────────────────────────
+★ Recommended: Continue with your current workflow.
+  Changes take effect on the next command.
+
+Other options:
+  /titan:progress  — See your current position and what to do next
+  /titan:resume    — Re-read state with the new settings applied
+  /titan:help      — See all available commands
+─────────────────────────────────────────────────
+```
+
 ## Tips
 
 - The `balanced` profile is right for 90% of projects. Use `quality` for critical production systems. Use `budget` for quick experiments.
