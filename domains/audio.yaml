@@ -1,0 +1,53 @@
+# TITAN Domain Plugin: Audio/DSP
+# For audio plugins (VST/AU/AAX), DAWs, audio engines, real-time audio processing
+# Carried from FORGE's expert-level audio knowledge
+
+name: Audio / DSP
+description: Standards for real-time audio applications — thread safety, buffer management, DSP quality
+
+verifier_checks:
+  - "Real-time safety: ZERO memory allocation (malloc/new/calloc) in audio callback — pre-allocate everything"
+  - "Real-time safety: ZERO locks (mutex/semaphore/critical section) in audio callback — use lock-free queues"
+  - "Real-time safety: ZERO I/O (file, network, console) in audio callback"
+  - "Real-time safety: ZERO system calls that may block in audio callback"
+  - "Denormal protection: Flush-to-zero (FTZ) and denormals-are-zero (DAZ) enabled in DSP code"
+  - "Buffer management: No buffer overruns or underruns — validate buffer sizes at all boundaries"
+  - "Thread safety: Audio thread and UI thread never share mutable state without lock-free synchronization"
+  - "Parameter smoothing: All parameter changes are smoothed to prevent clicks/pops (use ramps, not steps)"
+  - "Multi-sample-rate support: DSP code handles 44100, 48000, 88200, 96000, 176400, 192000 Hz"
+  - "State save/restore: Full plugin state serializable and restorable (preset system, DAW recall)"
+  - "Latency reporting: Plugin reports correct latency to host for delay compensation"
+  - "Bypass: Clean bypass path that introduces zero latency and zero artifacts"
+
+researcher_focus:
+  - "DSP pipeline structure: Signal flow from input to output, processing stages"
+  - "Thread model: Audio thread, UI thread, background thread — how they communicate"
+  - "Buffer management: Block size handling, internal buffer strategy"
+  - "Parameter system: How parameters are defined, automated, smoothed"
+  - "Plugin format: VST3, AU, AAX, CLAP — host communication"
+  - "Framework: JUCE, iPlug2, DPF, custom — version and architecture"
+
+quality_gates:
+  - "Zero allocations in audio callback verified"
+  - "Denormal protection active"
+  - "Parameter changes are click-free"
+  - "State save/restore round-trips correctly"
+  - "Works at 44.1kHz and 96kHz minimum"
+  - "Buffer sizes from 32 to 4096 samples handled"
+
+patterns:
+  - "Lock-free ring buffers for audio-to-UI communication"
+  - "Atomic operations for parameter transfer between threads"
+  - "Pre-allocated memory pools for audio processing"
+  - "Coefficient pre-calculation on parameter change, not per-sample"
+  - "SIMD intrinsics for performance-critical DSP (SSE/AVX/NEON)"
+  - "Double-buffering for large state changes"
+
+anti_patterns:
+  - "ANY allocation (new, malloc, std::vector resize) in processBlock/processAudio — fatal"
+  - "Mutex or lock in audio callback — will cause audio dropouts"
+  - "String operations in audio callback — they allocate"
+  - "Virtual function calls in tight DSP loops — use templates or direct calls"
+  - "Branching in per-sample loops — use branchless techniques where possible"
+  - "Ignoring denormals — causes massive CPU spikes on near-zero signals"
+  - "Direct parameter access without smoothing — causes zipper noise / clicks"

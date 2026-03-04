@@ -1,0 +1,51 @@
+# TITAN Domain Plugin: Web Application
+# For modern web applications (SPA, SSR, SSG, PWA)
+
+name: Web Application
+description: Standards for modern web applications — accessibility, performance, security, SEO
+
+verifier_checks:
+  - "Accessibility: WCAG 2.1 AA compliance — semantic HTML, ARIA labels, color contrast >= 4.5:1, keyboard navigation, focus management"
+  - "Security: No XSS vectors — all user input sanitized before rendering, CSP headers configured"
+  - "Security: No sensitive data in client-side code, localStorage, or URL parameters"
+  - "Responsive design: Mobile-first approach, tested at 375px, 768px, and 1280px breakpoints"
+  - "SEO fundamentals: Semantic heading hierarchy, meta tags, structured data, accessible link text"
+  - "Performance: No synchronous blocking operations on main thread"
+  - "Performance: Images use appropriate formats (WebP/AVIF) with width/height attributes and lazy loading"
+  - "Progressive enhancement: Core functionality works without JavaScript where possible"
+  - "Error handling: User-facing error states for all failure modes (network, validation, server)"
+  - "Loading states: Skeleton screens or spinners for async operations, no blank screens"
+
+researcher_focus:
+  - "Framework conventions: Component patterns, file structure, state management approach"
+  - "Bundle analysis: Entry points, code splitting boundaries, tree-shaking effectiveness"
+  - "SSR/SSG considerations: Hydration patterns, data fetching strategy, caching"
+  - "API integration: Request patterns, error handling, authentication flow"
+  - "Routing: Navigation patterns, route guards, deep linking"
+  - "Asset pipeline: Build configuration, optimization settings, CDN usage"
+
+quality_gates:
+  - "No critical accessibility violations"
+  - "No XSS or injection vulnerabilities"
+  - "Mobile-responsive layout verified"
+  - "Semantic HTML structure (no div soup)"
+  - "Error states handled for all user-facing operations"
+  - "Loading states present for async operations"
+
+patterns:
+  - "Component composition: Build complex UIs from small, focused components"
+  - "State management: Local state for UI, global state for shared/server data"
+  - "Error boundaries: Catch and handle errors at component boundaries"
+  - "Optimistic UI: Update UI immediately, reconcile with server response"
+  - "Form handling: Controlled inputs with validation and accessible error messages"
+  - "Data fetching: Centralized with loading/error/success states"
+  - "Route-based code splitting: Load code only when needed"
+
+anti_patterns:
+  - "Prop drilling beyond 3 levels — use context or state management"
+  - "Direct DOM manipulation in component frameworks — let the framework handle the DOM"
+  - "Synchronous blocking operations — use async/await, Web Workers for heavy computation"
+  - "Uncontrolled re-renders — use memoization, proper key props, stable references"
+  - "Storing sensitive data in localStorage or sessionStorage"
+  - "Inline styles for theming — use CSS custom properties or a design system"
+  - "Nested ternaries in JSX — extract to named components or variables"

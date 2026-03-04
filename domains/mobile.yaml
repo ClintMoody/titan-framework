@@ -1,0 +1,48 @@
+# TITAN Domain Plugin: Mobile Application
+# For iOS, Android, and cross-platform mobile apps
+
+name: Mobile Application
+description: Standards for mobile applications — battery, offline-first, permissions, UX patterns
+
+verifier_checks:
+  - "Battery efficiency: No unnecessary background work, location polling, or wake locks"
+  - "Offline-first: Core functionality available without network, graceful degradation"
+  - "Permission handling: Request permissions at point of use, handle denial gracefully"
+  - "Gesture patterns: Standard platform gestures (swipe, pinch, long-press) used correctly"
+  - "Navigation: Follows platform conventions (back button Android, swipe-back iOS)"
+  - "Memory management: No unbounded caching, images sized appropriately for display"
+  - "App lifecycle: State preserved across background/foreground transitions"
+  - "Accessibility: VoiceOver/TalkBack support, dynamic type, sufficient touch targets (44x44pt minimum)"
+  - "Network handling: Retry logic for failed requests, connection state awareness"
+  - "App store compliance: No private API usage, content policy adherence"
+
+researcher_focus:
+  - "Platform targets: iOS version range, Android API levels, cross-platform framework version"
+  - "Navigation pattern: Tab bar, drawer, stack — and how it maps to app structure"
+  - "Storage approach: SQLite, Realm, AsyncStorage, Core Data, Room"
+  - "Permission usage: Which permissions are requested and why"
+  - "Push notification architecture: Registration, handling, deep linking"
+  - "Build configuration: Signing, flavors/schemes, CI/CD pipeline"
+
+quality_gates:
+  - "Offline core functionality verified"
+  - "Permission requests are contextual (not all at launch)"
+  - "No excessive battery drain from background operations"
+  - "Minimum touch target size (44x44pt) met"
+  - "App state preserved across lifecycle events"
+
+patterns:
+  - "Offline-first: Cache data locally, sync when connected"
+  - "Optimistic updates: Update UI immediately, reconcile with server"
+  - "Lazy loading: Load screens and data on demand, not at launch"
+  - "Platform-native patterns: Use platform UI components and conventions"
+  - "Background task management: Use system-provided APIs (WorkManager, BGTaskScheduler)"
+  - "Deep linking: Support universal links/app links for content sharing"
+
+anti_patterns:
+  - "Requesting all permissions at app launch — request at point of use"
+  - "Polling for updates — use push notifications or server-sent events"
+  - "Loading all data at startup — lazy load screens and data"
+  - "Ignoring platform conventions — don't put iOS patterns on Android or vice versa"
+  - "Storing large files in app sandbox without cleanup strategy"
+  - "Blocking main thread with synchronous I/O or heavy computation"

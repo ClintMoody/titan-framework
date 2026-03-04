@@ -1,0 +1,48 @@
+# TITAN Domain Plugin: API / Backend
+# For REST APIs, GraphQL, backend services, microservices
+
+name: API / Backend
+description: Standards for APIs and backend services — design, security, performance, documentation
+
+verifier_checks:
+  - "Input validation: All user input validated and sanitized at the API boundary"
+  - "Authentication: Auth mechanism implemented correctly (JWT validation, session management, API keys)"
+  - "Authorization: Access control checks on every protected endpoint, no IDOR vulnerabilities"
+  - "Error responses: Consistent error format, appropriate HTTP status codes, no stack traces in production"
+  - "Rate limiting: Protection against abuse on public and authentication endpoints"
+  - "Versioning: API version strategy defined and implemented (URL path, header, or query param)"
+  - "Pagination: List endpoints paginated with consistent cursor or offset pattern"
+  - "CORS: Cross-origin policy configured correctly — not overly permissive"
+  - "Logging: Request logging without sensitive data (no passwords, tokens, PII in logs)"
+  - "Database: Parameterized queries (no SQL injection), appropriate indexes, connection pooling"
+
+researcher_focus:
+  - "Framework: Express, Fastify, Django, FastAPI, Go net/http, Spring — version and patterns"
+  - "Database: PostgreSQL, MySQL, MongoDB, Redis — schema and query patterns"
+  - "Authentication: JWT, sessions, OAuth, API keys — implementation details"
+  - "Middleware stack: Logging, auth, validation, error handling — order and configuration"
+  - "API design: REST conventions, GraphQL schema, endpoint naming"
+  - "Deployment: Containerization, serverless, traditional — platform and config"
+
+quality_gates:
+  - "No SQL injection vulnerabilities"
+  - "Authentication/authorization on all protected endpoints"
+  - "Input validation at API boundary"
+  - "Consistent error response format"
+  - "No sensitive data in logs or error messages"
+
+patterns:
+  - "Controller-Service-Repository: Separate HTTP handling, business logic, and data access"
+  - "Middleware pipeline: Cross-cutting concerns (auth, logging, CORS) as middleware"
+  - "DTO validation: Validate request/response shapes at the boundary"
+  - "Centralized error handling: Global error handler with consistent format"
+  - "Health checks: /health endpoint for load balancer and monitoring"
+  - "Graceful shutdown: Handle SIGTERM, finish in-flight requests, close connections"
+
+anti_patterns:
+  - "String concatenation in SQL queries — use parameterized queries"
+  - "Returning stack traces to clients — log internally, return safe error messages"
+  - "N+1 queries — use joins, eager loading, or DataLoader pattern"
+  - "Shared mutable state between requests — each request should be independent"
+  - "Catching all errors silently — let unexpected errors surface and log them"
+  - "Over-fetching — return only the data the client needs"

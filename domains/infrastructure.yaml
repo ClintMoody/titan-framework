@@ -1,0 +1,48 @@
+# TITAN Domain Plugin: Infrastructure
+# For IaC, DevOps, cloud infrastructure, platform engineering
+
+name: Infrastructure
+description: Standards for infrastructure as code — security, cost, reliability, observability
+
+verifier_checks:
+  - "Security: No hardcoded secrets in IaC files — use secrets manager or environment variables"
+  - "Security: Least-privilege IAM policies — no wildcard (*) permissions in production"
+  - "Security: Encryption at rest and in transit configured for all data stores"
+  - "Security: Network segmentation — public, private, and data subnets properly isolated"
+  - "Cost awareness: Right-sized resources, auto-scaling configured, no orphaned resources"
+  - "Reliability: Multi-AZ or multi-region for critical services"
+  - "Reliability: Backup strategy defined and tested for all stateful services"
+  - "Observability: Logging, metrics, and alerting configured for all services"
+  - "IaC hygiene: All infrastructure defined in code, no manual console changes (no drift)"
+  - "Disaster recovery: RTO/RPO defined and achievable with current architecture"
+
+researcher_focus:
+  - "IaC tool: Terraform, CloudFormation, Pulumi, CDK, Ansible — version and patterns"
+  - "Cloud provider: AWS, GCP, Azure, multi-cloud — services in use"
+  - "Networking: VPC design, subnets, security groups, load balancers"
+  - "Compute: EC2/GCE, ECS/EKS/GKE, Lambda/Cloud Functions — architecture"
+  - "Storage: S3/GCS, RDS/Cloud SQL, DynamoDB/Firestore — data layer"
+  - "CI/CD: Pipeline tool, deployment strategy (blue-green, canary, rolling)"
+
+quality_gates:
+  - "No secrets in source code or IaC files"
+  - "No wildcard IAM permissions in production"
+  - "All infrastructure defined as code"
+  - "Backup strategy in place for stateful services"
+  - "Monitoring and alerting configured"
+
+patterns:
+  - "Modules/stacks: Reusable infrastructure components with clear interfaces"
+  - "Environment parity: Dev, staging, production from same code with different variables"
+  - "Immutable infrastructure: Replace instances instead of modifying in place"
+  - "GitOps: Infrastructure changes through pull requests, reviewed and applied via CI"
+  - "Tagging strategy: Consistent resource tags for cost allocation and ownership"
+  - "Secrets management: External secrets manager (Vault, AWS Secrets Manager, etc.)"
+
+anti_patterns:
+  - "Manual console changes — all changes must be in code"
+  - "Hardcoded secrets in IaC — use secrets manager or encrypted variables"
+  - "Over-provisioned resources — right-size based on actual usage"
+  - "Single point of failure — no single-AZ critical services"
+  - "Missing monitoring — if you can't see it, you can't fix it"
+  - "Monolithic infrastructure — break into composable modules/stacks"

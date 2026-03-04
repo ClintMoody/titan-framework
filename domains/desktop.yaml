@@ -1,0 +1,47 @@
+# TITAN Domain Plugin: Desktop Application
+# For native and cross-platform desktop apps (Electron, Tauri, Qt, Swift, .NET)
+
+name: Desktop Application
+description: Standards for desktop applications — native integration, system resources, cross-platform
+
+verifier_checks:
+  - "Native integration: Uses system file dialogs, notifications, menu bar, keyboard shortcuts"
+  - "System resources: Reasonable memory and CPU usage, no resource leaks"
+  - "Window management: Remembers size/position, handles multi-monitor, handles minimize/maximize"
+  - "File handling: Proper file locking, handles missing files gracefully, respects OS file conventions"
+  - "Cross-platform: Consistent behavior across target platforms (if applicable)"
+  - "Keyboard navigation: Full keyboard accessibility, standard shortcuts (Cmd/Ctrl+S, etc.)"
+  - "Error handling: User-friendly error dialogs, no stack traces shown to users"
+  - "Auto-update: Update mechanism that doesn't disrupt user workflow"
+  - "Security: Sandboxing where available, no unnecessary elevated privileges"
+  - "Persistence: User preferences and state saved between sessions"
+
+researcher_focus:
+  - "Framework: Electron, Tauri, Qt, SwiftUI, WPF, GTK — version and architecture"
+  - "IPC patterns: Main process vs renderer, communication channels"
+  - "Native modules: Any native code bridges, FFI usage"
+  - "Installer/packaging: DMG, MSI, AppImage, Snap, deb — build pipeline"
+  - "Auto-update mechanism: Squirrel, electron-updater, Sparkle"
+  - "System integration: File associations, protocol handlers, startup behavior"
+
+quality_gates:
+  - "Standard keyboard shortcuts work correctly"
+  - "Application starts in under 3 seconds"
+  - "Memory usage reasonable for the task (not growing unbounded)"
+  - "Clean uninstall leaves no orphan files"
+  - "User data persistence across sessions verified"
+
+patterns:
+  - "IPC isolation: Keep main and renderer processes separate with clear message contracts"
+  - "Lazy window creation: Don't create windows until needed"
+  - "Background processing: Use worker threads for heavy computation"
+  - "Graceful degradation: Handle missing system features (e.g., no GPU, old OS)"
+  - "Consistent shortcuts: Cmd on Mac, Ctrl on Windows/Linux"
+
+anti_patterns:
+  - "Running heavy computation on the UI thread — use workers or background processes"
+  - "Polling the filesystem — use watchers (fs.watch, FSEvents, inotify)"
+  - "Bundling unnecessary dependencies — desktop apps should be lean"
+  - "Ignoring platform conventions — Mac apps should feel Mac-native, Windows apps Windows-native"
+  - "Requesting administrator/root privileges unnecessarily"
+  - "Writing to system directories instead of user data directory"

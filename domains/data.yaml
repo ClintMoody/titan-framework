@@ -1,0 +1,48 @@
+# TITAN Domain Plugin: Data Pipeline
+# For data engineering, ETL, analytics, ML pipelines
+
+name: Data Pipeline
+description: Standards for data pipelines — reliability, schema evolution, idempotency, monitoring
+
+verifier_checks:
+  - "Idempotency: Pipeline can be re-run safely without duplicate data or side effects"
+  - "Schema evolution: Schema changes are backwards-compatible or have explicit migration paths"
+  - "Error recovery: Failed jobs can resume from last checkpoint, not restart from scratch"
+  - "Data validation: Input data validated at ingestion — schema, types, ranges, nullability"
+  - "Monitoring: Pipeline health observable — success/failure rates, latency, data quality metrics"
+  - "Backfill support: Historical data can be reprocessed without affecting current pipeline"
+  - "Resource management: Connections, file handles, and memory properly managed and released"
+  - "Logging: Sufficient logging for debugging without logging sensitive data (PII, credentials)"
+  - "Partitioning: Data partitioned appropriately for query patterns and retention"
+  - "Testing: Data quality tests run after each transformation stage"
+
+researcher_focus:
+  - "Pipeline framework: Airflow, Dagster, Prefect, dbt, Spark, custom — version and patterns"
+  - "Storage layers: Source systems, staging, warehouse, lake — technologies and schemas"
+  - "Orchestration: Scheduling, dependency management, retry configuration"
+  - "Data quality: Existing validation, monitoring, alerting"
+  - "Schema management: Migration tools, versioning, compatibility testing"
+  - "Security: Data access controls, encryption at rest/in transit, PII handling"
+
+quality_gates:
+  - "Pipeline is idempotent — safe to re-run"
+  - "Schema changes have migration plan"
+  - "Error recovery tested — can resume from failure"
+  - "Data validation present at ingestion"
+  - "No PII in logs"
+
+patterns:
+  - "Immutable data: Write new partitions, don't update in place"
+  - "Schema registry: Central schema management with compatibility checks"
+  - "Dead letter queues: Failed records sent to DLQ for investigation, not silently dropped"
+  - "Incremental processing: Process only new/changed data, not full reloads"
+  - "Data contracts: Explicit contracts between producers and consumers"
+  - "Slowly changing dimensions: Type 2 SCD for tracking historical changes"
+
+anti_patterns:
+  - "Mutable state in pipelines — write immutable partitions instead"
+  - "Silent data loss — always handle and track failed records"
+  - "Unvalidated inputs — validate schema and data quality at every boundary"
+  - "Tight coupling between pipeline stages — use intermediate storage"
+  - "Storing derived data without lineage — always track data provenance"
+  - "Hardcoded connection strings — use configuration and secrets management"

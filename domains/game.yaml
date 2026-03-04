@@ -1,0 +1,48 @@
+# TITAN Domain Plugin: Game Development
+# For games — frame rate, physics, asset pipeline, input handling
+
+name: Game Development
+description: Standards for game development — performance, input, physics, rendering, memory
+
+verifier_checks:
+  - "Frame rate: Core loop completes within frame budget (16.6ms for 60fps, 8.3ms for 120fps)"
+  - "Memory: No allocation in update/render loops — use object pools and pre-allocated buffers"
+  - "Input handling: Input processed every frame, no dropped inputs, appropriate dead zones"
+  - "Physics determinism: Fixed timestep for physics, deterministic across platforms if multiplayer"
+  - "Asset management: Assets loaded asynchronously, no stalls during gameplay"
+  - "State management: Clean game state save/load, no dangling references after scene changes"
+  - "Camera: No disorienting camera behavior, smooth interpolation"
+  - "Audio integration: Sound effects tied to game events, no audio glitches during gameplay"
+  - "Error recovery: Game doesn't crash on unexpected state — handle gracefully"
+  - "Platform compliance: Follows platform requirements (console TRC, mobile store guidelines)"
+
+researcher_focus:
+  - "Engine/framework: Unity, Unreal, Godot, custom — version and capabilities"
+  - "Render pipeline: Forward vs deferred, post-processing stack, shader approach"
+  - "Physics system: Built-in vs custom, collision detection strategy, fixed timestep config"
+  - "Asset pipeline: Formats, compression, streaming, LOD strategy"
+  - "Networking: If multiplayer — netcode approach, prediction, reconciliation"
+  - "Platform targets: PC, console, mobile — platform-specific requirements"
+
+quality_gates:
+  - "Maintains target frame rate under load"
+  - "No memory allocation in gameplay loops"
+  - "Input feels responsive (< 3 frames of latency)"
+  - "Game state saves and loads correctly"
+  - "No crashes from unexpected player behavior"
+
+patterns:
+  - "Object pooling: Pre-allocate and reuse game objects (bullets, particles, enemies)"
+  - "Component-entity system: Compose behaviors from components, not inheritance hierarchies"
+  - "Fixed timestep physics: Decouple physics from render frame rate"
+  - "Spatial partitioning: Quadtree/octree/grid for collision and visibility"
+  - "State machine: Use explicit state machines for AI, animation, and game flow"
+  - "Data-driven design: Define game content in data files, not code"
+
+anti_patterns:
+  - "Allocating in update/render loop — use object pools"
+  - "Variable timestep physics — causes non-deterministic behavior"
+  - "Deep inheritance hierarchies for game objects — use composition"
+  - "Loading assets synchronously during gameplay — use async loading with progress"
+  - "Tight coupling between systems — physics shouldn't know about rendering"
+  - "Magic numbers for game tuning — externalize to data files for easy iteration"
