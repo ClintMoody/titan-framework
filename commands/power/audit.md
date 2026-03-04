@@ -36,27 +36,62 @@ Default: select all that apply based on domain. Accessibility only for web/mobil
 
 ### Step 2 — Security Audit
 
-Spawn `titan-security` agent (or review in-session for smaller codebases). Check:
+Spawn `titan-security` agent with full scope. The agent runs a 5-phase security scan:
 
-**OWASP Top 10:**
-1. Injection (SQL, NoSQL, OS command, LDAP)
-2. Broken Authentication (weak passwords, session management)
-3. Sensitive Data Exposure (plaintext storage, weak encryption)
-4. XML External Entities (if applicable)
-5. Broken Access Control (privilege escalation, IDOR)
-6. Security Misconfiguration (default credentials, verbose errors)
-7. XSS (reflected, stored, DOM-based)
-8. Insecure Deserialization
-9. Using Components with Known Vulnerabilities
-10. Insufficient Logging & Monitoring
+**Phase 1 — Dangerous Code Pattern Scan (Immediate Flags)**
+The agent scans all files for 18 high-confidence dangerous patterns including:
+- Shell injection (`exec()`, `os.system()`)
+- SQL injection (string-concatenated queries)
+- Code injection (`eval()`, `new Function()`, `pickle.loads()`)
+- XSS (`innerHTML`, `dangerouslySetInnerHTML`, `document.write()`)
+- SSRF (`fetch(userProvidedUrl)` server-side)
+- CI/CD injection (`${{ github.event.* }}` in workflow `run:` blocks)
+- Race conditions (balance checks without database locks)
+- Missing auth middleware on routes
 
-**Additional checks:**
-- Secrets in code (API keys, passwords, tokens in source files or git history)
-- Dependency vulnerabilities (check package lock files against known CVEs)
-- Security headers (CSP, HSTS, X-Frame-Options — if web)
-- Authentication/authorization patterns
-- Input validation and sanitization
-- CORS configuration
+**Phase 2 — OWASP Top 10 Systematic Scan**
+All 10 categories checked with specific, actionable sub-checks:
+- A01: Broken Access Control (IDOR, privilege escalation, path traversal, CORS)
+- A02: Cryptographic Failures (weak hashing, hardcoded keys, missing HTTPS)
+- A03: Injection (SQL, NoSQL, OS command, LDAP, GraphQL, template)
+- A04: Insecure Design (rate limiting, account lockout, CSRF, business logic)
+- A05: Security Misconfiguration (defaults, verbose errors, debug mode)
+- A06: Vulnerable Components (dependency audit — see tooling below)
+- A07: Authentication Failures (sessions, JWT, MFA, credential stuffing)
+- A08: Data Integrity Failures (deserialization, CI/CD, unsigned data)
+- A09: Logging & Monitoring (PII in logs, missing audit trails)
+- A10: SSRF (URL validation, DNS rebinding, cloud metadata access)
+
+**Phase 3 — Secrets Scan**
+Searches for hardcoded secrets with known prefix patterns:
+- `sk-` (Stripe), `AKIA` (AWS), `ghp_`/`github_pat_` (GitHub), `sk-proj-`/`sk-ant-` (OpenAI/Anthropic)
+- `xoxb-`/`xoxp-` (Slack), `SG.` (SendGrid)
+- Connection strings with embedded credentials
+- Private keys (`.pem`, `-----BEGIN RSA PRIVATE KEY-----`)
+- `.env` files in version control
+
+**Phase 4 — Security Headers (Web)**
+CSP, HSTS, X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy.
+
+**Phase 5 — Auth & Authorization Pattern Review**
+Token validation on every endpoint, session security (httpOnly, secure, SameSite), consistent authz checks.
+
+**Dependency Audit Tooling:**
+Run the appropriate command for the project's ecosystem:
+
+| Ecosystem | Command | Notes |
+|-----------|---------|-------|
+| Node.js | `npm audit --audit-level=high` | Also check with `npx auditjs` for OSS Index |
+| Python | `pip audit` or `safety check` | Install via `pip install pip-audit` |
+| Rust | `cargo audit` | Install via `cargo install cargo-audit` |
+| Go | `govulncheck ./...` | Install via `go install golang.org/x/vuln/cmd/govulncheck@latest` |
+| Ruby | `bundle audit check --update` | Install via `gem install bundler-audit` |
+| PHP | `composer audit` | Built-in since Composer 2.4 |
+
+Flag: abandoned/unmaintained dependencies, overly permissive version ranges (`*`, `>=`), dependencies with known CVEs.
+
+**False Positive Awareness:**
+The security agent is trained to NOT flag: `.env.example` files, test fixtures, Stripe publishable keys (`pk_test_`, `pk_live_`), SHA256/MD5 for checksums (not passwords), `eval()` in build tools.
 
 ### Step 3 — Performance Audit
 
@@ -163,9 +198,34 @@ Present the summary to the user. Offer to fix critical and important issues auto
 - **Unknown domain:** Run all generic checks, skip domain-specific
 - **Very large codebase:** Shard the audit by module, report per-module
 
+## Emergency Protocol
+
+If the security audit finds a **CRITICAL** vulnerability in production-facing code:
+
+1. **Stop and alert** — surface it immediately, don't bury it in a report
+2. **Show before/after** — provide the exact secure code fix
+3. **Verify the fix** — confirm the vulnerability is actually closed
+4. **Check for credential exposure** — if secrets were committed to git, they MUST be rotated (removing from code is NOT enough — the secret is in git history)
+5. **Document in KNOWLEDGE.md** — prevent recurrence
+
+## Proactive Audit Triggers
+
+Run `/titan:audit` (security dimension at minimum) ALWAYS after:
+- New API endpoints added
+- Authentication or authorization code changed
+- User input handling modified
+- Database queries changed
+- File upload functionality added
+- Payment or financial code written
+- External API integrations added
+- Dependency updates (`npm update`, `pip install --upgrade`, etc.)
+- Webhook handlers added
+- GitHub Actions or CI/CD workflow changes
+
 ## Tips
 
 - Run `/titan:audit` before every `/titan:ship` — it catches what `/titan:verify` might miss.
 - Security audits are most valuable after adding authentication, payment, or user data features.
 - Performance audits are most valuable after the codebase has grown past initial scaffolding.
 - Treat the audit score as a compass, not a judgment — it shows where to focus next.
+- When the security agent reports "What Could NOT Be Checked," take those gaps seriously — they represent blind spots.
