@@ -340,31 +340,29 @@ Update `.titan/STATE.md`:
 - Last Action: Codebase scan completed ([date])
 ```
 
-Display the summary to the user with the TITAN banner:
+Print (as markdown, NOT in a code block):
 
-```
-+==============================================================+
-|  ++ TITAN -- SCAN COMPLETE                                   |
-+==============================================================+
+---
+
+## ✓ TITAN — SCAN COMPLETE
 
 [Executive summary from SUMMARY.md]
 
-Health Score: [N]/10
+**Health Score:** [N]/10
 
-Top Strengths:
-  * [strength 1]
-  * [strength 2]
-  * [strength 3]
+**Top Strengths:**
+- [strength 1]
+- [strength 2]
+- [strength 3]
 
-Top Concerns:
-  ! [concern 1]
-  ! [concern 2]
-  ! [concern 3]
+**Top Concerns:**
+- ⚠ [concern 1]
+- ⚠ [concern 2]
+- ⚠ [concern 3]
 
-Full reports: .titan/research/
+> Full reports: `.titan/research/`
 
-Suggested next step: [recommendation]
-```
+---
 
 ## Outputs
 
@@ -398,20 +396,24 @@ Suggested next step: [recommendation]
 
 ## What's Next
 
-After the scan completes, display:
+After the scan completes, display (as markdown, NOT in a code block):
 
-```
-─────────────────────────────────────────────────
-★ Recommended: Run /titan:05-plan to plan the next phase.
-  The scan results will inform the planner's decisions.
+---
 
-Other options:
-  /titan:learn       — Deep-dive into an unfamiliar technology found in the scan
-  /titan:refactor    — Address concerns or tech debt identified in the scan
-  /titan:investigate — Research a novel problem the scan uncovered
-  /titan:progress    — See full project dashboard and current position
-─────────────────────────────────────────────────
-```
+### ★ Recommended
+
+> Run `/titan:05-plan` to plan the next phase. The scan results will inform the planner's decisions.
+
+### Other options
+
+| Command | Action |
+|---------|--------|
+| `/titan:learn` | Deep-dive into an unfamiliar technology found in the scan |
+| `/titan:refactor` | Address concerns or tech debt identified in the scan |
+| `/titan:investigate` | Research a novel problem the scan uncovered |
+| `/titan:progress` | See full project dashboard and current position |
+
+---
 
 ## Tips
 

@@ -244,21 +244,23 @@ Update `.titan/STATE.md`:
 - Last Action: Debug session [session-id] resolved
 ```
 
-Display completion:
+Print (as markdown, NOT in a code block):
 
-```
-+==============================================================+
-|  ++ TITAN -- BUG FIXED                                       |
-+==============================================================+
+---
 
-Bug: [description]
-Root cause: [explanation]
-Hypotheses tested: [N]
-Fix: [summary]
-Commit: [hash]
+## ✓ TITAN — BUG FIXED
 
-Lesson learned: [key takeaway]
-```
+| Detail | Value |
+|--------|-------|
+| **Bug** | [description] |
+| **Root cause** | [explanation] |
+| **Hypotheses tested** | [N] |
+| **Fix** | [summary] |
+| **Commit** | [hash] |
+
+**Lesson learned:** [key takeaway]
+
+---
 
 ## Git Bisect Integration
 
@@ -317,22 +319,27 @@ When resuming a session:
 
 ## What's Next
 
-After the bug is fixed, display:
+After the bug is fixed, display (as markdown, NOT in a code block):
 
-```
-─────────────────────────────────────────────────
-★ Recommended: Return to your main workflow.
-  [If mid-build: "Continue with /titan:06-build for Phase NN."]
-  [If mid-verify: "Continue with /titan:07-verify for Phase NN."]
-  [If standalone: "Run /titan:progress to see your current position."]
+---
 
-Other options:
-  /titan:test      — Generate tests to prevent this bug from recurring
-  /titan:review    — Review the fix before committing
-  /titan:audit     — Run a security audit if the bug was security-related
-  /titan:investigate — Research more broadly if root cause is still unclear
-─────────────────────────────────────────────────
-```
+### ★ Recommended
+
+> **Return to your main workflow.**
+> [If mid-build: Continue with `/titan:06-build` for Phase NN.]
+> [If mid-verify: Continue with `/titan:07-verify` for Phase NN.]
+> [If standalone: Run `/titan:progress` to see your current position.]
+
+### Other options
+
+| Command | Action |
+|---------|--------|
+| `/titan:test` | Generate tests to prevent this bug from recurring |
+| `/titan:review` | Review the fix before committing |
+| `/titan:audit` | Run a security audit if the bug was security-related |
+| `/titan:investigate` | Research more broadly if root cause is still unclear |
+
+---
 
 ## Tips
 

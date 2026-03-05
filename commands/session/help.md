@@ -192,29 +192,38 @@ If `.titan/` does not exist, still display the full help but add a note at the t
 
 ## What's Next
 
-After displaying help, if `.titan/STATE.md` exists, read it and display:
+After displaying help, if `.titan/STATE.md` exists, read it and display (as markdown, NOT in a code block):
 
-```
-─────────────────────────────────────────────────
-★ Based on your current project state:
-  [Read STATE.md Next Action field and display it here]
+---
 
-Other options:
-  /titan:progress  — Full project dashboard with phase details
-  /titan:resume    — Restore full context from last session
-─────────────────────────────────────────────────
-```
+### ★ Based on your current project state:
 
-If no `.titan/` project exists:
+> [Read STATE.md Next Action field and display it here]
 
-```
-─────────────────────────────────────────────────
-★ Ready to start? Run /titan:01-init to create your project.
+### Other options
 
-Other options:
-  /titan:quick     — Skip setup and do a small task with full quality
-─────────────────────────────────────────────────
-```
+| Command | Action |
+|---------|--------|
+| `/titan:progress` | Full project dashboard with phase details |
+| `/titan:resume` | Restore full context from last session |
+
+---
+
+If no `.titan/` project exists (as markdown, NOT in a code block):
+
+---
+
+### ★ Ready to start?
+
+> Run `/titan:01-init` to create your project.
+
+### Other options
+
+| Command | Action |
+|---------|--------|
+| `/titan:quick` | Skip setup and do a small task with full quality |
+
+---
 
 ## Tips
 

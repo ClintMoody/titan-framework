@@ -291,37 +291,38 @@ estimated_waves: [count]
 
 ### Step 13 — Present Plan and Request Approval
 
-Display a summary to the user:
+Display a summary to the user.
 
-```
-╔══════════════════════════════════════════════════════════════╗
-║  ⚡ TITAN — PLAN READY FOR REVIEW                           ║
-╚══════════════════════════════════════════════════════════════╝
+Print (as markdown, NOT in a code block):
 
-Phase NN — [Phase Name]
-Goal: [goal]
+---
 
-Tasks: [count] ([agent count] agent, [in-session count] in-session)
-Waves: [count]
-Acceptance Criteria: [count] covered
+## ⚡ TITAN — PLAN READY FOR REVIEW
 
-Wave 1: [task titles, comma-separated]
-Wave 2: [task titles, comma-separated]
-Wave 3: [task titles, comma-separated]
+**Phase NN — [Phase Name]**
 
-Risks: [count identified]
-Boundaries: [count files/dirs protected]
+| Detail | Value |
+|--------|-------|
+| **Goal** | [goal] |
+| **Tasks** | [count] ([agent count] agent, [in-session count] in-session) |
+| **Waves** | [count] |
+| **ACs Covered** | [count] |
+| **Risks** | [count] identified |
+| **Boundaries** | [count] files/dirs protected |
+
+| Wave | Tasks |
+|------|-------|
+| Wave 1 | [task titles, comma-separated] |
+| Wave 2 | [task titles, comma-separated] |
+| Wave 3 | [task titles, comma-separated] |
 
 ✓ All validation checks passed.
 
-Please review .titan/phases/NN-phase-name/PLAN.md
+> Review `.titan/phases/NN-phase-name/PLAN.md`
 
-Options:
-  [approve]  — Accept this plan and proceed (run /titan:06-build next)
-  [modify]   — Request changes to specific tasks or structure
-  [re-plan]  — Discard and re-plan with different parameters
-  [split]    — Break this phase into smaller sub-phases
-```
+**Options:** `[approve]` Accept → `[modify]` Request changes → `[re-plan]` Discard → `[split]` Break into sub-phases
+
+---
 
 Wait for the user's response. Do NOT proceed to build without explicit approval.
 
@@ -378,24 +379,26 @@ Set the PLAN.md frontmatter `status` from `draft` to `approved`.
 
 ## What's Next
 
-After the plan is approved, display:
+After the plan is approved, display (as markdown, NOT in a code block):
 
-```
-─────────────────────────────────────────────────
-⟳ Recommended: Run /clear before building.
-  A clean context window lets the build orchestrator work
-  at full capacity. Your plan is saved in PLAN.md.
+> ⟳ **Clear context before building.** A clean context window lets the build orchestrator work at full capacity. Your plan is saved in PLAN.md.
 
-★ Recommended: Run /titan:06-build to execute Phase NN.
-  [X] tasks across [Y] waves are ready to go.
+---
 
-Other options:
-  /titan:03-explore   — Research unknowns before building (if the plan revealed gaps)
-  /titan:04-design    — Design UI screens referenced in the plan (if not done yet)
-  /titan:audit     — Run a security audit before building security-sensitive features
-  /titan:progress  — See full project dashboard and current position
-─────────────────────────────────────────────────
-```
+### ★ Recommended
+
+> Run `/titan:06-build` to execute **Phase NN**. [X] tasks across [Y] waves are ready to go.
+
+### Other options
+
+| Command | Action |
+|---------|--------|
+| `/titan:03-explore` | Research unknowns before building (if the plan revealed gaps) |
+| `/titan:04-design` | Design UI screens referenced in the plan (if not done yet) |
+| `/titan:audit` | Run a security audit before building security-sensitive features |
+| `/titan:progress` | See full project dashboard and current position |
+
+---
 
 ## Tips
 

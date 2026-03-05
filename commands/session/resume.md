@@ -154,15 +154,18 @@ Present the suggestion:
 
 ### Step 7: Ready Confirmation
 
-Print:
+Print (as markdown, NOT in a code block):
 
-```
-✓ Session restored. Ready to continue.
+---
 
-  Quick commands:
-    /titan:progress  — Full project dashboard
-    /titan:help      — Command reference
-```
+✓ **Session restored. Ready to continue.**
+
+| Quick Commands | |
+|----------------|--|
+| `/titan:progress` | Full project dashboard |
+| `/titan:help` | Command reference |
+
+---
 
 ## Outputs
 

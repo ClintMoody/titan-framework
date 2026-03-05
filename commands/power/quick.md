@@ -201,21 +201,23 @@ Update `.titan/STATE.md`:
 
 If relevant, add a knowledge entry to `.titan/KNOWLEDGE.md`.
 
-Display completion:
+Print (as markdown, NOT in a code block):
 
-```
-+==============================================================+
-|  ++ TITAN -- QUICK TASK COMPLETE                             |
-+==============================================================+
+---
 
-Task: #NNN [description]
-Status: COMPLETE
-Files: [count] modified
-Tests: [PASS/FAIL/NONE]
-Commit: [short hash] titan(quick-NNN): [description]
+## ✓ TITAN — QUICK TASK COMPLETE
 
-All acceptance criteria passing.
-```
+| Detail | Value |
+|--------|-------|
+| **Task** | #NNN [description] |
+| **Status** | COMPLETE |
+| **Files** | [count] modified |
+| **Tests** | [PASS/FAIL/NONE] |
+| **Commit** | `[short hash]` titan(quick-NNN): [description] |
+
+> All acceptance criteria passing.
+
+---
 
 ## Outputs
 
@@ -259,21 +261,26 @@ If ANY limit is exceeded, halt and redirect to `/titan:05-plan`.
 
 ## What's Next
 
-After the quick task completes, display:
+After the quick task completes, display (as markdown, NOT in a code block):
 
-```
-─────────────────────────────────────────────────
-★ Recommended: Return to your main workflow.
-  [If a phase is active: "Continue with /titan:06-build for Phase NN."]
-  [If no phase is active: "Run /titan:progress to see where you left off."]
+---
 
-Other options:
-  /titan:quick     — Run another small task
-  /titan:test      — Generate tests for the code you just changed
-  /titan:review    — Review the changes before committing
-  /titan:progress  — See full project dashboard and current position
-─────────────────────────────────────────────────
-```
+### ★ Recommended
+
+> **Return to your main workflow.**
+> [If a phase is active: Continue with `/titan:06-build` for Phase NN.]
+> [If no phase is active: Run `/titan:progress` to see where you left off.]
+
+### Other options
+
+| Command | Action |
+|---------|--------|
+| `/titan:quick` | Run another small task |
+| `/titan:test` | Generate tests for the code you just changed |
+| `/titan:review` | Review the changes before committing |
+| `/titan:progress` | See full project dashboard and current position |
+
+---
 
 ## Tips
 

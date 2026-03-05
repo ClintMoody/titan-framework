@@ -185,19 +185,20 @@ Update STATE.md with new current phase.
 
 When all phases in the execution plan are complete:
 
-```
-╔══════════════════════════════════════════════════════════════╗
-║  ✓ TITAN — AUTOPILOT COMPLETE                                ║
-╚══════════════════════════════════════════════════════════════╝
+Print (as markdown, NOT in a code block):
 
-  Phases completed: [list]
-  Total tasks: [count]
-  Total commits: [count]
-  Verification: All passed
+---
 
-  Next: Run /titan:progress for full dashboard
-        or /titan:08-ship if all phases are complete.
-```
+## ✓ TITAN — AUTOPILOT COMPLETE
+
+| Metric | Value |
+|--------|-------|
+| **Phases completed** | [list] |
+| **Total tasks** | [count] |
+| **Total commits** | [count] |
+| **Verification** | All passed |
+
+---
 
 ## Safety Rules
 
@@ -232,35 +233,43 @@ All outputs from the individual commands are produced (PLAN.md, commits, SUMMARY
 
 ## What's Next
 
-After autopilot completes all phases, display:
+After autopilot completes all phases, display (as markdown, NOT in a code block):
 
-```
-─────────────────────────────────────────────────
-★ Recommended: Run /titan:08-ship to release the milestone.
-  All phases are built and verified.
+---
 
-Other options:
-  /titan:audit     — Run a comprehensive audit before shipping
-  /titan:progress  — See full project dashboard
-  /titan:review    — Do a final manual review of the entire codebase
-  /titan:pause     — Save state and take a break before shipping
-─────────────────────────────────────────────────
-```
+### ★ Recommended
 
-If autopilot was stopped mid-run, display:
+> Run `/titan:08-ship` to **release the milestone**. All phases are built and verified.
 
-```
-─────────────────────────────────────────────────
-★ Recommended: Fix the issue, then run /titan:autopilot to continue.
-  Autopilot will pick up from Phase NN, Task TN.
+### Other options
 
-Other options:
-  /titan:06-build     — Continue building manually (more control)
-  /titan:debug     — Debug the issue that stopped autopilot
-  /titan:progress  — See what was completed vs. what remains
-  /titan:pause     — Save state and come back later
-─────────────────────────────────────────────────
-```
+| Command | Action |
+|---------|--------|
+| `/titan:audit` | Run a comprehensive audit before shipping |
+| `/titan:progress` | See full project dashboard |
+| `/titan:review` | Do a final manual review of the entire codebase |
+| `/titan:pause` | Save state and take a break before shipping |
+
+---
+
+If autopilot was stopped mid-run, display (as markdown, NOT in a code block):
+
+---
+
+### ★ Recommended
+
+> **Fix the issue, then run `/titan:autopilot` to continue.** Autopilot will pick up from Phase NN, Task TN.
+
+### Other options
+
+| Command | Action |
+|---------|--------|
+| `/titan:06-build` | Continue building manually (more control) |
+| `/titan:debug` | Debug the issue that stopped autopilot |
+| `/titan:progress` | See what was completed vs. what remains |
+| `/titan:pause` | Save state and come back later |
+
+---
 
 ## Tips
 

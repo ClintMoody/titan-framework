@@ -226,34 +226,46 @@ Run `/titan:audit` (security dimension at minimum) ALWAYS after:
 
 After the audit report is presented, display based on results:
 
-**If critical/important issues were found:**
-```
-─────────────────────────────────────────────────
-★ Recommended: Fix the [X] critical and [Y] important issues.
-  [If fixes were auto-applied: "Review the applied fixes, then continue."]
-  [If fixes need manual work: "Address the findings before shipping."]
+**If critical/important issues were found** (as markdown, NOT in a code block):
 
-Other options:
-  /titan:debug     — Debug a specific issue from the audit
-  /titan:refactor  — Refactor code flagged for structural issues
-  /titan:test      — Add tests for areas with low coverage
-  /titan:08-ship      — Ship (only if all critical issues are resolved)
-─────────────────────────────────────────────────
-```
+---
 
-**If the audit is clean:**
-```
-─────────────────────────────────────────────────
-★ Recommended: Continue with your workflow.
-  [If pre-ship: "Run /titan:08-ship — your codebase is audit-clean."]
-  [If mid-build: "Continue /titan:06-build for Phase NN."]
+### ★ Recommended
 
-Other options:
-  /titan:08-ship      — Ship the milestone
-  /titan:07-verify    — Run verification if not done yet
-  /titan:progress  — See full project dashboard and current position
-─────────────────────────────────────────────────
-```
+> **Fix the [X] critical and [Y] important issues.**
+> [If fixes were auto-applied: "Review the applied fixes, then continue."]
+> [If fixes need manual work: "Address the findings before shipping."]
+
+### Other options
+
+| Command | Action |
+|---------|--------|
+| `/titan:debug` | Debug a specific issue from the audit |
+| `/titan:refactor` | Refactor code flagged for structural issues |
+| `/titan:test` | Add tests for areas with low coverage |
+| `/titan:08-ship` | Ship (only if all critical issues are resolved) |
+
+---
+
+**If the audit is clean** (as markdown, NOT in a code block):
+
+---
+
+### ★ Recommended
+
+> **Continue with your workflow.**
+> [If pre-ship: Run `/titan:08-ship` — your codebase is audit-clean.]
+> [If mid-build: Continue `/titan:06-build` for Phase NN.]
+
+### Other options
+
+| Command | Action |
+|---------|--------|
+| `/titan:08-ship` | Ship the milestone |
+| `/titan:07-verify` | Run verification if not done yet |
+| `/titan:progress` | See full project dashboard and current position |
+
+---
 
 ## Tips
 

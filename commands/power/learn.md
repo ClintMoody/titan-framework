@@ -126,22 +126,27 @@ Ask if they have follow-up questions. Engage in a teaching conversation if they 
 
 ## What's Next
 
-After the research is complete, display:
+After the research is complete, display (as markdown, NOT in a code block):
 
-```
-─────────────────────────────────────────────────
-★ Recommended: Apply what you learned.
-  [If pre-planning: "Run /titan:05-plan to plan the phase with this knowledge."]
-  [If mid-build: "Continue /titan:06-build — your KNOWLEDGE.md is updated."]
-  [If standalone: "Run /titan:progress to see your current position."]
+---
 
-Other options:
-  /titan:learn       — Research another related topic
-  /titan:investigate — Investigate if the topic raises novel problems
-  /titan:experiment  — Try multiple approaches based on what you learned
-  /titan:03-explore     — Broader exploration of the problem space
-─────────────────────────────────────────────────
-```
+### ★ Recommended
+
+> **Apply what you learned.**
+> [If pre-planning: Run `/titan:05-plan` to plan the phase with this knowledge.]
+> [If mid-build: Continue `/titan:06-build` — your KNOWLEDGE.md is updated.]
+> [If standalone: Run `/titan:progress` to see your current position.]
+
+### Other options
+
+| Command | Action |
+|---------|--------|
+| `/titan:learn` | Research another related topic |
+| `/titan:investigate` | Investigate if the topic raises novel problems |
+| `/titan:experiment` | Try multiple approaches based on what you learned |
+| `/titan:03-explore` | Broader exploration of the problem space |
+
+---
 
 ## Tips
 

@@ -237,34 +237,35 @@ Behavior per bracket:
 
 ### Step 6 — Build Complete (All Waves Done)
 
-After all waves execute, print the final summary:
+After all waves execute, print the final summary.
 
-```
-╔══════════════════════════════════════════════════════════════╗
-║  ⚡ TITAN — BUILD COMPLETE                                  ║
-╚══════════════════════════════════════════════════════════════╝
+Print (as markdown, NOT in a code block):
 
-Phase NN — [Phase Name]
-Branch: titan/phase-NN-phase-name
+---
 
-Task Summary:
-  ✓ T1: [title]                          DONE
-  ✓ T2: [title]                          DONE
-  ✗ T3: [title]                          BLOCKED — [reason]
+## ⚡ TITAN — BUILD COMPLETE
 
-Commits: [count] atomic commits created
-Result: [count DONE] of [total] tasks completed
+**Phase NN — [Phase Name]**
+**Branch:** `titan/phase-NN-phase-name`
+
+| Task | Title | Status |
+|------|-------|--------|
+| T1 | [title] | ✓ DONE |
+| T2 | [title] | ✓ DONE |
+| T3 | [title] | ✗ BLOCKED — [reason] |
+
+**Commits:** [count] atomic commits created
+**Result:** [count DONE] of [total] tasks completed
 
 [If all DONE:]
-✓ All tasks complete. Run /titan:07-verify to verify this phase.
+> ✓ All tasks complete. Run `/titan:07-verify` to verify this phase.
 
 [If any BLOCKED:]
-⚠ [count] tasks blocked. Review blockers above.
-Options:
-  [verify]  — Proceed to verification with completed tasks
-  [retry]   — Retry blocked tasks with additional context
-  [replan]  — Return to /titan:05-plan to restructure
-```
+> ⚠ [count] tasks blocked. Review blockers above.
+>
+> **Options:** `[verify]` Proceed with completed tasks → `[retry]` Retry blocked tasks → `[replan]` Return to `/titan:05-plan`
+
+---
 
 ### Step 7 — Update State
 
@@ -357,38 +358,45 @@ These rules are NON-NEGOTIABLE. Violating them defeats the purpose of the agent 
 
 ## What's Next
 
-After all tasks are complete, display:
+After all tasks are complete, display (as markdown, NOT in a code block):
 
-```
-─────────────────────────────────────────────────
-⟳ Recommended: Run /clear before verifying.
-  Verification must be adversarial. Fresh context prevents
-  bias from the build phase. Your work is committed in git.
+> ⟳ **Clear context before verifying.** Verification must be adversarial. Fresh context prevents bias from the build phase. Your work is committed in git.
 
-★ Recommended: Run /titan:07-verify to verify Phase NN.
-  This is mandatory — nothing ships without verification.
+---
 
-Other options:
-  /titan:05-plan      — Re-plan if tasks revealed the plan was wrong
-  /titan:debug     — Debug a specific issue discovered during build
-  /titan:progress  — See full project dashboard and current position
-  /titan:pause     — Save state if you need to stop for now
-─────────────────────────────────────────────────
-```
+### ★ Recommended
 
-If some tasks are blocked, display:
+> Run `/titan:07-verify` to verify **Phase NN**. This is mandatory — nothing ships without verification.
 
-```
-─────────────────────────────────────────────────
-★ Recommended: Resolve blockers, then continue /titan:06-build.
+### Other options
 
-Other options:
-  /titan:07-verify    — Verify what's been built so far (partial verification)
-  /titan:05-plan      — Re-plan with different approach to blocked tasks
-  /titan:debug     — Investigate the root cause of blockers
-  /titan:investigate — Research if the blocker involves a novel problem
-─────────────────────────────────────────────────
-```
+| Command | Action |
+|---------|--------|
+| `/titan:05-plan` | Re-plan if tasks revealed the plan was wrong |
+| `/titan:debug` | Debug a specific issue discovered during build |
+| `/titan:progress` | See full project dashboard and current position |
+| `/titan:pause` | Save state if you need to stop for now |
+
+---
+
+If some tasks are blocked, display (as markdown, NOT in a code block):
+
+---
+
+### ★ Recommended
+
+> Resolve blockers, then continue `/titan:06-build`.
+
+### Other options
+
+| Command | Action |
+|---------|--------|
+| `/titan:07-verify` | Verify what's been built so far (partial verification) |
+| `/titan:05-plan` | Re-plan with different approach to blocked tasks |
+| `/titan:debug` | Investigate the root cause of blockers |
+| `/titan:investigate` | Research if the blocker involves a novel problem |
+
+---
 
 ## Tips
 

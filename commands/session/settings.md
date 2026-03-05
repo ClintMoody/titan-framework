@@ -261,19 +261,23 @@ verification:
 
 ## What's Next
 
-After settings are saved, display:
+After settings are saved, display (as markdown, NOT in a code block):
 
-```
-─────────────────────────────────────────────────
-★ Recommended: Continue with your current workflow.
-  Changes take effect on the next command.
+---
 
-Other options:
-  /titan:progress  — See your current position and what to do next
-  /titan:resume    — Re-read state with the new settings applied
-  /titan:help      — See all available commands
-─────────────────────────────────────────────────
-```
+### ★ Recommended
+
+> **Continue with your current workflow.** Changes take effect on the next command.
+
+### Other options
+
+| Command | Action |
+|---------|--------|
+| `/titan:progress` | See your current position and what to do next |
+| `/titan:resume` | Re-read state with the new settings applied |
+| `/titan:help` | See all available commands |
+
+---
 
 ## Tips
 

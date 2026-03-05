@@ -123,22 +123,27 @@ If any tests fail unexpectedly, investigate and fix.
 
 ## What's Next
 
-After tests are generated and passing, display:
+After tests are generated and passing, display (as markdown, NOT in a code block):
 
-```
-─────────────────────────────────────────────────
-★ Recommended: Continue with your current workflow.
-  [If mid-build: "Continue /titan:06-build for Phase NN."]
-  [If pre-verify: "Run /titan:07-verify — your test coverage is stronger now."]
-  [If standalone: "Run /titan:progress to see your current position."]
+---
 
-Other options:
-  /titan:review    — Review the code alongside its new tests
-  /titan:06-build     — Continue building the current phase
-  /titan:07-verify    — Verify the current phase
-  /titan:audit     — Run a full quality audit
-─────────────────────────────────────────────────
-```
+### ★ Recommended
+
+> **Continue with your current workflow.**
+> [If mid-build: Continue `/titan:06-build` for Phase NN.]
+> [If pre-verify: Run `/titan:07-verify` — your test coverage is stronger now.]
+> [If standalone: Run `/titan:progress` to see your current position.]
+
+### Other options
+
+| Command | Action |
+|---------|--------|
+| `/titan:review` | Review the code alongside its new tests |
+| `/titan:06-build` | Continue building the current phase |
+| `/titan:07-verify` | Verify the current phase |
+| `/titan:audit` | Run a full quality audit |
+
+---
 
 ## Error Handling
 

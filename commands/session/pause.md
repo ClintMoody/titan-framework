@@ -149,25 +149,21 @@ git commit -m "titan(state): session pause — handoff created"
 
 ### Step 7: Display Confirmation
 
-Print:
+Print (as markdown, NOT in a code block):
 
-```
-╔══════════════════════════════════════════════════════════════╗
-║  ✓ TITAN — SESSION SAVED                                     ║
-╚══════════════════════════════════════════════════════════════╝
+---
 
-  State:    .titan/STATE.md (updated)
-  Handoff:  .titan/HANDOFF.md (created)
-  Git:      [committed / no changes]
+## ✓ TITAN — SESSION SAVED
 
-  To resume next session:
-  ─────────────────────────────────────────────────
-  Run /titan:resume
-  ─────────────────────────────────────────────────
+| Detail | Status |
+|--------|--------|
+| **State** | `.titan/STATE.md` (updated) |
+| **Handoff** | `.titan/HANDOFF.md` (created) |
+| **Git** | [committed / no changes] |
 
-  The handoff document contains full context for
-  seamless continuation, even after long breaks.
-```
+> The handoff document contains full context for seamless continuation, even after long breaks.
+
+---
 
 ## Outputs
 
@@ -195,19 +191,17 @@ Print:
 
 ## What's Next
 
-After the session is saved, display:
+After the session is saved, display (as markdown, NOT in a code block):
 
-```
-─────────────────────────────────────────────────
-★ Session saved. When you return, run:
+---
 
-  /titan:resume    — Restores full context and tells you exactly
-                     where to pick up.
+### ★ Session saved. When you return:
 
-  Everything is saved in STATE.md and HANDOFF.md.
-  You can close this session safely.
-─────────────────────────────────────────────────
-```
+> Run `/titan:resume` — Restores full context and tells you exactly where to pick up.
+
+Everything is saved in `STATE.md` and `HANDOFF.md`. You can close this session safely.
+
+---
 
 ## Tips
 

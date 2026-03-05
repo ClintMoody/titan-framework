@@ -168,13 +168,15 @@ If no knowledge entries beyond init:
 
 ### Step 10: Display Suggested Next Action
 
-Use the same decision table as `/titan:resume` Step 6:
+Use the same decision table as `/titan:resume` Step 6. Print (as markdown, NOT in a code block):
 
-```
-  ─────────────────────────────────────────────────
-  ★ Next Action: [specific action with command]
-  ─────────────────────────────────────────────────
-```
+---
+
+### ★ Next Action
+
+> [specific action with command from the decision table]
+
+---
 
 ## Outputs
 

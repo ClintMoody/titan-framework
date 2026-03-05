@@ -111,23 +111,28 @@ If yes: apply fixes directly, one at a time, with atomic commits if in a git rep
 
 ## What's Next
 
-After the review is complete, display:
+After the review is complete, display (as markdown, NOT in a code block):
 
-```
-─────────────────────────────────────────────────
-★ Recommended: Address the findings.
-  [If fixes were applied: "Run /titan:test to verify the fixes."]
-  [If fixes were declined: "Continue with your current workflow."]
-  [If NEEDS-WORK: "Fix the critical/important issues before proceeding."]
+---
 
-Other options:
-  /titan:test      — Generate or run tests to confirm fixes
-  /titan:audit     — Full multi-dimensional audit (if review found security concerns)
-  /titan:refactor  — Refactor if the review found structural issues
-  /titan:06-build     — Continue building (if review passed)
-  /titan:07-verify    — Proceed to verification (if review was the final check)
-─────────────────────────────────────────────────
-```
+### ★ Recommended
+
+> **Address the findings.**
+> [If fixes were applied: Run `/titan:test` to verify the fixes.]
+> [If fixes were declined: Continue with your current workflow.]
+> [If NEEDS-WORK: Fix the critical/important issues before proceeding.]
+
+### Other options
+
+| Command | Action |
+|---------|--------|
+| `/titan:test` | Generate or run tests to confirm fixes |
+| `/titan:audit` | Full multi-dimensional audit (if review found security concerns) |
+| `/titan:refactor` | Refactor if the review found structural issues |
+| `/titan:06-build` | Continue building (if review passed) |
+| `/titan:07-verify` | Proceed to verification (if review was the final check) |
+
+---
 
 ## Tips
 

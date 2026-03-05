@@ -137,22 +137,27 @@ If the refactoring revealed patterns or insights:
 
 ## What's Next
 
-After the refactoring is complete, display:
+After the refactoring is complete, display (as markdown, NOT in a code block):
 
-```
-─────────────────────────────────────────────────
-★ Recommended: Verify the refactoring didn't break anything.
-  [If tests all pass: "Tests pass — you're good. Continue your workflow."]
-  [If in a phase: "Continue /titan:06-build or /titan:07-verify for Phase NN."]
+---
 
-Other options:
-  /titan:test      — Generate additional tests for refactored code
-  /titan:review    — Review the refactored code
-  /titan:audit     — Run a full quality audit
-  /titan:scan      — Re-scan the codebase to measure improvement
-  /titan:progress  — See full project dashboard and current position
-─────────────────────────────────────────────────
-```
+### ★ Recommended
+
+> **Verify the refactoring didn't break anything.**
+> [If tests all pass: Tests pass — you're good. Continue your workflow.]
+> [If in a phase: Continue `/titan:06-build` or `/titan:07-verify` for Phase NN.]
+
+### Other options
+
+| Command | Action |
+|---------|--------|
+| `/titan:test` | Generate additional tests for refactored code |
+| `/titan:review` | Review the refactored code |
+| `/titan:audit` | Run a full quality audit |
+| `/titan:scan` | Re-scan the codebase to measure improvement |
+| `/titan:progress` | See full project dashboard and current position |
+
+---
 
 ## Tips
 

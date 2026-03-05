@@ -427,28 +427,30 @@ Review the phase's build and verification process. Identify:
 
 ### Step 12 — Phase Completion
 
-Print the final verification summary:
+Print the final verification summary.
 
-```
-╔══════════════════════════════════════════════════════════════╗
-║  ⚡ TITAN — VERIFICATION COMPLETE                           ║
-╚══════════════════════════════════════════════════════════════╝
+Print (as markdown, NOT in a code block):
 
-Phase NN — [Phase Name]
+---
 
-Part 1 — Reconciliation:  ✓ [done]/[total] tasks, [pass]/[total] ACs
-Part 2 — Adversarial:     ✓ [VERDICT] ([findings count] findings)
-Part 3 — Knowledge:       ✓ [patterns count] patterns, [learnings count] learnings captured
+## ⚡ TITAN — VERIFICATION COMPLETE
+
+**Phase NN — [Phase Name]**
+
+| Part | Result | Details |
+|------|--------|---------|
+| 1 — Reconciliation | ✓ Pass | [done]/[total] tasks, [pass]/[total] ACs |
+| 2 — Adversarial | ✓ [VERDICT] | [findings count] findings, [critical count] critical |
+| 3 — Knowledge | ✓ Captured | [patterns count] patterns, [learnings count] learnings |
 
 [If next phase exists in ROADMAP.md:]
-★ Phase NN complete. Next: Phase [NN+1] — [Next Phase Name]
-  Run /titan:05-plan to plan the next phase.
-  Or run /titan:08-ship if this is the final phase of a milestone.
+> **Phase NN complete.** Next: Phase [NN+1] — [Next Phase Name]
+> Run `/titan:05-plan` to plan the next phase.
 
 [If this is the last phase:]
-★ All phases complete!
-  Run /titan:08-ship to release this milestone.
-```
+> **All phases complete!** Run `/titan:08-ship` to release this milestone.
+
+---
 
 ---
 
@@ -517,34 +519,44 @@ Set `Next Action` to either:
 
 After verification completes, display based on the result:
 
-**If PASS or PASS-WITH-NOTES:**
-```
-─────────────────────────────────────────────────
-★ Recommended: Plan the next phase.
-  [If more phases remain: "Run /titan:05-plan for Phase NN+1 — [Next Phase Name]."]
-  [If all phases done: "Run /titan:08-ship to release the milestone."]
+**If PASS or PASS-WITH-NOTES** (as markdown, NOT in a code block):
 
-Other options:
-  /titan:08-ship    — Ship now (if all phases are complete)
-  /titan:audit      — Run a full audit before shipping
-  /titan:05-plan    — Plan the next phase
-  /titan:progress   — See full project dashboard and current position
-─────────────────────────────────────────────────
-```
+---
 
-**If FAIL:**
-```
-─────────────────────────────────────────────────
-★ Recommended: Fix the critical issues, then re-verify.
-  Run /titan:06-build to address the findings, then
-  run /titan:07-verify again.
+### ★ Recommended
 
-Other options:
-  /titan:06-build    — Resume building to fix issues
-  /titan:debug       — Debug a specific failing issue
-  /titan:05-plan     — Re-plan if the approach was fundamentally wrong
-─────────────────────────────────────────────────
-```
+> **Plan the next phase.**
+> [If more phases remain: Run `/titan:05-plan` for **Phase NN+1 — [Next Phase Name]**.]
+> [If all phases done: Run `/titan:08-ship` to **release the milestone**.]
+
+### Other options
+
+| Command | Action |
+|---------|--------|
+| `/titan:08-ship` | Ship now (if all phases are complete) |
+| `/titan:audit` | Run a full audit before shipping |
+| `/titan:05-plan` | Plan the next phase |
+| `/titan:progress` | See full project dashboard and current position |
+
+---
+
+**If FAIL** (as markdown, NOT in a code block):
+
+---
+
+### ★ Recommended
+
+> **Fix the critical issues, then re-verify.** Run `/titan:06-build` to address the findings, then run `/titan:07-verify` again.
+
+### Other options
+
+| Command | Action |
+|---------|--------|
+| `/titan:06-build` | Resume building to fix issues |
+| `/titan:debug` | Debug a specific failing issue |
+| `/titan:05-plan` | Re-plan if the approach was fundamentally wrong |
+
+---
 
 ## Tips
 

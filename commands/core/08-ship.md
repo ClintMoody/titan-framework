@@ -304,38 +304,34 @@ final_commit: [full commit hash]
 
 ### Step 8 — Celebration Banner
 
-```
-╔══════════════════════════════════════════════════════════════╗
-║                                                              ║
-║   ★  SHIPPED — [RELEASE_VERSION]  ★                         ║
-║                                                              ║
-║   [Project Name]                                             ║
-║                                                              ║
-║   Phases: [count] completed                                  ║
-║   Tasks:  [count] done                                       ║
-║   Quality: [total findings] issues found and resolved        ║
-║   Knowledge: [count] patterns captured                       ║
-║                                                              ║
-╚══════════════════════════════════════════════════════════════╝
+Print (as markdown, NOT in a code block):
 
-Congratulations. You just shipped world-class software.
+---
 
-What's next?
+## ★ SHIPPED — [RELEASE_VERSION]
 
-  /titan:02-vision    — Start a new milestone with new goals
-  /titan:05-plan      — Plan the next phase if more phases exist in the roadmap
-  /titan:progress  — View the full project history and metrics
+**[Project Name]**
+
+| Metric | Value |
+|--------|-------|
+| **Phases** | [count] completed |
+| **Tasks** | [count] done |
+| **Quality** | [total findings] issues found and resolved |
+| **Knowledge** | [count] patterns captured |
+
+**Congratulations. You just shipped world-class software.**
 
 [If remote is configured:]
-  To push to remote:
-    git push origin [BASE_BRANCH]
-    git push origin [RELEASE_VERSION]
+> To push to remote:
+> `git push origin [BASE_BRANCH]`
+> `git push origin [RELEASE_VERSION]`
 
 [If no remote:]
-  No remote configured. When ready, push with:
-    git remote add origin [url]
-    git push -u origin [BASE_BRANCH] --tags
-```
+> No remote configured. When ready:
+> `git remote add origin [url]`
+> `git push -u origin [BASE_BRANCH] --tags`
+
+---
 
 ---
 
@@ -393,31 +389,42 @@ What's next?
 
 After shipping, display based on the roadmap state:
 
-**If more phases remain in the roadmap:**
-```
-─────────────────────────────────────────────────
-★ Recommended: Run /titan:05-plan to plan Phase NN — [Next Phase Name].
-  Your roadmap shows [X] phases remaining.
+**If more phases remain in the roadmap** (as markdown, NOT in a code block):
 
-Other options:
-  /titan:02-vision    — Revisit the roadmap if priorities have shifted
-  /titan:03-explore   — Research unknowns before planning the next phase
-  /titan:progress  — See full project dashboard and current position
-  /titan:pause     — Save state and take a break — you've earned it
-─────────────────────────────────────────────────
-```
+---
 
-**If the roadmap is complete (all phases shipped):**
-```
-─────────────────────────────────────────────────
-★ Congratulations — your roadmap is complete!
+### ★ Recommended
 
-What now?
-  /titan:02-vision    — Define a new milestone with new goals
-  /titan:audit     — Run a comprehensive quality audit of the shipped product
-  /titan:progress  — Review the full project history
-─────────────────────────────────────────────────
-```
+> Run `/titan:05-plan` to plan **Phase NN — [Next Phase Name]**. Your roadmap shows [X] phases remaining.
+
+### Other options
+
+| Command | Action |
+|---------|--------|
+| `/titan:02-vision` | Revisit the roadmap if priorities have shifted |
+| `/titan:03-explore` | Research unknowns before planning the next phase |
+| `/titan:progress` | See full project dashboard and current position |
+| `/titan:pause` | Save state and take a break — you've earned it |
+
+---
+
+**If the roadmap is complete (all phases shipped)** (as markdown, NOT in a code block):
+
+---
+
+### ★ Congratulations — your roadmap is complete!
+
+> What now? Define your next milestone or audit what you've shipped.
+
+### Options
+
+| Command | Action |
+|---------|--------|
+| `/titan:02-vision` | Define a new milestone with new goals |
+| `/titan:audit` | Run a comprehensive quality audit of the shipped product |
+| `/titan:progress` | Review the full project history |
+
+---
 
 ## Tips
 

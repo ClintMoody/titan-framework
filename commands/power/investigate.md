@@ -264,25 +264,27 @@ Record the recommendation in `.titan/DECISIONS.md` if the user accepts it:
 
 Update `.titan/KNOWLEDGE.md` with key learnings from the research.
 
-Display results:
+Print (as markdown, NOT in a code block):
 
-```
-+==============================================================+
-|  ++ TITAN -- INVESTIGATION COMPLETE                          |
-+==============================================================+
+---
 
-Problem: [one-line description]
-Approaches evaluated: [N]
+## ✓ TITAN — INVESTIGATION COMPLETE
 
-Recommendation: [Approach name]
-Confidence: [HIGH/MEDIUM/LOW]
-Rationale: [2-3 sentences]
+| Detail | Value |
+|--------|-------|
+| **Problem** | [one-line description] |
+| **Approaches evaluated** | [N] |
+| **Recommendation** | [Approach name] |
+| **Confidence** | [HIGH/MEDIUM/LOW] |
+
+**Rationale:** [2-3 sentences]
 
 [If MEDIUM/LOW confidence:]
->> Suggested next step: /titan:experiment to validate
+> **Suggested next step:** `/titan:experiment` to validate the recommendation
 
-Full report: .titan/investigations/NNN-slug/INVESTIGATION.md
-```
+> Full report: `.titan/investigations/NNN-slug/INVESTIGATION.md`
+
+---
 
 ## Outputs
 
