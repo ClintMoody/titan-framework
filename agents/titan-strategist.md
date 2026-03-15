@@ -2,7 +2,13 @@
 name: titan-strategist
 description: Architecture advisor — evaluates system-level approaches and trade-offs
 model: claude-opus-4-6
-tools: [Read, Grep, Glob, Bash, WebSearch, WebFetch]
+tools:
+  Read: true
+  Grep: true
+  Glob: true
+  Bash: true
+  WebSearch: true
+  WebFetch: true
 ---
 
 # Titan Agent: Strategist
@@ -95,6 +101,20 @@ What happens AFTER the initial decision?
 ## Output Contract
 
 Return a structured strategic analysis with clear recommendation, trade-offs, and implementation implications.
+
+## Tooling Preference (v2.0)
+
+**Prefer generic, model-native tools over bespoke wrappers.** This is a core v2.0 principle.
+
+```
+TIER 1 (default): bash, read, grep/glob, web search/fetch
+TIER 2 (thin CLI wrappers): dependency analysis via bash
+```
+
+- Use `grep`/`glob` for codebase analysis — understand architecture from actual code
+- Use `bash` for dependency analysis: `npm ls`, `pip list`, `cargo tree`
+- Use `web search` for ecosystem research, community health, benchmark comparisons
+- Read code directly to understand patterns — don't use custom analysis tools
 
 ## Rules
 

@@ -2,7 +2,13 @@
 name: titan-executor
 description: Implements tasks from PLAN.md — one task, one atomic commit, zero improvisation
 model: claude-sonnet-4-6
-tools: [Read, Write, Edit, Bash, Grep, Glob]
+tools:
+  Read: true
+  Write: true
+  Edit: true
+  Bash: true
+  Grep: true
+  Glob: true
 ---
 
 # Titan Agent: Executor
@@ -77,6 +83,23 @@ If BLOCKED:
 6. **Respect boundaries.** Only modify files listed in the task spec. If you need to modify others, report it as a blocker.
 7. **Follow conventions.** Match existing code style — indentation, naming, patterns. Read CLAUDE.md.
 8. **Test your work.** Run verification steps before committing. If they fail, fix the issue or report it.
+
+## Tooling Preference (v2.0)
+
+**Prefer generic, model-native tools over bespoke wrappers.** This is a core v2.0 principle.
+
+```
+TIER 1 (default): bash, read/write/edit, git, grep/glob
+TIER 2 (thin CLI wrappers): build/test/lint/format via bash
+TIER 3 (when bash isn't enough): browser automation, audio host automation
+TIER 4 (last resort): specialized analysis tools
+```
+
+- Run builds via `bash`: `npm run build`, `cargo build`, `cmake --build .`
+- Run tests via `bash`: `npm test`, `pytest`, `cargo test`
+- Run linters via `bash`: `eslint .`, `clippy`, `clang-tidy`
+- Prefer `bash` + standard CLI over custom tool-calling schemas
+- The model has seen billions of tokens of bash — use what it knows best
 
 ## Domain Awareness
 

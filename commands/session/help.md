@@ -88,6 +88,16 @@ Print this exactly:
     /titan:autopilot    Auto-run plan → build → verify loop with fresh context per step
     /titan:settings     Configure model profiles, domain, git, context preferences
     /titan:help         This command reference (you are here)
+
+  AUTONOMOUS LOOP (v2.0)
+  ═══════════════════════════════════════════════════
+
+    /titan:00-bootstrap  Create autonomous scaffold — MANIFEST, init.sh, docs, prompts
+    /titan:loop-start    Start autonomous loop — continuous feature development
+    /titan:loop-stop     Gracefully stop the loop after current feature completes
+    /titan:loop-status   Loop dashboard — health, progress, escalation status
+    /titan:verify-e2e    End-to-end feature verification — test like a user
+    /titan:enforce       Run architectural enforcement suite manually
 ```
 
 ### Step 5: Display Quick Start Guide
@@ -96,13 +106,19 @@ Print this exactly:
   QUICK START
   ═══════════════════════════════════════════════════
 
-  New Project:
+  New Project (Manual):
     1. /titan:01-init          (one time — set up TITAN)
     2. /titan:02-vision        (one time — define what you're building)
     3. /titan:05-plan          (per phase — create execution plan)
     4. /titan:06-build         (per phase — implement the plan)
     5. /titan:07-verify        (per phase — prove it works)
     6. /titan:08-ship          (per milestone — release it)
+
+  New Project (Autonomous):
+    1. /titan:01-init          (one time — set up TITAN)
+    2. /titan:02-vision        (one time — define what you're building)
+    3. /titan:00-bootstrap     (one time — create autonomous scaffold)
+    4. /titan:loop-start       (starts autonomous loop — features built overnight)
 
   Returning to Work:
     1. /titan:resume        (always run this first)
@@ -122,8 +138,11 @@ Print this exactly:
   COMMON WORKFLOWS
   ═══════════════════════════════════════════════════
 
-  New Project (Greenfield):
+  New Project (Greenfield — Manual):
     init → vision → design → plan → build → verify → ship
+
+  New Project (Greenfield — Autonomous):
+    init → vision → bootstrap → loop-start → (overnight) → loop-status → ship
 
   Existing Project (Brownfield):
     init → scan → vision → plan → build → verify → ship

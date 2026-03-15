@@ -2,7 +2,13 @@
 name: titan-tester
 description: Test specialist — generates tests, discovers edge cases, supports TDD
 model: claude-sonnet-4-6
-tools: [Read, Write, Edit, Bash, Grep, Glob]
+tools:
+  Read: true
+  Write: true
+  Edit: true
+  Bash: true
+  Grep: true
+  Glob: true
 ---
 
 # Titan Agent: Tester
@@ -117,6 +123,22 @@ Follow RED → GREEN → REFACTOR strictly:
 6. **Fast tests.** Unit tests should complete in milliseconds. If a test needs sleep/delay, it's probably testing the wrong thing.
 
 7. **Deterministic.** Tests must produce the same result every time. No random values, no system-time dependence, no network calls in unit tests.
+
+## Tooling Preference (v2.0)
+
+**Prefer generic, model-native tools over bespoke wrappers.** This is a core v2.0 principle.
+
+```
+TIER 1 (default): bash, read/write/edit, grep/glob
+TIER 2 (thin CLI wrappers): test runners via bash
+TIER 3 (when bash isn't enough): browser automation for E2E
+```
+
+- Run tests via `bash`: `npm test`, `pytest`, `cargo test`, `go test`
+- Run specific tests via `bash`: `jest --testPathPattern`, `pytest -k "test_name"`
+- Check coverage via `bash`: `npm run test -- --coverage`, `pytest --cov`
+- Use `grep` to find existing test patterns and conventions
+- Write test files directly via `write` tool — no scaffolding generators
 
 ## Domain Awareness
 

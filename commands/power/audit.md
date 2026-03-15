@@ -122,6 +122,31 @@ Check:
 
 Load checks from `.titan/config.yaml` domain plugin. Execute each domain-specific quality gate.
 
+### Step 5b — Documentation Staleness Audit (v2.0)
+
+If `.titan/docs/` exists (v2.0 progressive docs), scan for staleness:
+
+1. **Check modification dates** — Flag docs not updated in 10+ sessions (cross-reference PROGRESS.md session count)
+2. **Check cross-references** — Verify links in docs/INDEX.md point to existing files
+3. **Check code references** — Flag docs that reference deleted code paths, renamed files, or removed modules
+4. **Check quality grades** — Read docs/quality.md for existing STALE flags
+
+**For each stale doc:**
+```
+⚠ STALE: .titan/docs/design/module-specs/auth-module.md
+  Last updated: Session 5 (current: Session 23)
+  References deleted file: src/auth/legacy-handler.ts
+  Recommendation: Update or archive
+```
+
+Update `.titan/docs/quality.md` with staleness grades:
+```markdown
+| Document | Grade | Last Updated | Notes |
+|----------|-------|-------------|-------|
+| architecture.md | CURRENT | Session 22 | — |
+| design/auth-module.md | STALE | Session 5 | References deleted files |
+```
+
 ### Step 6 — Code Quality Audit
 
 Check:

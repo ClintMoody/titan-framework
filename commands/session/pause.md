@@ -48,6 +48,17 @@ Update `.titan/STATE.md` with:
 
 Preserve all other sections (Completed Phases, Active Decisions, Deferred Items, Blockers, Knowledge Snapshots).
 
+### Step 3b: Update LOOP-STATE.json (v2.0)
+
+If `.titan/LOOP-STATE.json` exists (autonomous loop enabled):
+
+1. Read current LOOP-STATE.json
+2. Set `status` to `"paused"`
+3. Update `last_checkpoint` to current ISO timestamp
+4. Write updated LOOP-STATE.json
+
+This ensures the autonomous loop controller respects the pause and doesn't start a new session.
+
 ### Step 4: Create HANDOFF.md
 
 Write `.titan/HANDOFF.md` with full narrative context. This is the primary cross-session continuity document. Write it as if explaining the situation to a fresh AI session with zero prior context.

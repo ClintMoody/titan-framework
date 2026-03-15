@@ -189,6 +189,38 @@ Print Part 1 results:
 
 ---
 
+## PART 1b — END-TO-END VERIFICATION (v2.0)
+
+> If `.titan/MANIFEST.json` exists (v2.0 autonomous scaffold), run E2E verification
+> for all features touched in this phase BEFORE the adversarial review.
+
+### Step 5b — E2E Feature Verification
+
+1. Read `.titan/MANIFEST.json` — identify features related to this phase
+2. For each feature that should now be "passing":
+   a. Load domain-specific E2E strategy from `.titan/config.yaml`
+   b. Run verification steps (build, run, test interaction, verify output)
+   c. Record pass/fail per feature
+3. Update MANIFEST.json status:
+   - Only change "failing" → "passing" if ALL E2E checks pass
+   - If E2E fails, the feature remains "failing"
+4. Append E2E results to SUMMARY.md
+
+```markdown
+## End-to-End Verification
+
+| Feature | Description | E2E Result | Notes |
+|---------|-------------|-----------|-------|
+| F-012 | User login flow | ✓ PASS | All 4 acceptance criteria verified |
+| F-013 | Password reset | ✗ FAIL | Email not sent — SMTP config missing |
+```
+
+If any features fail E2E, note them prominently — they may generate additional findings in Part 2.
+
+**Pairs with:** `/titan:verify-e2e` command for standalone E2E verification.
+
+---
+
 ## PART 2 — ADVERSARIAL REVIEW
 
 > An independent review that assumes bugs exist and hunts for them.

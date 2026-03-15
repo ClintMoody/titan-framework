@@ -12,6 +12,8 @@ description: Initialize TITAN project — scaffold .titan/ directory, detect pro
 - You are in the root directory of a project (or about to create one).
 - No `.titan/` directory exists yet. If one does, inform the user: "This project is already initialized. Use `/titan:resume` to continue or delete `.titan/` to start over."
 
+**v2.0 Bootstrap Check:** After initialization completes, if the user intends to use autonomous multi-session development, suggest running `/titan:00-bootstrap` after `/titan:02-vision` to create the autonomous scaffold (MANIFEST.json, PROGRESS.md, LOOP-STATE.json, init.sh, docs/).
+
 ## Process
 
 ### Step 1: Display Welcome Banner
@@ -374,6 +376,7 @@ Step 1 of 8 ▓▓░░░░░░░░░░░░░░ 12%
 | Command | Action |
 |---------|--------|
 | `/titan:scan` | Deep-scan an existing codebase first (brownfield projects) |
+| `/titan:00-bootstrap` | Set up autonomous scaffold (after vision is defined) |
 
 ---
 

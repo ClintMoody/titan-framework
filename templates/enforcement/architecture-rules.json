@@ -1,0 +1,24 @@
+{
+  "$schema": "TITAN v2.0 Architecture Enforcement Rules",
+  "dependency_layers": ["{{layer1}}", "{{layer2}}", "{{layer3}}"],
+  "dependency_direction": "down_only",
+  "module_boundaries": {
+    "{{module_name}}": {
+      "allowed_imports": ["{{layer1}}", "{{layer2}}"],
+      "forbidden_imports": ["{{layer3}}"]
+    }
+  },
+  "max_file_lines": 500,
+  "required_test_coverage": 0.70,
+  "naming_conventions": {
+    "files": "kebab-case",
+    "classes": "PascalCase",
+    "functions": "camelCase",
+    "constants": "UPPER_SNAKE_CASE"
+  },
+  "forbidden_patterns": {
+    "no_todos_in_commits": true,
+    "no_fixme_in_commits": true,
+    "no_hack_in_commits": true
+  }
+}

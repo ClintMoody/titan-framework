@@ -267,6 +267,19 @@ Print (as markdown, NOT in a code block):
 
 ---
 
+### Step 6b — E2E Smoke Test (v2.0)
+
+If `.titan/MANIFEST.json` exists (v2.0 autonomous scaffold):
+
+1. After all waves complete, run a quick E2E smoke test on the features built in this phase
+2. This is NOT the full verification (that's in /titan:07-verify) — it's a quick check to catch obvious breakage
+3. If smoke test fails on a feature just built:
+   - Print: `⚠ E2E smoke test failed for [feature]. Consider fixing before verification.`
+   - Do NOT block the build — let verification handle the formal pass/fail
+4. If smoke test passes: `✓ E2E smoke test passed for [N] features`
+
+This pairs with the full E2E verification in `/titan:07-verify` and `/titan:verify-e2e`.
+
 ### Step 7 — Update State
 
 Update STATE.md regardless of outcome:

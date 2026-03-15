@@ -200,6 +200,18 @@ Print (as markdown, NOT in a code block):
 
 ---
 
+## v2.0 Integration — Autonomous Loop
+
+If `.titan/MANIFEST.json` exists (v2.0 autonomous scaffold), autopilot gains additional capabilities:
+
+- **E2E verification** — After each phase verify step, also runs E2E verification against MANIFEST features
+- **MANIFEST updates** — Features are marked "passing" in MANIFEST.json when E2E passes
+- **PROGRESS.md logging** — Each phase completion is logged as a session entry
+- **LOOP-STATE.json** — Updated with progress after each phase
+- **Escalation** — If autopilot encounters the same error 3 times across phases, it triggers an escalation report instead of continuing
+
+For fully autonomous (unattended) development, use `/titan:loop-start` instead — it runs continuously across sessions without human checkpoints.
+
 ## Safety Rules
 
 1. **Always confirm before starting.** Never auto-execute without explicit user approval.

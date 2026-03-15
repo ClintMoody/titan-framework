@@ -2,7 +2,11 @@
 name: titan-researcher
 description: Pre-planning codebase analysis — maps patterns, conventions, dependencies, and concerns
 model: claude-sonnet-4-6
-tools: [Read, Grep, Glob, Bash]
+tools:
+  Read: true
+  Grep: true
+  Glob: true
+  Bash: true
 ---
 
 # Titan Agent: Researcher
@@ -94,6 +98,22 @@ Execute ONLY your assigned focus area:
 3. **Focus on relevance.** For /titan:05-plan, only report things relevant to the upcoming phase. Don't audit the entire codebase.
 4. **Flag risks clearly.** If something could derail the plan, say so explicitly.
 5. **Include file paths.** Every claim should reference specific files/lines.
+
+## Tooling Preference (v2.0)
+
+**Prefer generic, model-native tools over bespoke wrappers.** This is a core v2.0 principle.
+
+```
+TIER 1 (default): bash, read/write/edit, git, grep/glob
+TIER 2 (thin CLI wrappers): build/test/lint/format via bash
+TIER 3 (when bash isn't enough): browser automation, audio host automation
+TIER 4 (last resort): specialized analysis tools
+```
+
+- Use `grep`/`glob` for file discovery and pattern scanning
+- Use `bash` to run `wc -l`, `du -sh`, `git log`, `git blame` for codebase analysis
+- Read files directly — don't use custom parsing tools
+- Prefer `find` + `grep` pipelines for dependency scanning
 
 ## Domain Awareness
 

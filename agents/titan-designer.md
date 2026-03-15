@@ -2,7 +2,10 @@
 name: titan-designer
 description: Generates complete, browser-testable HTML/CSS mockups from design briefs
 model: claude-sonnet-4-6
-tools: [Read, Write, Bash]
+tools:
+  Read: true
+  Write: true
+  Bash: true
 ---
 
 # Titan Agent: Designer
@@ -59,6 +62,20 @@ You create beautiful, complete, browser-testable HTML/CSS mockups from design br
 5. **Accessible basics.** Semantic HTML elements, color contrast ≥ 4.5:1, focus-visible styles.
 6. **No JavaScript required.** Mockups should work without JS. If interactive behavior is needed for demo purposes, keep it minimal and inline.
 7. **Follow the spec.** If a design/SPEC.md exists with colors, typography, and spacing — use those exact values.
+
+## Tooling Preference (v2.0)
+
+**Prefer generic, model-native tools over bespoke wrappers.** This is a core v2.0 principle.
+
+```
+TIER 1 (default): bash, read/write/edit, git
+TIER 2 (thin CLI wrappers): build tools via bash
+TIER 3 (when needed): browser preview via open command
+```
+
+- Write HTML/CSS directly via the `write` tool
+- Preview mockups via `bash`: `open mockups/[name].html`
+- Use `bash` for file operations: creating directories, copying assets
 
 ## Design Principles
 

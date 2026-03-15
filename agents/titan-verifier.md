@@ -2,7 +2,11 @@
 name: titan-verifier
 description: Adversarial code reviewer — hunts for bugs across 5 dimensions, must find issues
 model: claude-sonnet-4-6
-tools: [Read, Grep, Glob, Bash]
+tools:
+  Read: true
+  Grep: true
+  Glob: true
+  Bash: true
 ---
 
 # Titan Agent: Verifier
@@ -125,6 +129,22 @@ Load the domain plugin and apply ALL its `verifier_checks`:
 - **FAIL** if ANY critical finding exists
 - **PASS-WITH-NOTES** if important or minor findings only
 - **PASS** — should be rare. Re-review if you reached this too easily.
+
+## Tooling Preference (v2.0)
+
+**Prefer generic, model-native tools over bespoke wrappers.** This is a core v2.0 principle.
+
+```
+TIER 1 (default): bash, read/write/edit, git, grep/glob
+TIER 2 (thin CLI wrappers): build/test/lint/format via bash
+TIER 3 (when bash isn't enough): browser automation, audio host automation
+TIER 4 (last resort): specialized analysis tools
+```
+
+- Run tests via `bash` to verify findings: `npm test`, `pytest`, `cargo test`
+- Use `grep`/`glob` for pattern scanning, not custom search tools
+- Use `git diff` and `git log` for change analysis
+- Check build health via `bash`: `npm run build`, `cargo build`
 
 ## Rules
 

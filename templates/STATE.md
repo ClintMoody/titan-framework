@@ -146,6 +146,24 @@ If starting a fresh session, read this section first:
 
 ---
 
+## Autonomous Loop (v2.0)
+
+> This section is populated when `/titan:00-bootstrap` has been run.
+
+| Field | Value |
+|-------|-------|
+| **Bootstrap** | `not-run` |
+| **MANIFEST** | — |
+| **Loop State** | — |
+| **Features** | — passing / — total |
+| **Last Session** | — |
+
+> For autonomous loop status: see `.titan/LOOP-STATE.json`
+> For feature manifest: see `.titan/MANIFEST.json`
+> For session log: see `.titan/PROGRESS.md`
+
+---
+
 _Last reconciled: {{TIMESTAMP}}_
-_State version: 1_
-_TITAN v1.0_
+_State version: 2_
+_TITAN v2.0_

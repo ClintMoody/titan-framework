@@ -1,0 +1,26 @@
+{
+  "$schema": "TITAN v2.0 Feature Manifest",
+  "project": "{{PROJECT_NAME}}",
+  "generated": "{{TIMESTAMP}}",
+  "guard": "CRITICAL: Do NOT remove or edit feature definitions. Only the 'status' field may be changed, and only after end-to-end verification passes.",
+  "features": [
+    {
+      "id": "F-001",
+      "category": "core",
+      "description": "{{Feature description}}",
+      "acceptance_criteria": [
+        "{{Criterion 1}}",
+        "{{Criterion 2}}"
+      ],
+      "priority": 1,
+      "status": "failing",
+      "dependencies": [],
+      "estimated_sessions": 1
+    }
+  ],
+  "summary": {
+    "total": 0,
+    "passing": 0,
+    "failing": 0
+  }
+}

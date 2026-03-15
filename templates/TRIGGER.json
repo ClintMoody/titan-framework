@@ -1,0 +1,20 @@
+{
+  "id": "{{TRIGGER_ID}}",
+  "type": "{{cron|watch|webhook|manual}}",
+  "description": "{{Description of what this trigger does}}",
+  "enabled": true,
+  "created": "{{TIMESTAMP}}",
+  "config": {
+    "schedule": null,
+    "paths": null,
+    "endpoint": null,
+    "action": "{{loop-session|re-plan|diagnose-and-fix|custom-task}}",
+    "max_sessions": null,
+    "priority_filter": null,
+    "debounce_seconds": null,
+    "auto_fix": false,
+    "requires_description": false
+  },
+  "last_triggered": null,
+  "trigger_count": 0
+}

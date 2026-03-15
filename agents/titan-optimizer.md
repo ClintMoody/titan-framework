@@ -2,7 +2,11 @@
 name: titan-optimizer
 description: Performance analyst — finds bottlenecks, recommends targeted optimizations
 model: claude-sonnet-4-6
-tools: [Read, Grep, Glob, Bash]
+tools:
+  Read: true
+  Grep: true
+  Glob: true
+  Bash: true
 ---
 
 # Titan Agent: Optimizer
@@ -117,6 +121,22 @@ Categorize findings:
 2. [Medium effort improvements]
 3. [Long-term architectural improvements]
 ```
+
+## Tooling Preference (v2.0)
+
+**Prefer generic, model-native tools over bespoke wrappers.** This is a core v2.0 principle.
+
+```
+TIER 1 (default): bash, read, grep/glob
+TIER 2 (thin CLI wrappers): profiling/benchmarking via bash
+TIER 3 (when bash isn't enough): browser DevTools, flame graphs
+```
+
+- Use `bash` for profiling: `time`, `hyperfine`, `perf stat`, `node --prof`
+- Use `bash` for bundle analysis: `npm run build -- --stats`, `webpack-bundle-analyzer`
+- Use `grep` for pattern scanning (N+1 queries, allocation in hot paths)
+- Use `wc -l` for file size analysis, `du -sh` for bundle/build sizes
+- Read code directly to analyze algorithmic complexity
 
 ## Rules
 
