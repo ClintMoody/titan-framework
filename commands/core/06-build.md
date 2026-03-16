@@ -54,6 +54,21 @@ Print orientation:
 ◆ Boundaries: [count] protected paths
 ```
 
+### Step 1b — Check TDD Strict Mode
+
+Read `.titan/config.yaml`. If `tdd.strict: true`:
+
+```
+◆ TDD Strict Mode: ACTIVE
+  All tasks will follow Red-Green-Refactor cycle.
+  Each task produces 3 commits: red → green → refactor
+  The Iron Law: No production code without a failing test first.
+```
+
+When TDD strict is active, append `TDD: strict` to every agent dispatch brief. This triggers the executor's TDD workflow (see titan-executor agent definition).
+
+If `tdd.strict` is false or absent, continue normally.
+
 ### Step 2 — Create Git Branch
 
 Check if the branch already exists:
@@ -145,7 +160,11 @@ RULES:
 
 OUTPUT CONTRACT:
 Return a structured report:
-- STATUS: DONE | BLOCKED
+- STATUS: DONE | DONE_WITH_CONCERNS | NEEDS_CONTEXT | BLOCKED
+  - DONE: Task completed, all verifications pass
+  - DONE_WITH_CONCERNS: Task completed but with caveats (include Concerns + Severity + Suggestion)
+  - NEEDS_CONTEXT: Cannot complete — include Missing + Question + Attempted
+  - BLOCKED: Cannot complete — include Blocker + Attempted + Suggestion
 - FILES_MODIFIED: [list of files actually modified]
 - FILES_CREATED: [list of files actually created]
 - VERIFICATION_RESULTS: [pass/fail for each verification step]
@@ -155,7 +174,7 @@ Return a structured report:
 
 **C) Wait for Agent Results:**
 
-As each agent completes, process its result:
+As each agent completes, process its result using the structured status code protocol:
 
 1. **If STATUS is DONE:**
    - Verify the agent respected boundaries (check git diff for boundary violations)
@@ -168,7 +187,22 @@ As each agent completes, process its result:
    - Update task status to `DONE`
    - Print: `✓ Task T[X]: [task title] — DONE`
 
-2. **If STATUS is BLOCKED:**
+2. **If STATUS is DONE_WITH_CONCERNS:**
+   - Process as DONE (verify boundaries, commit)
+   - Record concerns for the verification phase
+   - Print: `✓ Task T[X]: [task title] — DONE (with concerns)`
+   - Print: `  ⚠ Concerns: [brief summary of concerns]`
+   - Add concerns to a running list for Part 2 of verification
+
+3. **If STATUS is NEEDS_CONTEXT:**
+   - Print: `◆ Task T[X]: [task title] — NEEDS CONTEXT`
+   - Print: `  Question: [executor's question]`
+   - Attempt to resolve by reading the missing files and re-dispatching with the additional context
+   - If re-dispatch with context succeeds: process as DONE or DONE_WITH_CONCERNS
+   - If re-dispatch still reports NEEDS_CONTEXT: escalate to user
+   - Print: `  ⚠ Task T[X] requires user input: [question]. Please advise.`
+
+4. **If STATUS is BLOCKED:**
    - Print: `⚠ Task T[X]: [task title] — BLOCKED: [blocker description]`
    - Attempt ONE retry with additional context (e.g., read the blocking file and include its contents)
    - If retry also blocks: mark task as `BLOCKED`, record blocker details
@@ -408,6 +442,39 @@ If some tasks are blocked, display (as markdown, NOT in a code block):
 | `/titan:05-plan` | Re-plan with different approach to blocked tasks |
 | `/titan:debug` | Investigate the root cause of blockers |
 | `/titan:investigate` | Research if the blocker involves a novel problem |
+
+---
+
+## Anti-Rationalization Guard
+
+During build, you will be tempted to cut corners. Here are common rationalizations and why they are WRONG:
+
+| Rationalization | Why It's Wrong | What To Do Instead |
+|----------------|----------------|-------------------|
+| "I'll just implement this small task myself instead of spawning an agent" | Orchestrator-written code shares context with coordination logic. Fresh agents produce better code. | Spawn the agent. That's the thin orchestrator pattern. |
+| "This task is blocked but I can work around it" | Workarounds create hidden dependencies that break in verification. | Report it as BLOCKED. Re-plan if needed. |
+| "The agent's DONE_WITH_CONCERNS is fine, those concerns are minor" | Concerns compound across tasks. What's minor alone becomes major together. | Record every concern. The verifier will decide severity. |
+| "I don't need to check boundaries on this simple change" | Boundary violations are the #1 cause of cascading failures across phases. | Check `git diff` against boundaries for EVERY task. |
+| "Context is getting low but I can finish one more task" | Context-exhausted agents produce subtly wrong code. This is worse than no code. | Save state. Resume with fresh context. |
+| "The test framework isn't set up, so I'll skip tests" | Skipping tests in build means the verifier catches them as CRITICAL. That's more expensive. | Report NEEDS_CONTEXT. The test setup IS the task. |
+| "TDD is too slow for this simple function" | (When TDD strict is active) The Iron Law is not optional. Simple code is the easiest to TDD. | Write the failing test. It takes 30 seconds. |
+
+## Output Validation (Self-Test)
+
+Before completing, verify that THIS COMMAND produced the expected artifacts. ALL must pass:
+
+```
+☐ At least one git commit exists on the phase branch
+☐ Every DONE task has exactly one commit (or 3 if TDD strict) with correct message format
+☐ No commit touches files listed in Boundaries
+☐ PLAN.md frontmatter status is updated to "built" or "partial"
+☐ STATE.md is updated with build results and correct Next Action
+☐ All DONE_WITH_CONCERNS are recorded for the verification phase
+☐ All BLOCKED tasks have blocker descriptions
+☐ The build summary table accounts for every task in the plan (no orphans)
+```
+
+If ANY validation check fails, fix it before presenting the build complete banner.
 
 ---
 

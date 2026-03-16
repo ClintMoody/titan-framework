@@ -146,11 +146,32 @@ context:
 # Test-Driven Development mode: write tests BEFORE implementation.
 # When enabled, TITAN enforces red-green-refactor cycle.
 tdd:
-  # Enable TDD workflow (default: false — opt-in)
-  enabled: false
+  # Strict mode: enforce Red-Green-Refactor for ALL build tasks (The Iron Law)
+  # When true: every executor MUST write a failing test before production code.
+  # Each task produces 3 commits (red, green, refactor) instead of 1.
+  # Toggle via /titan:settings → TDD Mode → TDD Strict
+  strict: false
 
   # Context budget target when TDD is active (lower because tests + impl)
   context_target: 40
+
+# ── Verification ─────────────────────────────────────────────
+# Controls how verification (07-verify) behaves.
+verification:
+  # Whether verification is mandatory (strongly recommended)
+  mandatory: true
+
+  # Enable adversarial review (the verifier agent)
+  adversarial: true
+
+  # Two-stage review: separate spec compliance from code quality
+  # When true (default): 07-verify spawns two verifier agents —
+  #   Stage A (spec compliance) then Stage B (code quality)
+  # When false: single-pass review across all 5 dimensions (legacy)
+  two_stage_review: true
+
+  # Minimum issues per review stage (enforced by HALT CONDITION)
+  min_issues: 1
 
 # ── Autopilot Mode ────────────────────────────────────────────
 # Autopilot allows TITAN to execute plans with minimal human intervention.

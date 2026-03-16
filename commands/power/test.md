@@ -121,6 +121,25 @@ If any tests fail unexpectedly, investigate and fix.
 4. **No test interdependence** — Tests must run independently in any order
 5. **Mock at boundaries** — Mock external services, not internal implementation
 
+## Anti-Rationalization Guard — The TDD Iron Law
+
+When working in TDD mode (especially with `tdd.strict: true`), you WILL be tempted to skip steps. Every rationalization below has been observed in AI agents. They all lead to the same outcome: bugs in production that tests should have caught.
+
+| Rationalization | Why It's Wrong | What To Do Instead |
+|----------------|----------------|-------------------|
+| "This is too simple to test" | Simple functions have the highest bug-to-complexity ratio. Off-by-one, null checks, empty inputs. 30 seconds to test. | Write the test. It's fast precisely BECAUSE it's simple. |
+| "I'll write the tests after the implementation" | Tests written after implementation test what the code does, not what it should do. They encode bugs as features. | Delete the implementation. Write the failing test first. |
+| "The function is a one-liner, testing it is pointless" | One-liners are called from many places. When they break, everything breaks. | One-line function = one-line test. No excuse. |
+| "TDD will slow me down" | TDD front-loads debugging time. Without it, you debug in production. That's slower. | Trust the cycle. RED-GREEN-REFACTOR is faster over the full lifecycle. |
+| "I need to prototype first, then add tests" | Prototypes without tests become production code. "I'll add tests later" is the biggest lie in software. | Prototype WITH tests. A failing test IS a prototype of the requirement. |
+| "This is just configuration / boilerplate" | Config bugs are the hardest to debug because everyone assumes "config can't be wrong." | Test that config produces expected behavior. |
+| "The types / compiler will catch errors" | Types catch type errors. They don't catch logic errors, edge cases, or integration failures. | Types are not tests. Write both. |
+| "I can't test this because it has side effects" | Side effects are WHERE bugs live. If you can't test it, you can't verify it. | Refactor to make it testable. Inject dependencies. Mock boundaries. |
+| "This test is flaky so I'll skip it" | Flaky tests indicate real concurrency or timing bugs. Skipping them hides the bug. | Fix the flakiness. Use deterministic inputs. Mock time. |
+| "We're under time pressure, tests can wait" | Tests save more time than they cost. Every phase. Every time. The data is unambiguous. | Time pressure means you can afford FEWER bugs, not fewer tests. |
+| "The existing code doesn't have tests" | That's a reason to ADD tests, not skip them. | Write tests for the code you're touching. Incremental coverage. |
+| "I'll refactor later, this is just a first pass" | "Later" is another conversation with no context. Refactor now in the REFACTOR step. | Complete the RED-GREEN-REFACTOR cycle. That IS the first pass. |
+
 ## What's Next
 
 After tests are generated and passing, display (as markdown, NOT in a code block):

@@ -400,6 +400,42 @@ After the plan is approved, display (as markdown, NOT in a code block):
 
 ---
 
+## Anti-Rationalization Guard
+
+During planning, you will be tempted to take shortcuts. Here are common rationalizations and why they are WRONG:
+
+| Rationalization | Why It's Wrong | What To Do Instead |
+|----------------|----------------|-------------------|
+| "This phase is simple, I don't need to spawn the researcher" | The researcher finds patterns and conventions you'd miss. Skipping it causes executor agents to write inconsistent code. | Spawn the researcher. Always. |
+| "I know what files need to change, skip the file mapping" | Incomplete file lists cause boundary violations and missed dependencies during build. | Map every file. The researcher does this in seconds. |
+| "This task is self-explanatory, I don't need detailed action descriptions" | The executor gets a fresh context with zero prior knowledge. "Self-explanatory" to you is "ambiguous" to it. | Write action descriptions as if explaining to a new hire on day one. |
+| "Verification steps are obvious, I'll keep them brief" | Vague verification steps like "verify it works" are unverifiable. The executor needs concrete commands. | Write concrete commands: `npm test`, `curl localhost:3000/api/health`, `grep -r 'TODO' src/`. |
+| "I only need one wave, parallel execution is overkill" | Single-wave sequential execution wastes time and context. Independent tasks should run in parallel. | Identify true dependencies. Independent tasks go in the same wave. |
+| "Boundaries aren't important for this small phase" | Small phases with no boundaries cause the most accidental side effects — there's nothing to stop the blast radius. | Define boundaries. Even one protected file prevents disasters. |
+| "3 tasks is too constraining, this phase needs 6" | Large plans have exponentially more failure modes. Two 3-task phases execute cleaner than one 6-task phase. | Split the phase. TITAN will help you. |
+
+## Output Validation (Self-Test)
+
+Before presenting the plan for approval, verify that THIS COMMAND produced valid output. ALL must pass:
+
+```
+☐ PLAN.md exists at .titan/phases/NN-phase-name/PLAN.md
+☐ PLAN.md has correct frontmatter (phase, name, goal, branch, status: draft)
+☐ Every AC mapped to this phase has at least one task
+☐ Every task has: AC reference, Mode, Files to Modify/Create, Action, Verification Steps, Done Criteria, Dependencies
+☐ No task has empty or placeholder verification steps
+☐ Wave dependencies are acyclic (no circular references)
+☐ No wave has more than 4 parallel agent tasks
+☐ Total tasks ≤ max_tasks_per_plan from config.yaml
+☐ Boundaries section lists at least one protected path
+☐ Risk assessment has at least 2 risks
+☐ Phase directory .titan/phases/NN-phase-name/ exists
+```
+
+If ANY validation check fails, fix the plan before presenting it. Do NOT ask for approval on an invalid plan.
+
+---
+
 ## Tips
 
 - Run `/titan:03-explore` before `/titan:05-plan` if the phase involves unfamiliar technologies or novel problems.

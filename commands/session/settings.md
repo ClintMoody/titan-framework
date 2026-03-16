@@ -52,6 +52,10 @@ Read `.titan/config.yaml` and display current settings:
      Max tasks per plan:    [N]
      Auto-shard threshold:  [N] lines
 
+  6. TDD Mode
+     TDD Strict:     [on|off]
+     Context target:  [N]%
+
   ─────────────────────────────────────────────────
   Enter a number to change, or "done" to exit:
 ```
@@ -164,6 +168,42 @@ Update corresponding fields in config.yaml.
 
 Validate input ranges. Update corresponding fields in config.yaml.
 
+#### Option 6: TDD Mode
+
+```
+  TDD Mode:
+  ─────────────────────────────────────────────────
+
+  a. TDD Strict     [on|off]   — Enforce Red-Green-Refactor for ALL build tasks
+                                  When ON: every executor must write a failing test
+                                  before writing production code. Each task produces
+                                  3 commits (red, green, refactor). The Iron Law:
+                                  no production code without a failing test first.
+
+  b. Context target  [N]%      — Context budget when TDD is active (default: 40%)
+                                  Lower than normal because TDD produces more commits
+                                  per task.
+
+  Current strict: [on|off]
+  Current target: [N]%
+  Enter letter to change, or "back":
+```
+
+For toggle (a): flip `tdd.strict` in config.yaml. When enabling, print:
+```
+  ⚡ TDD Strict Mode ACTIVATED
+
+  The Iron Law is now in effect:
+  - Every task follows RED → GREEN → REFACTOR
+  - Every task produces 3 atomic commits
+  - No production code without a failing test first
+  - Executors will refuse to write code before writing tests
+
+  This affects /titan:06-build. Use /titan:test for standalone TDD work.
+```
+
+For context target (b): validate range 20-60, update `tdd.context_target` in config.yaml.
+
 ### Step 4: Write Configuration
 
 After any change:
@@ -231,9 +271,14 @@ git:
   auto_commit: true
   auto_branch: true
 
+tdd:
+  strict: false
+  context_target: 40
+
 verification:
   mandatory: true
   adversarial: true
+  two_stage_review: true
   min_issues: 1
 ```
 

@@ -165,8 +165,8 @@ TITAN deploys AI agents — each in a fresh 200k-token context window — to han
 
 | Agent | Role |
 |:------|:-----|
-| **Executor** | Builds features from plans. One task = one atomic commit. |
-| **Verifier** | Adversarial reviewer. Hunts for bugs across 5+ dimensions. |
+| **Executor** | Builds features from plans. Structured status protocol (DONE/DONE_WITH_CONCERNS/NEEDS_CONTEXT/BLOCKED). |
+| **Verifier** | Two-stage adversarial reviewer — spec compliance and code quality as separate passes. |
 | **Researcher** | Analyzes codebases before planning. Maps patterns and concerns. |
 | **Designer** | Generates browser-testable HTML/CSS mockups from design briefs. |
 | **Investigator** | Solves novel problems. Generates hypotheses, evaluates approaches. |
@@ -215,8 +215,8 @@ Every phase closes with proof. Task-by-task reconciliation. No exceptions.
 </td>
 <td width="33%" valign="top">
 
-**Adversarial Review**
-The Verifier agent assumes bugs exist and hunts for them. It must find at least one genuine issue.
+**Two-Stage Adversarial Review**
+Spec compliance and code quality are reviewed by separate agents with separate prompts. Catches well-written-but-wrong code.
 
 **Atomic Git History**
 One commit per task. `git bisect` finds any regression trivially.
@@ -226,6 +226,9 @@ One commit per task. `git bisect` finds any regression trivially.
 
 **Knowledge Accumulation**
 Every phase adds to `.titan/KNOWLEDGE.md`. Patterns, decisions, lessons. This compounds over time.
+
+**Anti-Rationalization Guards**
+Every command includes tables of excuses AI agents generate to skip steps, with rebuttals. Prevents shortcut-taking at every level.
 
 **Domain-Specific Gates**
 Your domain plugin defines what "quality" means for your kind of software.

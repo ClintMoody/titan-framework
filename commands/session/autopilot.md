@@ -140,8 +140,11 @@ For each phase in the execution plan, run the three-step cycle:
 ───────────────────────────────────────────────────
 ```
 
-2. Execute verification with fresh context:
-   - Spawn titan-verifier agent for adversarial review.
+2. Execute verification with fresh context (two-stage review):
+   - **Stage A:** Spawn titan-verifier agent in Mode A (Spec Compliance) — verify code matches specification.
+   - If Stage A fails with critical spec issues, STOP — skip Stage B, report failure.
+   - **Stage B:** Spawn titan-verifier agent in Mode B (Code Quality) — review quality, security, domain checks.
+   - Combine Stage A + Stage B findings for unified verdict.
    - Run reconciliation: compare PLAN.md tasks/ACs against actual implementation.
    - Capture knowledge: extract learnings for KNOWLEDGE.md.
 

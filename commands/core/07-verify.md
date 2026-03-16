@@ -221,46 +221,64 @@ If any features fail E2E, note them prominently — they may generate additional
 
 ---
 
-## PART 2 — ADVERSARIAL REVIEW
+## PART 2 — TWO-STAGE ADVERSARIAL REVIEW
 
-> An independent review that assumes bugs exist and hunts for them.
-> Rubber-stamping is not allowed. The verifier MUST find at least one genuine issue.
+> The review is split into two independent stages with different agents and different prompts.
+> This separation catches well-written-but-wrong code (Stage A) and correct-but-poorly-written
+> code (Stage B) that a single reviewer would miss.
+>
+> **Stage A: Spec Compliance** — Does the code do what it's supposed to do?
+> **Stage B: Code Quality** — Is the code well-written, secure, and maintainable?
 
-### Step 7 — Spawn titan-verifier Agent
+### Anti-Rationalization Guard
 
-Launch a titan-verifier subagent with this brief:
+Before dispatching reviewers, internalize these truths. Verification is where TITAN's quality promise is kept or broken.
+
+| Rationalization | Why It's Wrong | What To Do Instead |
+|----------------|----------------|-------------------|
+| "The build passed, so verification is a formality" | Build passing means tasks completed. It says nothing about correctness or quality. | Treat every review as if bugs definitely exist. They do. |
+| "We can catch this in a later phase" | Later phases build on this one. Bugs compound exponentially. | Catch it now. The cost is 5 minutes. The cost later is hours. |
+| "The team can manually review this" | Manual review after AI review creates accountability gaps. Nobody owns the finding. | Every finding must be identified, documented, and assigned NOW. |
+| "This phase is too small to have issues" | Small phases have fewer hiding places — but bugs per line of code is constant. | Review with the same rigor regardless of phase size. |
+| "The executor reported DONE with no concerns" | The executor's report is an input, not evidence. Verify by reading code. | Verify every AC against actual code paths. |
+| "Splitting into two stages is overkill" | Single-reviewer bias is documented. Spec reviewers forgive quality issues; quality reviewers forgive spec gaps. | Trust the separation. It exists because single-pass review has a known failure rate. |
+
+### Step 7a — Stage A: Spawn Spec Compliance Reviewer
+
+Launch a titan-verifier subagent in **Mode A** (Spec Compliance):
 
 ```
 AGENT: titan-verifier
-TASK: Adversarial review of Phase NN — [Phase Name]
+MODE: A — Spec Compliance Review
+TASK: Verify Phase NN — [Phase Name] matches its specification
 
-YOUR ROLE: You are an adversarial code reviewer. Your job is to find problems.
-You are NOT here to congratulate the developers. You are here to catch what they missed.
+YOUR ROLE: You verify that the code DOES WHAT IT'S SUPPOSED TO DO.
+You are checking correctness against the specification, not code quality.
+Do NOT comment on style, naming, or elegance — that's Stage B's job.
 
 PHASE CONTEXT:
 - Goal: [phase goal]
 - Tasks completed: [list of DONE/DONE-MODIFIED tasks with descriptions]
 - Files changed: [list all files modified or created, from git diff]
 
-ACCEPTANCE CRITERIA:
+ACCEPTANCE CRITERIA (check EVERY one):
 [List all ACs for this phase]
 
 ARCHITECTURE CONSTRAINTS:
 [Key constraints from ARCHITECTURE.md]
 
-DOMAIN: [domain from config.yaml]
-DOMAIN-SPECIFIC CHECKS: [checks from domain plugin, if applicable]
-
 REVIEW THESE FILES:
-[List every file modified or created during this phase. The agent should read each one.]
+[List every file modified or created during this phase.]
 
-EVALUATE ACROSS 5 DIMENSIONS:
+EVALUATE THESE DIMENSIONS ONLY:
 
 1. SPECIFICATION COMPLIANCE
-   - Does the code satisfy every acceptance criterion? Check each one.
+   - Does the code satisfy every acceptance criterion? Check each one individually.
+   - For each AC, trace the code path that satisfies it. Name the file and function.
    - Were all verification steps from the plan actually achievable?
    - Are edge cases handled (empty inputs, boundary values, error states)?
    - Does the code handle both happy path and failure path?
+   - Is there any AC that appears satisfied but isn't actually tested?
 
 2. ARCHITECTURAL COMPLIANCE
    - Does the code follow the patterns defined in ARCHITECTURE.md?
@@ -269,12 +287,109 @@ EVALUATE ACROSS 5 DIMENSIONS:
    - Is there unwanted coupling between components?
    - Does import/dependency structure follow project conventions?
 
+DO NOT EVALUATE: Code style, naming, readability, test quality, domain-specific checks.
+Those belong to Stage B. Stay in your lane.
+
+HALT CONDITION — MANDATORY:
+If you find ZERO issues, re-review. Real code always has spec gaps.
+Check: Are there ACs that the code technically satisfies but in a degenerate way?
+Check: Are there implicit requirements the ACs assume but don't state?
+
+OUTPUT CONTRACT:
+Return a structured evaluation with:
+
+VERDICT: PASS | PASS-WITH-NOTES | FAIL
+STAGE: A — Spec Compliance
+
+FINDINGS:
+For each finding:
+- ID: SA-[number] (SA = Stage A)
+- Severity: CRITICAL | IMPORTANT | MINOR
+- Dimension: Specification Compliance | Architectural Compliance
+- Location: [file:line or file:function]
+- AC Reference: [which acceptance criterion is affected, if applicable]
+- Description: [what the issue is]
+- Evidence: [specific code that demonstrates the issue]
+- Recommendation: [how to fix it]
+
+SUMMARY:
+- ACs verified: [count PASS] / [count total]
+- Total findings: [count by severity]
+- Overall assessment: [2-3 sentences]
+- Recommendation: [PASS / PASS-WITH-NOTES / FAIL with reasons]
+```
+
+### Step 7b — Process Stage A Results
+
+If Stage A verdict is **FAIL with CRITICAL spec compliance issues**, STOP HERE. Do not proceed to Stage B. Present the failures and return the user to build.
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Part 2a — Spec Compliance Review: ✗ FAIL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+The code does not match the specification. Stage B (Code Quality) is skipped —
+there is no point reviewing quality of code that doesn't do the right thing.
+
+Critical spec failures:
+[List each SA-* CRITICAL finding]
+
+To resolve:
+  1. Fix the spec compliance issues above
+  2. Re-run /titan:06-build for the affected tasks
+  3. Re-run /titan:07-verify
+
+Phase NN cannot proceed until the code matches its specification.
+```
+
+If Stage A verdict is **PASS or PASS-WITH-NOTES**, proceed to Stage B:
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Part 2a — Spec Compliance Review: ✓ [PASS | PASS-WITH-NOTES]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ACs verified: [pass]/[total]
+  Findings: [count by severity]
+
+  Proceeding to Stage B — Code Quality Review...
+```
+
+### Step 7c — Stage B: Spawn Code Quality Reviewer
+
+Launch a SECOND titan-verifier subagent in **Mode B** (Code Quality):
+
+```
+AGENT: titan-verifier
+MODE: B — Code Quality Review
+TASK: Review code quality for Phase NN — [Phase Name]
+
+YOUR ROLE: You review whether the code is WELL-WRITTEN, SECURE, and MAINTAINABLE.
+Assume the code already does what it's supposed to (spec compliance was verified in Stage A).
+Do NOT re-check acceptance criteria or architectural compliance — that's already done.
+
+PHASE CONTEXT:
+- Goal: [phase goal]
+- Files changed: [list all files modified or created, from git diff]
+
+DOMAIN: [domain from config.yaml]
+DOMAIN-SPECIFIC CHECKS: [checks from domain plugin, if applicable]
+
+STAGE A RESULTS (for context only — do NOT re-evaluate):
+- Verdict: [Stage A verdict]
+- Key findings: [brief summary of Stage A findings, if any]
+
+REVIEW THESE FILES:
+[List every file modified or created during this phase.]
+
+EVALUATE THESE DIMENSIONS ONLY:
+
 3. CODE QUALITY
    - Are there obvious bugs (off-by-one, null reference, race conditions)?
    - Is error handling present and appropriate (not swallowed, not overly broad)?
    - Are there security basics (input validation, no hardcoded secrets, proper escaping)?
    - Is the code readable and maintainable?
    - Are there unnecessary complexities or dead code?
+   - Is there duplication that should be extracted?
 
 4. DOMAIN-SPECIFIC (loaded from domain plugin)
    [If web: accessibility, responsive design, XSS prevention, CSP, performance]
@@ -289,32 +404,29 @@ EVALUATE ACROSS 5 DIMENSIONS:
    - Are edge cases tested?
    - Do tests follow project testing conventions?
    - If no tests exist and the plan required them, flag as critical.
+   - Are there tests that could give false positives (testing nothing)?
+
+DO NOT EVALUATE: Spec compliance, acceptance criteria, architectural conformance.
+Those were verified in Stage A. Stay in your lane.
 
 HALT CONDITION — MANDATORY:
-If your initial review finds ZERO issues across all 5 dimensions, you MUST
-re-review with increased scrutiny. Finding zero issues means you missed something.
-Look harder. Check edge cases. Question assumptions. A perfect review that finds
-nothing is a FAILED review.
-
-SEVERITY LEVELS:
-- CRITICAL: Must fix before phase can pass. Bugs, security issues, AC failures.
-- MAJOR: Should fix before phase passes. Architecture violations, missing error handling.
-- MINOR: Nice to fix. Style issues, minor improvements, documentation gaps.
-- NOTE: Observation only. Good practices noticed, suggestions for future phases.
+If you find ZERO issues, re-review. No code is perfect.
+Check: error handling paths, security boundaries, untested edge cases.
 
 OUTPUT CONTRACT:
 Return a structured evaluation with:
 
 VERDICT: PASS | PASS-WITH-NOTES | FAIL
+STAGE: B — Code Quality
 
 FINDINGS:
 For each finding:
-- ID: F[number]
-- Severity: CRITICAL | MAJOR | MINOR | NOTE
-- Dimension: [which of the 5 dimensions]
+- ID: SB-[number] (SB = Stage B)
+- Severity: CRITICAL | IMPORTANT | MINOR
+- Dimension: Code Quality | Domain-Specific | Test Coverage
 - Location: [file:line or file:function]
 - Description: [what the issue is]
-- Evidence: [specific code snippet or behavior that demonstrates the issue]
+- Evidence: [specific code snippet or behavior]
 - Recommendation: [how to fix it]
 
 SUMMARY:
@@ -323,22 +435,30 @@ SUMMARY:
 - Recommendation: [PASS / PASS-WITH-NOTES / FAIL with reasons]
 ```
 
-### Step 8 — Process Verifier Results
+### Step 8 — Combine Stage Results
 
-Receive the verifier's output and process the verdict:
+Merge findings from both stages into a unified verdict:
 
-**If VERDICT is FAIL:**
+**Combined Verdict Rules:**
+- **FAIL** if EITHER stage has a CRITICAL finding
+- **PASS-WITH-NOTES** if either stage has IMPORTANT or MINOR findings (no CRITICALs)
+- **PASS** if both stages passed clean — should be rare
+
+**If combined VERDICT is FAIL:**
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Part 2 — Adversarial Review: ✗ FAIL
+  Part 2 — Two-Stage Adversarial Review: ✗ FAIL
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Stage A (Spec Compliance): [verdict] — [finding count]
+  Stage B (Code Quality):    [verdict] — [finding count]
 
 Critical issues found that must be resolved:
 
-[List each CRITICAL finding with ID, location, description, and recommendation]
+[List each CRITICAL finding from both stages with ID, location, description, recommendation]
 
 Major issues:
-[List MAJOR findings]
+[List IMPORTANT findings from both stages]
 
 To resolve:
   1. Fix the critical issues listed above
@@ -348,22 +468,25 @@ To resolve:
 Phase NN cannot proceed until critical issues are resolved.
 ```
 
-**If VERDICT is PASS or PASS-WITH-NOTES:**
+**If combined VERDICT is PASS or PASS-WITH-NOTES:**
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Part 2 — Adversarial Review: ✓ [PASS | PASS-WITH-NOTES]
+  Part 2 — Two-Stage Adversarial Review: ✓ [PASS | PASS-WITH-NOTES]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Findings: [critical] critical, [major] major, [minor] minor, [note] notes
+  Stage A (Spec Compliance): [verdict] — [finding count]
+  Stage B (Code Quality):    [verdict] — [finding count]
 
-[If PASS-WITH-NOTES, list MAJOR and MINOR findings briefly]
+Combined findings: [critical] critical, [important] important, [minor] minor
 
-[If PASS, list any NOTE-level observations]
+[If PASS-WITH-NOTES, list IMPORTANT and MINOR findings briefly]
+
+[If PASS, list any observations]
 ```
 
 ### Step 9 — Write EVALUATION.md
 
-Write the full adversarial review report to `.titan/phases/NN-phase-name/EVALUATION.md`:
+Write the full two-stage review report to `.titan/phases/NN-phase-name/EVALUATION.md`:
 
 ```markdown
 ---
@@ -371,41 +494,46 @@ phase: NN
 name: [Phase Name]
 verdict: [PASS | PASS-WITH-NOTES | FAIL]
 evaluated: [ISO timestamp]
+review_model: two-stage
+stage_a_verdict: [PASS | PASS-WITH-NOTES | FAIL]
+stage_b_verdict: [PASS | PASS-WITH-NOTES | FAIL]
 findings_critical: [count]
-findings_major: [count]
+findings_important: [count]
 findings_minor: [count]
-findings_note: [count]
 ---
 
-# Phase NN — [Phase Name] — Adversarial Evaluation
+# Phase NN — [Phase Name] — Two-Stage Adversarial Evaluation
 
-## Verdict: [PASS | PASS-WITH-NOTES | FAIL]
+## Combined Verdict: [PASS | PASS-WITH-NOTES | FAIL]
 
-## Findings
+## Stage A — Spec Compliance Review
+**Verdict:** [PASS | PASS-WITH-NOTES | FAIL]
 
-### Critical
-[findings or "None"]
+### Findings
+[SA-* findings or "None"]
 
-### Major
-[findings or "None"]
+### AC Verification
+| AC ID | Criterion | Verified | Evidence |
+|-------|-----------|----------|----------|
+| [AC-X.Y] | [criterion] | ✓/✗ | [evidence] |
 
-### Minor
-[findings or "None"]
+## Stage B — Code Quality Review
+**Verdict:** [PASS | PASS-WITH-NOTES | FAIL]
 
-### Notes
-[findings or "None"]
+### Findings
+[SB-* findings or "None"]
 
 ## Dimension Summary
-| Dimension | Rating | Key Observations |
-|-----------|--------|-----------------|
-| Specification Compliance | [PASS/ISSUES] | [brief] |
-| Architectural Compliance | [PASS/ISSUES] | [brief] |
-| Code Quality | [PASS/ISSUES] | [brief] |
-| Domain-Specific | [PASS/ISSUES/N/A] | [brief] |
-| Test Coverage | [PASS/ISSUES] | [brief] |
+| Dimension | Stage | Rating | Key Observations |
+|-----------|-------|--------|-----------------|
+| Specification Compliance | A | [PASS/ISSUES] | [brief] |
+| Architectural Compliance | A | [PASS/ISSUES] | [brief] |
+| Code Quality | B | [PASS/ISSUES] | [brief] |
+| Domain-Specific | B | [PASS/ISSUES/N/A] | [brief] |
+| Test Coverage | B | [PASS/ISSUES] | [brief] |
 
 ## Overall Assessment
-[2-3 sentence summary from verifier]
+[2-3 sentence summary combining both stages]
 ```
 
 ---
@@ -590,10 +718,33 @@ After verification completes, display based on the result:
 
 ---
 
+## Output Validation (Self-Test)
+
+Before completing, verify that THIS COMMAND produced the expected artifacts. ALL must pass:
+
+```
+☐ SUMMARY.md exists at .titan/phases/NN-phase-name/SUMMARY.md
+☐ SUMMARY.md contains Task Reconciliation table with status for every task in PLAN.md
+☐ SUMMARY.md contains AC Verification table with verdict for every AC mapped to this phase
+☐ SUMMARY.md contains Deviations table (even if empty)
+☐ EVALUATION.md exists at .titan/phases/NN-phase-name/EVALUATION.md
+☐ EVALUATION.md contains review_model: two-stage in frontmatter
+☐ EVALUATION.md contains Stage A findings (with SA-* IDs) or explicit "None"
+☐ EVALUATION.md contains Stage B findings (with SB-* IDs) or explicit "None"
+☐ EVALUATION.md contains Dimension Summary table with all 5 dimensions
+☐ KNOWLEDGE.md was updated (if verdict is PASS or PASS-WITH-NOTES)
+☐ STATE.md was updated with current verification result
+☐ STATE.md Next Action is set correctly based on verdict
+```
+
+If ANY validation check fails, fix it before presenting the final summary. Do NOT present a completion banner with missing artifacts.
+
+---
+
 ## Tips
 
 - Verification gets easier over time as knowledge accumulates. Early phases have more findings; later phases benefit from patterns learned.
-- The adversarial review is your best friend. It catches issues now that would be 10x more expensive to fix after shipping.
+- The two-stage review catches issues that single-pass review misses. Stage A finds "correct-looking code that's wrong." Stage B finds "correct code that's badly written."
 - Pay attention to DONE-MODIFIED tasks — deviations from the plan often signal that the plan was underspecified. Feed this back into future planning.
 - Knowledge capture is the compounding advantage. The more you capture, the better future phases execute.
 - If verification keeps failing on the same types of issues, update your domain plugin or ARCHITECTURE.md with stricter guidelines.

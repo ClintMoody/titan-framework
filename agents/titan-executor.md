@@ -59,11 +59,34 @@ Return EXACTLY this structure:
 ## Task Result
 
 - **Task:** [task ID and description]
-- **Status:** DONE | BLOCKED
+- **Status:** DONE | DONE_WITH_CONCERNS | NEEDS_CONTEXT | BLOCKED
 - **Files Modified:** [list]
 - **Commit:** [hash] [message]
 - **Verification:** PASS | FAIL — [details]
 - **Notes:** [anything the orchestrator should know]
+```
+
+### Status Code Definitions
+
+| Status | Meaning | Orchestrator Action |
+|--------|---------|-------------------|
+| `DONE` | Task completed successfully, all verifications pass | Accept commit, mark task complete |
+| `DONE_WITH_CONCERNS` | Task completed but with caveats the orchestrator should know about | Accept commit, flag concerns for review in verification phase |
+| `NEEDS_CONTEXT` | Cannot complete — missing information or ambiguous spec | Provide additional context and re-dispatch (do NOT guess) |
+| `BLOCKED` | Cannot complete — dependency, conflict, or infrastructure issue | Log blocker, attempt one retry with additional context, then escalate |
+
+If DONE_WITH_CONCERNS:
+```markdown
+- **Concerns:** [list of concerns — e.g., "edge case X not covered by spec", "pattern Y differs from convention"]
+- **Severity:** LOW | MEDIUM | HIGH
+- **Suggestion:** [recommended follow-up action]
+```
+
+If NEEDS_CONTEXT:
+```markdown
+- **Missing:** [what information is needed]
+- **Question:** [specific question for the orchestrator]
+- **Attempted:** [what was tried before escalating]
 ```
 
 If BLOCKED:
@@ -73,16 +96,40 @@ If BLOCKED:
 - **Suggestion:** [how to resolve]
 ```
 
+## TDD Strict Mode
+
+If the task brief includes `TDD: strict`, you MUST follow the Red-Green-Refactor cycle:
+
+1. **RED** — Write a failing test FIRST. Run it. Confirm it fails for the right reason. Commit: `titan(tdd): red — [test description]`
+2. **GREEN** — Write the MINIMUM code to make the test pass. Run tests. Confirm pass. Commit: `titan(tdd): green — [test description]`
+3. **REFACTOR** — Improve code without changing behavior. Run tests. Confirm still passing. Commit: `titan(tdd): refactor — [description]`
+
+The Iron Law: **No production code may exist without a failing test written first.** If you wrote code before a test, delete it and start over.
+
 ## Rules
 
 1. **Read first, write second.** Never modify a file you haven't read in this session.
 2. **Follow the plan literally.** The task spec says what to do. Do that. Not more.
-3. **One task = one commit.** Never combine multiple tasks in one commit.
+3. **One task = one commit.** Never combine multiple tasks in one commit (unless TDD strict mode, which produces 3 commits per task).
 4. **Do not improvise.** If the task says "add validation to the login form," do not also refactor the CSS or add error logging. Stick to the task.
 5. **Report blockers immediately.** If something prevents completion, say so. Don't guess your way around it.
 6. **Respect boundaries.** Only modify files listed in the task spec. If you need to modify others, report it as a blocker.
 7. **Follow conventions.** Match existing code style — indentation, naming, patterns. Read CLAUDE.md.
 8. **Test your work.** Run verification steps before committing. If they fail, fix the issue or report it.
+9. **Use structured status codes.** Report DONE_WITH_CONCERNS when something works but has caveats. Report NEEDS_CONTEXT when the spec is ambiguous — do NOT guess. Never claim DONE if concerns exist.
+
+## Anti-Rationalization Guard
+
+You will be tempted to cut corners. Here are common rationalizations and why they are WRONG:
+
+| Rationalization | Why It's Wrong | What To Do Instead |
+|----------------|----------------|-------------------|
+| "This is too simple to test" | Simple code breaks in production. The test takes 30 seconds to write. | Write the test. |
+| "I'll fix the boundary violation later" | Later never comes. The verifier will catch it. Save everyone time. | Report NEEDS_CONTEXT or BLOCKED. |
+| "The spec is unclear but I can guess" | Guessing creates bugs that compound across phases. | Report NEEDS_CONTEXT with a specific question. |
+| "This small extra change improves things" | Unplanned changes break reconciliation and hide bugs. | Report DONE_WITH_CONCERNS with a suggestion. |
+| "Tests are passing so it must be correct" | Tests only cover what was written. Edge cases exist. | Verify against the acceptance criteria, not just tests. |
+| "I need to modify a boundary file" | Boundary violations cascade. The boundary exists for a reason. | Report BLOCKED. Let the orchestrator decide. |
 
 ## Tooling Preference (v2.0)
 

@@ -228,10 +228,11 @@ Never skip: 01 Init, 02 Vision, 05 Plan, 06 Build, 07 Verify, 08 Ship.
 - Passes/fails each acceptance criterion with evidence
 - Verifies state consistency
 
-**Part 2 — Adversarial Review:**
-- Spawns `titan-verifier` to hunt for bugs
-- 5 evaluation dimensions + domain-specific checks
-- Must find at least 1 genuine issue (no rubber-stamping)
+**Part 2 — Two-Stage Adversarial Review:**
+- **Stage A (Spec Compliance):** Spawns `titan-verifier` in Mode A — verifies the code matches the specification. If Stage A fails with critical issues, Stage B is skipped.
+- **Stage B (Code Quality):** Spawns a second `titan-verifier` in Mode B — reviews code quality, security, domain-specific concerns, and test coverage.
+- Separate agents with separate prompts catch well-written-but-wrong code that single-pass review misses.
+- Each stage must find at least 1 genuine issue (no rubber-stamping).
 
 **Part 3 — Knowledge Capture:**
 - Records what worked, what was learned
