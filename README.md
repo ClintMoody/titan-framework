@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="#installation"><img src="https://img.shields.io/badge/install-bash_install.sh-22C55E?style=flat-square&logo=gnu-bash&logoColor=white" alt="Install"/></a>
-  <img src="https://img.shields.io/badge/license-MIT-334155?style=flat-square" alt="MIT License"/>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT_+_Commons_Clause-334155?style=flat-square" alt="MIT + Commons Clause"/></a>
   <img src="https://img.shields.io/badge/commands-24-22C55E?style=flat-square" alt="24 Commands"/>
   <img src="https://img.shields.io/badge/agents-9-334155?style=flat-square" alt="9 Agents"/>
   <img src="https://img.shields.io/badge/domains-8-22C55E?style=flat-square" alt="8 Domains"/>
@@ -334,7 +334,7 @@ TITAN takes FORGE's 9.1/10 foundation and makes it **general-purpose**, **novel-
 ---
 
 <p align="center">
-  <sub>MIT License</sub>
+  <sub>MIT License + <a href="LICENSE">Commons Clause</a></sub>
 </p>
 
 <p align="center">
