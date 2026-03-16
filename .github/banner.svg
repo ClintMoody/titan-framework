@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="300" viewBox="0 0 900 300">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0F172A"/>
+      <stop offset="50%" style="stop-color:#1E293B"/>
+      <stop offset="100%" style="stop-color:#0F172A"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#22C55E"/>
+      <stop offset="100%" style="stop-color:#16A34A"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#22C55E;stop-opacity:0"/>
+      <stop offset="50%" style="stop-color:#22C55E;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#22C55E;stop-opacity:0"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#22C55E" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="300" fill="url(#bg)"/>
+
+  <!-- Grid pattern -->
+  <g opacity="0.06" stroke="#94A3B8" stroke-width="0.5">
+    <line x1="0" y1="50" x2="900" y2="50"/>
+    <line x1="0" y1="100" x2="900" y2="100"/>
+    <line x1="0" y1="150" x2="900" y2="150"/>
+    <line x1="0" y1="200" x2="900" y2="200"/>
+    <line x1="0" y1="250" x2="900" y2="250"/>
+    <line x1="100" y1="0" x2="100" y2="300"/>
+    <line x1="200" y1="0" x2="200" y2="300"/>
+    <line x1="300" y1="0" x2="300" y2="300"/>
+    <line x1="400" y1="0" x2="400" y2="300"/>
+    <line x1="500" y1="0" x2="500" y2="300"/>
+    <line x1="600" y1="0" x2="600" y2="300"/>
+    <line x1="700" y1="0" x2="700" y2="300"/>
+    <line x1="800" y1="0" x2="800" y2="300"/>
+  </g>
+
+  <!-- Accent glow line -->
+  <rect x="0" y="296" width="900" height="4" fill="url(#accent)"/>
+  <rect x="150" y="140" width="600" height="1" fill="url(#glow)"/>
+
+  <!-- Decorative brackets -->
+  <g opacity="0.12" fill="none" stroke="#22C55E" stroke-width="1.5">
+    <!-- Left bracket -->
+    <path d="M 80,80 L 60,80 L 60,220 L 80,220"/>
+    <!-- Right bracket -->
+    <path d="M 820,80 L 840,80 L 840,220 L 820,220"/>
+  </g>
+
+  <!-- Small decorative dots -->
+  <circle cx="120" cy="90" r="2" fill="#22C55E" opacity="0.4"/>
+  <circle cx="780" cy="90" r="2" fill="#22C55E" opacity="0.4"/>
+  <circle cx="120" cy="210" r="2" fill="#22C55E" opacity="0.4"/>
+  <circle cx="780" cy="210" r="2" fill="#22C55E" opacity="0.4"/>
+
+  <!-- TITAN text -->
+  <text x="450" y="135" font-family="'SF Mono', 'Fira Code', 'JetBrains Mono', Consolas, monospace" font-size="72" font-weight="700" fill="#F8FAFC" text-anchor="middle" letter-spacing="16" filter="url(#shadow)">TITAN</text>
+
+  <!-- Tagline -->
+  <text x="450" y="175" font-family="'SF Mono', 'Fira Code', 'JetBrains Mono', Consolas, monospace" font-size="13" fill="#94A3B8" text-anchor="middle" letter-spacing="4">THE COMPLETE SOFTWARE DEVELOPMENT FRAMEWORK</text>
+
+  <!-- Version badge -->
+  <rect x="385" y="195" width="130" height="24" rx="12" fill="#22C55E" opacity="0.15"/>
+  <rect x="385" y="195" width="130" height="24" rx="12" fill="none" stroke="#22C55E" stroke-width="0.8" opacity="0.5"/>
+  <text x="450" y="211" font-family="'SF Mono', 'Fira Code', 'JetBrains Mono', Consolas, monospace" font-size="11" fill="#22C55E" text-anchor="middle" letter-spacing="1">v2.0  HYDRA</text>
+
+  <!-- Terminal prompt hint -->
+  <text x="450" y="255" font-family="'SF Mono', 'Fira Code', 'JetBrains Mono', Consolas, monospace" font-size="12" fill="#475569" text-anchor="middle">
+    <tspan fill="#22C55E">$</tspan> /titan:01-init
+  </text>
+</svg>

@@ -1,8 +1,18 @@
-# TITAN
+<p align="center">
+  <img src=".github/banner.svg" alt="TITAN — The Complete Software Development Framework" width="900"/>
+</p>
 
-**The complete software development framework for building world-class products.**
+<p align="center">
+  <strong>One person, armed with TITAN, can build software that competes with teams of hundreds.</strong>
+</p>
 
-One person, armed with TITAN, can build software that competes with teams of hundreds.
+<p align="center">
+  <a href="#installation"><img src="https://img.shields.io/badge/install-bash_install.sh-22C55E?style=flat-square&logo=gnu-bash&logoColor=white" alt="Install"/></a>
+  <img src="https://img.shields.io/badge/license-MIT-334155?style=flat-square" alt="MIT License"/>
+  <img src="https://img.shields.io/badge/commands-24-22C55E?style=flat-square" alt="24 Commands"/>
+  <img src="https://img.shields.io/badge/agents-9-334155?style=flat-square" alt="9 Agents"/>
+  <img src="https://img.shields.io/badge/domains-8-22C55E?style=flat-square" alt="8 Domains"/>
+</p>
 
 ---
 
@@ -28,33 +38,33 @@ Whether you've never written a line of code or you've shipped a hundred products
 
 ## The Golden Path
 
-TITAN's core workflow is 8 numbered steps. Follow them in order. It's that simple.
+TITAN's core workflow is **8 numbered steps**. Follow them in order. It's that simple.
 
 ```
-  ┌─────────────────────────────────────────────────────────────┐
-  │                    THE GOLDEN PATH                          │
-  │                                                             │
-  │  01 INIT ──→ 02 VISION ──→ 03 EXPLORE ──→ 04 DESIGN         │
-  │                                               │             │
-  │  08 SHIP ←── 07 VERIFY ←── 06 BUILD ←── 05 PLAN             │
-  │                  │                        │                 │
-  │                  └────── repeat 05→07 ────┘                 │
-  │                       for each phase                        │
-  └─────────────────────────────────────────────────────────────┘
+                    ╭──────────────────────────────────────────────────╮
+                    │              T H E   G O L D E N   P A T H       │
+                    ╰──────────────────────────────────────────────────╯
+
+              01 INIT ──▸ 02 VISION ──▸ 03 EXPLORE ──▸ 04 DESIGN
+                                                           │
+              08 SHIP ◂── 07 VERIFY ◂── 06 BUILD ◂── 05 PLAN
+                              │                        │
+                              ╰──── repeat 05 → 07 ───╯
+                                    for each phase
 ```
 
 | Step | Command | What Happens |
-|------|---------|-------------|
-| **01** | `/titan:01-init` | Start your project. TITAN sets up everything. |
-| **02** | `/titan:02-vision` | Define what you're building and why. AI personas interview you to extract a clear vision, requirements, architecture, and **phased roadmap** — a numbered list of every phase you'll build, in order, with goals and milestones. |
-| **03** | `/titan:03-explore` | Research the unknown. Study prior art, evaluate technologies, map the problem space. |
-| **04** | `/titan:04-design` | Design your UI/UX through conversation. See real HTML mockups in your browser. Iterate until perfect. |
-| **05** | `/titan:05-plan` | Create a detailed execution plan for the **current phase** from your roadmap. Tasks, waves, acceptance criteria, boundaries. |
-| **06** | `/titan:06-build` | Execute the plan. Parallel AI agents build while you watch (or help). Atomic commits keep history clean. |
-| **07** | `/titan:07-verify` | Prove it works. Mandatory reconciliation + adversarial review. Nothing ships unverified. |
-| **08** | `/titan:08-ship` | Release. Tag. Celebrate. Move to the next milestone. |
+|:----:|---------|-------------|
+| `01` | `/titan:01-init` | Start your project. TITAN sets up everything. |
+| `02` | `/titan:02-vision` | Define what you're building and why. AI personas interview you to extract a clear vision, requirements, architecture, and **phased roadmap**. |
+| `03` | `/titan:03-explore` | Research the unknown. Study prior art, evaluate technologies, map the problem space. |
+| `04` | `/titan:04-design` | Design your UI/UX through conversation. See real HTML mockups in your browser. |
+| `05` | `/titan:05-plan` | Create a detailed execution plan for the **current phase** from your roadmap. |
+| `06` | `/titan:06-build` | Execute the plan. Parallel AI agents build while you watch (or help). |
+| `07` | `/titan:07-verify` | Prove it works. Mandatory reconciliation + adversarial review. Nothing ships unverified. |
+| `08` | `/titan:08-ship` | Release. Tag. Celebrate. Move to the next milestone. |
 
-**Repeat steps 05-07** for each phase in your roadmap. That's the entire workflow.
+> **Repeat steps 05–07** for each phase in your roadmap. That's the entire workflow.
 
 ### You Are Never Lost
 
@@ -73,9 +83,12 @@ TITAN always tells you exactly what to do next.
 - `/titan:resume` — Restores your context and tells you exactly where to pick up
 - `/titan:help` — Complete command reference with contextual guidance
 
-### Clear Context Between Major Steps
+<details>
+<summary><strong>When to clear context</strong></summary>
 
-AI context windows fill up during long conversations. TITAN tells you when to clear context (`/clear`) so each step gets fresh, focused attention. Key moments to clear:
+<br/>
+
+AI context windows fill up during long conversations. TITAN tells you when to clear context (`/clear`) so each step gets fresh, focused attention:
 
 - **After `/titan:02-vision`** — Vision is conversation-heavy. Clear before planning.
 - **Before `/titan:05-plan`** — The planner spawns a researcher agent that works best with clean context.
@@ -84,71 +97,92 @@ AI context windows fill up during long conversations. TITAN tells you when to cl
 
 TITAN will remind you at these transitions. Your project state is always safe in `.titan/STATE.md` — clearing context loses nothing.
 
+</details>
+
 ---
 
 ## Power Tools
 
-Beyond the Golden Path, TITAN gives you specialized tools for any situation:
+Beyond the Golden Path, TITAN gives you specialized tools for any situation.
+
+<table>
+<tr>
+<td width="50%" valign="top">
 
 ### Novel Problem Solving
-When you encounter something nobody has solved before:
 
 | Command | What It Does |
 |---------|-------------|
-| `/titan:investigate` | Systematic analysis of unknown problems — research, hypothesize, evaluate |
-| `/titan:experiment` | Try multiple approaches in isolation, measure results, pick the winner |
-| `/titan:learn` | Deep-dive research on any technology, pattern, or concept |
-
-### Quality & Security
-| Command | What It Does |
-|---------|-------------|
-| `/titan:review` | On-demand adversarial code review |
-| `/titan:test` | Generate tests, run TDD workflows |
-| `/titan:audit` | Security + performance + accessibility + domain audit |
-| `/titan:debug` | Scientific debugging with persistent hypothesis tracking |
-| `/titan:refactor` | Safe refactoring with test preservation |
+| `/titan:investigate` | Systematic analysis of unknown problems |
+| `/titan:experiment` | Try approaches in isolation, pick the winner |
+| `/titan:learn` | Deep-dive research on any concept |
 
 ### Codebase & Project
+
 | Command | What It Does |
 |---------|-------------|
-| `/titan:scan` | Deep codebase analysis with 4 parallel research agents |
-| `/titan:quick` | Small task with full quality guarantees (no shortcuts) |
+| `/titan:scan` | Deep analysis with 4 parallel agents |
+| `/titan:quick` | Small task, full quality guarantees |
+
+</td>
+<td width="50%" valign="top">
+
+### Quality & Security
+
+| Command | What It Does |
+|---------|-------------|
+| `/titan:review` | Adversarial code review |
+| `/titan:test` | Generate tests, TDD workflows |
+| `/titan:audit` | Security + perf + a11y audit |
+| `/titan:debug` | Scientific debugging |
+| `/titan:refactor` | Safe refactoring with test preservation |
 
 ### Session Management
+
 | Command | What It Does |
 |---------|-------------|
-| `/titan:resume` | Continue from where you left off with full context |
-| `/titan:pause` | Save state and create a handoff document |
-| `/titan:progress` | See your project status dashboard |
-| `/titan:autopilot` | Let TITAN run phases automatically |
-| `/titan:settings` | Configure model profiles, domain, preferences |
+| `/titan:resume` | Continue from where you left off |
+| `/titan:pause` | Save state and handoff document |
+| `/titan:progress` | Project status dashboard |
+| `/titan:autopilot` | Run phases automatically |
+| `/titan:settings` | Configure preferences |
 | `/titan:help` | Complete command reference |
 
-**24 commands total.** 8 core + 10 power tools + 6 session management.
+</td>
+</tr>
+</table>
+
+> **24 commands total** — 8 core + 10 power tools + 6 session management.
 
 ---
 
 ## 9 Specialized Agents
 
-TITAN deploys AI agents — each in a fresh 200k-token context window — to handle specialized work:
+TITAN deploys AI agents — each in a fresh 200k-token context window — to handle specialized work.
+
+<table>
+<tr><td>
 
 | Agent | Role |
-|-------|------|
+|:------|:-----|
 | **Executor** | Builds features from plans. One task = one atomic commit. |
-| **Verifier** | Adversarial reviewer. Hunts for bugs across 5+ dimensions. Must find issues. |
-| **Researcher** | Analyzes codebases before planning. Maps patterns, conventions, concerns. |
+| **Verifier** | Adversarial reviewer. Hunts for bugs across 5+ dimensions. |
+| **Researcher** | Analyzes codebases before planning. Maps patterns and concerns. |
 | **Designer** | Generates browser-testable HTML/CSS mockups from design briefs. |
 | **Investigator** | Solves novel problems. Generates hypotheses, evaluates approaches. |
-| **Strategist** | Evaluates architecture decisions. Compares approaches at system level. |
-| **Security** | Detects vulnerabilities. OWASP Top 10, supply chain, secrets, headers. |
-| **Optimizer** | Finds performance bottlenecks. Recommends targeted improvements. |
+| **Strategist** | Evaluates architecture decisions at system level. |
+| **Security** | Detects vulnerabilities. OWASP Top 10, supply chain, secrets. |
+| **Optimizer** | Finds performance bottlenecks. Recommends improvements. |
 | **Tester** | Generates tests. Discovers edge cases. Measures coverage. |
+
+</td></tr>
+</table>
 
 ---
 
 ## Pluggable Domain Expertise
 
-TITAN doesn't assume you're building a web app. Configure your domain and get specialized quality checks:
+TITAN doesn't assume you're building a web app. Configure your domain and get specialized quality checks.
 
 ```yaml
 # .titan/config.yaml
@@ -168,25 +202,41 @@ Each domain adds:
 
 ## Quality Philosophy
 
-TITAN enforces quality at every level:
+<table>
+<tr>
+<td width="33%" valign="top">
 
-1. **Acceptance Criteria Before Code** — Every requirement has BDD Given/When/Then criteria defined before anyone writes a line of code.
+**Acceptance Criteria Before Code**
+Every requirement has BDD Given/When/Then criteria before anyone writes a line of code.
 
-2. **Mandatory Verification** — Every phase closes with proof. Task-by-task reconciliation. What was planned vs. what was built. No exceptions.
+**Mandatory Verification**
+Every phase closes with proof. Task-by-task reconciliation. No exceptions.
 
-3. **Adversarial Review** — The Verifier agent assumes bugs exist and hunts for them. It must find at least one genuine issue. Rubber-stamping is not allowed.
+</td>
+<td width="33%" valign="top">
 
-4. **Atomic Git History** — One commit per task. `git bisect` finds any regression trivially.
+**Adversarial Review**
+The Verifier agent assumes bugs exist and hunts for them. It must find at least one genuine issue.
 
-5. **Knowledge Accumulation** — Every phase adds to `.titan/KNOWLEDGE.md`. Patterns that work, decisions made, lessons learned. This compounds over time.
+**Atomic Git History**
+One commit per task. `git bisect` finds any regression trivially.
 
-6. **Domain-Specific Gates** — Your domain plugin defines what "quality" means for your kind of software.
+</td>
+<td width="33%" valign="top">
+
+**Knowledge Accumulation**
+Every phase adds to `.titan/KNOWLEDGE.md`. Patterns, decisions, lessons. This compounds over time.
+
+**Domain-Specific Gates**
+Your domain plugin defines what "quality" means for your kind of software.
+
+</td>
+</tr>
+</table>
 
 ---
 
 ## Installation
-
-### Quick Install (Recommended)
 
 ```bash
 # Install globally for Claude Code + OpenCode
@@ -199,7 +249,10 @@ bash install.sh --global --claude-only
 bash install.sh --project-dir /path/to/project
 ```
 
-### What Gets Installed
+<details>
+<summary><strong>What gets installed</strong></summary>
+
+<br/>
 
 - 24 command files → `.claude/commands/titan/` (or `.opencode/commands/titan/`)
 - 9 agent definitions → `.claude/agents/` (or `.opencode/agents/`)
@@ -207,12 +260,19 @@ bash install.sh --project-dir /path/to/project
 - Domain plugins → `.claude/templates/titan/domains/`
 - Reference documents → `.claude/templates/titan/references/`
 
-### Uninstall
+</details>
+
+<details>
+<summary><strong>Uninstall</strong></summary>
+
+<br/>
 
 ```bash
 bash uninstall.sh --global              # Remove commands and agents
 bash uninstall.sh --global --purge      # Also remove .titan/ project data
 ```
+
+</details>
 
 ---
 
@@ -249,12 +309,7 @@ TITAN is a fork of the [FORGE framework](../framework-comparison/forge-framework
 - **GSD** — Thin orchestrator, fresh-context subagents, parallel execution
 - **BMAD** — Persona-driven planning, progressive artifacts, adversarial review
 
-TITAN takes FORGE's 9.1/10 foundation and makes it:
-- **General-purpose** — Pluggable domains instead of audio-specific
-- **Novel-problem-capable** — Investigate + experiment workflows
-- **More powerful** — 9 agents instead of 4, dedicated security/performance/testing
-- **Knowledge-accumulating** — Every project gets smarter over time
-- **Beginner-friendly** — Guides without condescending
+TITAN takes FORGE's 9.1/10 foundation and makes it **general-purpose**, **novel-problem-capable**, and **knowledge-accumulating** — with 9 agents, pluggable domains, and a workflow that guides without condescending.
 
 ---
 
@@ -271,14 +326,14 @@ TITAN takes FORGE's 9.1/10 foundation and makes it:
 /titan:08-ship          # Ship it
 ```
 
-That's it. You just built world-class software.
+> That's it. You just built world-class software.
 
 ---
 
-## License
+<p align="center">
+  <sub>MIT License</sub>
+</p>
 
-MIT
-
----
-
-*Built with conviction that one person can change the world — they just need the right tools.*
+<p align="center">
+  <em>Built with conviction that one person can change the world — they just need the right tools.</em>
+</p>
