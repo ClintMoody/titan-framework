@@ -41,16 +41,16 @@ Whether you've never written a line of code or you've shipped a hundred products
 TITAN's core workflow is **8 numbered steps**. Follow them in order. It's that simple.
 
 ```
-                    ╭──────────────────────────────────────────────────╮
-                    │              T H E   G O L D E N   P A T H       │
-                    ╰──────────────────────────────────────────────────╯
+                ╭─────────────────────────────────────────────────────╮
+                │              T H E   G O L D E N   P A T H          │
+                ╰─────────────────────────────────────────────────────╯
 
-              01 INIT ──▸ 02 VISION ──▸ 03 EXPLORE ──▸ 04 DESIGN
-                                                           │
-              08 SHIP ◂── 07 VERIFY ◂── 06 BUILD ◂── 05 PLAN
-                              │                        │
-                              ╰──── repeat 05 → 07 ───╯
-                                    for each phase
+            01 INIT ──> 02 VISION ──> 03 EXPLORE ──> 04 DESIGN
+                                                         |
+            08 SHIP <── 07 VERIFY <── 06 BUILD <── 05 PLAN
+                            |                        |
+                            '──── repeat 05->07 ─────'
+                                  for each phase
 ```
 
 | Step | Command | What Happens |
