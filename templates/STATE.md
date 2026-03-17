@@ -146,6 +146,36 @@ If starting a fresh session, read this section first:
 
 ---
 
+## Cost & Budget (v2.1)
+
+> This section is populated when `budget.tracking_enabled` is true in config.yaml.
+
+| Field | Value |
+|-------|-------|
+| **Milestone Spend** | $0.00 |
+| **Budget Ceiling** | unlimited |
+| **Tasks Tracked** | 0 |
+| **Average/Task** | — |
+| **Projection** | — |
+
+> For detailed metrics: see `.titan/metrics.json`
+
+---
+
+## Crash Recovery (v2.1)
+
+> This section is populated when `crash_recovery.lock_file` is true in config.yaml.
+
+| Field | Value |
+|-------|-------|
+| **Lock Status** | none |
+| **Completed Units** | 0 |
+| **Last Recovery** | — |
+
+> For completed units: see `.titan/completed-units.json`
+
+---
+
 ## Autonomous Loop (v2.0)
 
 > This section is populated when `/titan:00-bootstrap` has been run.

@@ -56,6 +56,24 @@ Read `.titan/config.yaml` and display current settings:
      TDD Strict:     [on|off]
      Context target:  [N]%
 
+  7. Dynamic Routing    [on|off]
+     Light override: [model]
+
+  8. Budget & Cost
+     Tracking:  [on|off]
+     Ceiling:   [$X.XX or unlimited]
+     Enforce:   [warn|pause|halt]
+
+  9. Crash Recovery     [on|off]
+     Lock file: [on|off]
+     Forensics: [on|off]
+
+  10. Verification Commands
+      Commands: [list or none]
+      Auto-fix: [on|off]
+
+  11. Step Mode          [on|off]
+
   ─────────────────────────────────────────────────
   Enter a number to change, or "done" to exit:
 ```
@@ -203,6 +221,104 @@ For toggle (a): flip `tdd.strict` in config.yaml. When enabling, print:
 ```
 
 For context target (b): validate range 20-60, update `tdd.context_target` in config.yaml.
+
+#### Option 7: Dynamic Routing (Cannibalized from GSD-2)
+
+```
+  Dynamic Model Routing:
+  ─────────────────────────────────────────────────
+
+  When enabled, TITAN classifies each task by complexity and routes
+  to the most cost-efficient model that can handle it.
+
+  a. Enable/disable     [on|off]   — Toggle dynamic routing
+  b. Light planning     [model]    — Model for light planning tasks
+  c. Light execution    [model]    — Model for light execution tasks
+  d. Light review       [model]    — Model for light review tasks
+
+  Current: [on|off]
+  Enter letter to change, or "back":
+```
+
+Update `dynamic_routing.*` fields in config.yaml.
+
+#### Option 8: Budget & Cost (Cannibalized from GSD-2)
+
+```
+  Budget & Cost Tracking:
+  ─────────────────────────────────────────────────
+
+  a. Tracking        [on|off]    — Track token usage and costs per task
+  b. Ceiling         [$X.XX]     — Maximum spend per milestone (0 = unlimited)
+  c. Enforcement     [value]     — What happens when ceiling is reached
+                                    warn  — Print warning, continue
+                                    pause — Pause at next checkpoint
+                                    halt  — Stop immediately
+  d. Forecast after  [N]         — Start forecasting after N tasks complete
+
+  Current tracking: [on|off]
+  Current ceiling: [$X.XX or unlimited]
+  Enter letter to change, or "back":
+```
+
+Update `budget.*` fields in config.yaml.
+
+#### Option 9: Crash Recovery (Cannibalized from GSD-2)
+
+```
+  Crash Recovery:
+  ─────────────────────────────────────────────────
+
+  a. Lock file       [on|off]    — Write lock during builds for crash detection
+  b. Forensics       [on|off]    — Synthesize recovery briefings from artifacts
+  c. Track units     [on|off]    — Track completed units to prevent re-execution
+
+  Current: lock=[on|off], forensics=[on|off]
+  Enter letter to change, or "back":
+```
+
+Update `crash_recovery.*` fields in config.yaml.
+
+#### Option 10: Verification Commands (Cannibalized from GSD-2)
+
+```
+  Verification Commands:
+  ─────────────────────────────────────────────────
+
+  Shell commands that run automatically after each task completes.
+  Catches lint errors, test failures, and type errors immediately.
+
+  Current commands:
+  [list each command, or "none configured"]
+
+  a. Add command     — Add a verification command
+  b. Remove command  — Remove a verification command
+  c. Auto-fix        [on|off] — Auto-fix failures before advancing
+  d. Max retries     [N]      — Fix retries per failure (1-5)
+
+  Enter letter to change, or "back":
+```
+
+For adding commands, prompt: `Enter shell command (e.g., "npm run lint"):`.
+Append to `verification.commands` array in config.yaml.
+
+#### Option 11: Step Mode (Cannibalized from GSD-2)
+
+```
+  Step Mode:
+  ─────────────────────────────────────────────────
+
+  When enabled, TITAN pauses between units for human review.
+
+  a. Enable/disable        [on|off]   — Toggle step mode
+  b. Pause between waves   [on|off]   — Pause after each wave
+  c. Pause between phases  [on|off]   — Pause between phases in autopilot
+
+  Current: [on|off]
+  Enter letter to change, or "back":
+```
+
+Update `step_mode.*` fields in config.yaml.
 
 ### Step 4: Write Configuration
 

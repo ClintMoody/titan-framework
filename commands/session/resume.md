@@ -70,7 +70,42 @@ Look for `.titan/HANDOFF.md`. This file takes priority over STATE.md because it 
    - Ask what needs to change
    - Let user provide corrections before continuing
 
-**After processing HANDOFF.md, fall through to Step 3 to also read current STATE.md.**
+**After processing HANDOFF.md, fall through to Step 2b to check for crashes, then Step 3 for STATE.md.**
+
+### Step 2b: Crash Recovery Check (Cannibalized from GSD-2)
+
+Check for `.titan/build.lock`:
+
+**If lock file exists:**
+
+1. Read the lock's `last_heartbeat` timestamp
+2. If stale (>10 minutes old): previous session likely crashed
+3. Read `.titan/completed-units.json` to identify already-committed tasks
+4. Cross-reference with git log and PLAN.md
+5. Present recovery briefing:
+
+```
+⚠ Crash Detected
+
+  Previous session was building Phase [NN], Task [TX]
+  Last heartbeat: [timestamp] ([N] minutes ago)
+
+  Recovered state:
+    ✓ [N] tasks confirmed committed
+    ◆ 1 task was in progress (may have partial changes)
+    ○ [N] tasks not started
+
+  Options:
+    [recover]  — Resume from where the crash occurred
+    [clean]    — Discard partial work and restart current task
+    [ignore]   — Delete lock file and proceed normally
+```
+
+6. If user chooses `recover`: set up the build to skip completed tasks
+7. If user chooses `clean`: revert any uncommitted changes, remove lock
+8. If user chooses `ignore`: remove lock file, proceed to Step 3
+
+**If no lock file found:** proceed normally.
 
 ### Step 3: Read STATE.md
 

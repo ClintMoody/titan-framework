@@ -56,6 +56,38 @@ profiles:
     execution: "claude-sonnet-4"
     review: "claude-sonnet-4"
 
+# ── Dynamic Model Routing (Cannibalized from GSD-2) ─────────
+# When enabled, TITAN classifies each task by complexity and
+# overrides the static profile with a more cost-efficient model
+# when appropriate. This can reduce token costs 40-60% without
+# sacrificing quality on tasks that need it.
+#
+# Classification heuristics (sub-millisecond, no LLM call):
+#   light    — ≤3 steps, ≤3 files, simple description
+#   standard — typical work
+#   heavy    — ≥8 steps, ≥8 files, keywords like "migrate", "security", "refactor"
+#
+# When dynamic_routing is enabled, light tasks may be downgraded
+# from the profile's model. Heavy tasks are NEVER downgraded.
+dynamic_routing:
+  # Enable complexity-based model routing
+  enabled: false
+
+  # Override map: which model to use when a task is classified as "light"
+  # Heavy tasks always use the profile's assigned model.
+  # Standard tasks use the profile's assigned model.
+  light_override:
+    planning: "claude-sonnet-4"
+    execution: "claude-haiku-4-5"
+    review: "claude-sonnet-4"
+
+  # Budget pressure thresholds (percentage of budget_ceiling consumed)
+  # At each threshold, the system progressively downgrades non-heavy tasks.
+  budget_pressure:
+    moderate: 50    # Start slight downgrades
+    high: 75        # More aggressive downgrades
+    critical: 90    # Maximum downgrades, protect only heavy tasks
+
 # ── Execution Strategy ────────────────────────────────────────
 execution:
   # Tasks that MUST run in the current session (not spawned to agents)
@@ -93,6 +125,31 @@ git:
 
   # Commit verification — require all checks pass before commit
   verify_before_commit: true
+
+  # Git isolation strategy (Cannibalized from GSD-2)
+  # Controls how TITAN isolates work from the main branch.
+  #
+  # Options:
+  #   branch   — (default) One branch per phase, merged at ship.
+  #              Classic model. Each phase gets titan/phase-NN-name.
+  #
+  #   worktree — Each phase works in a git worktree at .titan/worktrees/NN-name/.
+  #              Complete file isolation. No branch switching needed.
+  #              Avoids planning artifact invisibility across branches.
+  #              One squash-merge per milestone to main. Best for complex projects.
+  #
+  #   none     — All commits directly to current branch.
+  #              No isolation. Supports hot-reload workflows.
+  #              Best for small projects or single-phase work.
+  isolation: "branch"
+
+  # For worktree mode: directory for worktrees
+  worktree_dir: ".titan/worktrees"
+
+  # Commit planning artifacts to git (not just code)
+  # When true, PLAN.md, SUMMARY.md, etc. are tracked in git.
+  # This prevents context loss when switching branches.
+  commit_docs: true
 
 # ── Reconciliation ────────────────────────────────────────────
 # Reconciliation ensures STATE.md matches actual project state.
@@ -173,6 +230,32 @@ verification:
   # Minimum issues per review stage (enforced by HALT CONDITION)
   min_issues: 1
 
+  # Verification commands (Cannibalized from GSD-2)
+  # Shell commands to run automatically after each task completes.
+  # If any command fails, the executor attempts a fix before advancing.
+  # This catches regressions immediately, not during manual verification.
+  #
+  # Examples:
+  #   - "npm run lint"
+  #   - "npm run test"
+  #   - "cargo check"
+  #   - "python -m pytest tests/ -x"
+  commands: []
+
+  # Auto-fix: when a verification command fails, should the executor
+  # attempt to fix the issue automatically?
+  auto_fix: true
+
+  # Maximum fix retries per verification command failure
+  max_fix_retries: 2
+
+  # Roadmap reassessment (Cannibalized from GSD-2)
+  # After each phase verifies successfully, reassess the roadmap.
+  # The roadmap may need adjustment based on what was learned.
+  # When true: 07-verify adds a Step 12b that reviews ROADMAP.md
+  # against what was built and suggests adjustments.
+  reassess_roadmap: true
+
 # ── Autopilot Mode ────────────────────────────────────────────
 # Autopilot allows TITAN to execute plans with minimal human intervention.
 # Use with caution — recommended only after establishing trust with the framework.
@@ -199,3 +282,60 @@ quality:
 
   # Whether to run domain-specific quality gates
   domain_gates_enabled: true
+
+# ── Budget & Cost Tracking (Cannibalized from GSD-2) ─────────
+# Track token consumption and estimated costs per task/phase/milestone.
+# Stored in .titan/metrics.json (auto-created on first task).
+budget:
+  # Enable cost tracking
+  tracking_enabled: true
+
+  # Maximum USD spend per milestone (0 = unlimited)
+  # When budget is exceeded, TITAN pauses and warns.
+  ceiling: 0
+
+  # Budget enforcement behavior when ceiling is approached
+  # Options: warn | pause | halt
+  #   warn  — Print warning, continue executing
+  #   pause — Pause at next checkpoint, present cost report
+  #   halt  — Stop immediately, save state
+  enforcement: "pause"
+
+  # After N tasks completed, forecast remaining cost and warn if
+  # projected to exceed ceiling.
+  forecast_after_tasks: 4
+
+# ── Crash Recovery (Cannibalized from GSD-2) ──────────────────
+# Protect against session crashes, timeouts, and interruptions.
+crash_recovery:
+  # Write a lock file during build execution
+  # If a session starts and finds a stale lock, it triggers recovery.
+  lock_file: true
+
+  # Location of the lock file
+  lock_path: ".titan/build.lock"
+
+  # Track completed units to prevent re-execution after recovery
+  completed_units_file: ".titan/completed-units.json"
+
+  # When recovering, synthesize a briefing from surviving artifacts
+  forensics: true
+
+# ── Step Mode (Cannibalized from GSD-2) ───────────────────────
+# Pause between units for human review. Useful when you want
+# oversight without full manual control.
+step_mode:
+  # Enable pause between tasks during /titan:06-build
+  enabled: false
+
+  # Pause between waves (less granular than between tasks)
+  pause_between_waves: true
+
+  # Pause between phases during /titan:autopilot
+  pause_between_phases: true
+
+# ── Background Captures (Cannibalized from GSD-2) ─────────────
+# Capture stray ideas, concerns, and observations during execution
+# without interrupting workflow. Stored in .titan/CAPTURES.md.
+captures:
+  enabled: true

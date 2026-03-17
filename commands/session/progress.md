@@ -158,6 +158,63 @@ If no knowledge entries beyond init:
   No knowledge entries beyond project facts.
 ```
 
+### Step 8b: Display Cost Summary (Cannibalized from GSD-2)
+
+If `budget.tracking_enabled` is true in config.yaml and `.titan/metrics.json` exists:
+
+```
+  Cost & Budget
+  ─────────────────────────────────────────────────
+```
+
+Read `.titan/metrics.json` and display:
+
+```
+  This Milestone:  $XX.XX [/ $YY.YY ceiling]
+  This Phase:      $XX.XX ([N] tasks)
+  Average/Task:    $X.XX
+  Projection:      $XX.XX total estimated
+
+  By Phase:
+  │ Phase │ Tasks │ Duration  │ Profile   │
+  │───────│───────│───────────│───────────│
+  │ 01    │ 3     │ 12m       │ balanced  │
+  │ 02    │ 3     │ 18m       │ balanced  │
+  │ 03    │ 1/3   │ 5m        │ balanced  │
+```
+
+If `budget.ceiling` > 0:
+```
+  Budget:  ▓▓▓▓▓▓▓▓░░░░░░░░ XX% ($XX.XX / $YY.YY)
+```
+
+If dynamic routing is enabled, also show:
+```
+  Dynamic Routing:
+    Light tasks:    [N] (downgraded from [profile model] → [light model])
+    Standard tasks: [N] (profile default)
+    Heavy tasks:    [N] (protected)
+```
+
+If tracking is not enabled or metrics.json doesn't exist, skip this section.
+
+### Step 8c: Display Background Captures (Cannibalized from GSD-2)
+
+If `.titan/CAPTURES.md` exists and has entries:
+
+```
+  Background Captures
+  ─────────────────────────────────────────────────
+  [N] unreviewed captures. Review during next /titan:05-plan.
+
+  Latest:
+  • [capture 1 summary — date]
+  • [capture 2 summary — date]
+  • [capture 3 summary — date]
+```
+
+If no captures or file doesn't exist, skip this section.
+
 ### Step 9: Display Git Activity
 
 ```

@@ -170,6 +170,17 @@ Compile the release summary from all phase artifacts:
 - Deviations from plan: [count] ([count] acceptable)
 - Knowledge items captured: [count] patterns, [count] learnings
 
+## Cost Summary (v2.1 — from GSD-2 integration)
+[If budget.tracking_enabled and metrics.json exists:]
+- Total milestone cost: $[XX.XX]
+- Budget ceiling: $[YY.YY] or unlimited
+- Average cost per task: $[X.XX]
+- Sessions: [count]
+- Dynamic routing savings: [estimated savings if enabled, or "not enabled"]
+
+[If tracking not enabled:]
+- Cost tracking: not enabled
+
 ## Deferred to Future
 [Items explicitly deferred, with brief reason]
 - [item] — [reason]

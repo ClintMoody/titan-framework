@@ -69,7 +69,73 @@ When TDD strict is active, append `TDD: strict` to every agent dispatch brief. T
 
 If `tdd.strict` is false or absent, continue normally.
 
-### Step 2 — Create Git Branch
+### Step 1c — Crash Recovery Check (Cannibalized from GSD-2)
+
+If `crash_recovery.lock_file` is enabled in config.yaml:
+
+1. Check for `.titan/build.lock`
+2. If found:
+   - Read the lock's `last_heartbeat` timestamp
+   - If stale (>10 minutes old): previous session crashed
+   - Trigger recovery protocol:
+     a. Read `.titan/completed-units.json` to identify already-committed tasks
+     b. Cross-reference with PLAN.md to identify remaining tasks
+     c. Check `git log` for commits matching this phase
+     d. Present recovery briefing:
+     ```
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       ⚡ TITAN — CRASH RECOVERY
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+       Previous session crashed during Phase [NN], Task [TX]
+       Last heartbeat: [timestamp]
+
+       Recovery status:
+         ✓ T1: [title] — committed
+         ◆ TX: [title] — IN PROGRESS when crash occurred
+         ○ TY: [title] — not started
+
+       [continue] — Resume from TX
+       [revert]   — Discard TX partial work and restart it
+       [inspect]  — Show uncommitted changes
+     ```
+   - If NOT stale (recent): another session may be active. Warn:
+     ```
+     ⚠ Build lock detected (last heartbeat: [timestamp]).
+       Another build session may be running. Proceeding may cause conflicts.
+       [force] — Override and continue
+       [abort] — Stop and check
+     ```
+3. If no lock found: proceed normally.
+
+### Step 1d — Dynamic Model Routing Setup (Cannibalized from GSD-2)
+
+If `dynamic_routing.enabled` is true in config.yaml:
+
+1. For each task in the plan, classify complexity:
+   - Count steps, files to modify/create, description length
+   - Check for heavy keywords: "migrate", "security", "refactor", "architecture", "auth"
+   - Assign: `light`, `standard`, or `heavy`
+2. Resolve the effective model for each task:
+   - Heavy → use profile's model (never downgrade)
+   - Standard → use profile's model (may downgrade under budget pressure)
+   - Light → use `dynamic_routing.light_override` model
+3. If budget tracking is enabled, check budget pressure and adjust:
+   - Read `.titan/metrics.json` for current spend
+   - Apply pressure thresholds from `dynamic_routing.budget_pressure`
+4. Print routing summary:
+   ```
+   ◆ Dynamic Routing:
+     T1: [title] → [classification] → [model]
+     T2: [title] → [classification] → [model]
+     T3: [title] → [classification] → [model]
+   ```
+
+### Step 2 — Create Git Branch / Worktree
+
+Read `git.isolation` from config.yaml:
+
+**If `isolation: "branch"` (default):**
 
 Check if the branch already exists:
 - If it exists AND has commits: ask "Branch `titan/phase-NN-name` already has work. Continue from where it left off? [yes/no]"
@@ -81,6 +147,19 @@ git checkout -b titan/phase-NN-phase-name
 ```
 
 If branch creation fails (e.g., uncommitted changes), report the error and stop.
+
+**If `isolation: "worktree"` (Cannibalized from GSD-2):**
+
+Create an isolated worktree for this phase:
+```bash
+git worktree add .titan/worktrees/NN-phase-name -b titan/phase-NN-phase-name
+```
+All subsequent commands in this build operate within the worktree directory.
+This avoids branch switching and keeps planning artifacts visible.
+
+**If `isolation: "none"`:**
+
+Stay on the current branch. No isolation. Commit directly.
 
 ### Step 3 — Initialize Progress Tracker
 
@@ -208,6 +287,72 @@ As each agent completes, process its result using the structured status code pro
    - If retry also blocks: mark task as `BLOCKED`, record blocker details
    - Print: `✗ Task T[X]: [task title] — BLOCKED after retry. Moving on.`
 
+**C-2) Run Verification Commands (Cannibalized from GSD-2):**
+
+After each task commits successfully (DONE or DONE_WITH_CONCERNS), if `verification.commands` is configured in config.yaml:
+
+1. Run each command in order:
+   ```
+   ◆ Running verification: [command]
+   ```
+2. If ALL commands pass: continue to next task.
+3. If any command FAILS and `verification.auto_fix` is true:
+   - Print: `⚠ Verification failed: [command] — attempting auto-fix`
+   - Re-dispatch the executor with the failure output as additional context
+   - Run verification commands again after fix
+   - Retry up to `verification.max_fix_retries` times
+4. If fix fails after retries:
+   - Print: `✗ Verification command failed after [N] retries: [command]`
+   - Record as a concern for the verification phase
+   - Continue (do not block the build — formal verification handles this)
+
+This catches lint errors, test failures, and type errors immediately after each task,
+before they compound.
+
+**C-3) Update Completed Units (Cannibalized from GSD-2):**
+
+After each successful task commit, if `crash_recovery.completed_units_file` is configured:
+
+1. Append the task to `.titan/completed-units.json`:
+   ```json
+   {"phase": NN, "task": "TX", "commit": "[hash]", "completed": "[ISO timestamp]"}
+   ```
+2. Update the lock file heartbeat (if lock_file enabled):
+   ```json
+   {"last_heartbeat": "[ISO timestamp]", "task": "TX+1"}
+   ```
+
+**C-4) Update Cost Metrics (Cannibalized from GSD-2):**
+
+If `budget.tracking_enabled` is true:
+
+1. After each task, log metrics to `.titan/metrics.json`:
+   - Task ID, model used, classification, duration, status
+2. After `budget.forecast_after_tasks` tasks, run forecast:
+   - Calculate average cost per task
+   - Multiply by remaining tasks
+   - If projected > `budget.ceiling`: print budget warning
+   - Apply enforcement action per `budget.enforcement` setting
+
+**C-5) Stuck Detection (Cannibalized from GSD-2):**
+
+If a task blocks AND the retry also blocks, run stuck detection:
+
+1. Analyze the blocker description
+2. Check if the blocker matches a known pattern:
+   - Missing dependency → suggest install command
+   - Missing file → check if another task creates it (dependency issue)
+   - Auth/permission error → flag as `human-action` checkpoint
+   - Test framework not set up → create setup task
+3. Print diagnostic:
+   ```
+   ◆ Stuck Detection — Task T[X]
+     Blocker type: [classified type]
+     Suggested resolution: [specific action]
+     Confidence: [high/medium/low]
+   ```
+4. If confidence is high, offer to auto-resolve. Otherwise, escalate to user.
+
 **D) Execute In-Session Tasks (sequential):**
 
 For `in-session` mode tasks in this wave, execute them directly in the current session:
@@ -301,7 +446,28 @@ Print (as markdown, NOT in a code block):
 
 ---
 
-### Step 6b — E2E Smoke Test (v2.0)
+### Step 6b — Generate UAT Script (Cannibalized from GSD-2)
+
+After all waves complete, generate a User Acceptance Test script for this phase:
+
+1. Read `.titan/templates/UAT.md` for the template structure
+2. For each acceptance criterion in this phase:
+   - Generate a test case with concrete steps
+   - Map to the implemented code (file paths, endpoints, UI elements)
+   - Include expected outcomes
+3. Write to `.titan/phases/NN-phase-name/UAT.md`
+4. Print: `✓ UAT script generated: .titan/phases/NN-phase-name/UAT.md`
+
+The UAT script gives the user a structured way to manually verify the build
+before running formal verification. Optional but recommended.
+
+### Step 6c — Clean Up Lock File
+
+If `crash_recovery.lock_file` is enabled:
+- Remove `.titan/build.lock`
+- Print: `✓ Build lock released.`
+
+### Step 6d — E2E Smoke Test (v2.0)
 
 If `.titan/MANIFEST.json` exists (v2.0 autonomous scaffold):
 

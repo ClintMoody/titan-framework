@@ -440,6 +440,68 @@ This system ensures that even problems nobody has solved before get systematic, 
 
 ---
 
+## GSD-2 Integration (v2.1)
+
+TITAN v2.1 cannibalizes key innovations from the GSD-2 framework (gsd-build/gsd-2).
+GSD-2 is a full application built on the Pi SDK with native Rust modules, a TUI,
+and programmatic agent control. Since TITAN is a prompt-based framework, we adapted
+GSD-2's best *concepts* into TITAN's architecture, not its code.
+
+### What Was Cannibalized
+
+| Feature | From GSD-2 | Adapted For TITAN |
+|---------|-----------|-------------------|
+| Dynamic Model Routing | Complexity-based heuristic routing (Light/Standard/Heavy) | `config.yaml` `dynamic_routing` section + build-time classification |
+| Verification Commands | Shell commands auto-run after each task | `config.yaml` `verification.commands` + auto-fix retries |
+| Git Worktree Isolation | Worktree-per-milestone avoiding branch-switch pain | `config.yaml` `git.isolation: worktree` option |
+| Cost/Budget Tracking | Per-unit token/cost ledger with forecasting | `.titan/metrics.json` + budget ceiling + enforcement |
+| Crash Recovery | Lock files + completed-units + session forensics | `.titan/build.lock` + `completed-units.json` + recovery protocol |
+| Roadmap Reassessment | Reassess roadmap after each slice based on learning | `/titan:07-verify` Step 11b |
+| UAT Script Generation | Generate user acceptance test scripts per slice | `/titan:06-build` Step 6b generates `UAT.md` |
+| Stuck Detection | Retry + diagnostic pattern classification | `/titan:06-build` Step C-5 |
+| Background Captures | Stray thoughts captured without interrupting workflow | `.titan/CAPTURES.md` template |
+| Step Mode | Pause between units for human review | `config.yaml` `step_mode` section |
+| Completed Units Tracking | Prevent re-execution of committed work after recovery | `.titan/completed-units.json` |
+| Layered Memory Concept | L1-L4 context architecture formalized | Informed context management philosophy |
+
+### What Was NOT Cannibalized (and Why)
+
+| GSD-2 Feature | Why Not |
+|---------------|---------|
+| Full Pi SDK Application | TITAN is a prompt framework, not a standalone app. Different architectural paradigm. |
+| Native Rust Performance Layer | TITAN runs inside Claude Code — Rust N-API modules don't apply. |
+| TUI Dashboard | Claude Code provides the UI. TITAN works within it, not replaces it. |
+| VS Code Extension | Different integration model. TITAN uses Claude Code as its harness. |
+| Headless/CI Mode | Would require a standalone runtime. TITAN depends on Claude Code's session. |
+| Multi-Terminal Steering | Requires file-based IPC and a running daemon. TITAN is session-scoped. |
+| Parallel Milestone Orchestration | Requires process management outside Claude Code scope. |
+| HTML Report Generation | Nice-to-have but not core to the prompt framework architecture. |
+| Skills Auto-Discovery System | TITAN has domain plugins which serve a similar purpose differently. |
+
+### Comparative Analysis
+
+**TITAN Advantages Over GSD-2:**
+- More specialized agents (9 vs 3 bundled) with deeper role separation
+- Domain plugin system (8 YAML plugins with quality gates)
+- Novel problem solving workflows (investigate + experiment — no GSD-2 equivalent)
+- Adversarial verification with mandatory halt condition and two-stage review
+- Design mockup generation (titan-designer creates browser-testable HTML/CSS)
+- Autonomous loop with feature manifest (v2.0)
+- Progressive persona interviews for vision definition
+- Knowledge system with accumulated project intelligence
+- Decision reversibility tracking
+
+**GSD-2 Advantages (Now Integrated):**
+- Dynamic model routing → *integrated*
+- Crash recovery & forensics → *integrated*
+- Cost/budget tracking → *integrated*
+- Verification command automation → *integrated*
+- Git worktree isolation → *integrated*
+- Roadmap reassessment → *integrated*
+- Stuck detection → *integrated*
+
+---
+
 ## Key Differences from FORGE
 
 | Aspect | FORGE | TITAN |
