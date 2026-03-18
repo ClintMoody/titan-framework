@@ -1,75 +1,117 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="300" viewBox="0 0 900 300">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="320" viewBox="0 0 900 320">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0F172A"/>
-      <stop offset="50%" style="stop-color:#1E293B"/>
-      <stop offset="100%" style="stop-color:#0F172A"/>
+      <stop offset="0%" style="stop-color:#070D1A"/>
+      <stop offset="40%" style="stop-color:#0F172A"/>
+      <stop offset="100%" style="stop-color:#070D1A"/>
     </linearGradient>
     <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#22C55E"/>
-      <stop offset="100%" style="stop-color:#16A34A"/>
-    </linearGradient>
-    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" style="stop-color:#22C55E;stop-opacity:0"/>
-      <stop offset="50%" style="stop-color:#22C55E;stop-opacity:0.15"/>
-      <stop offset="100%" style="stop-color:#22C55E;stop-opacity:0"/>
+      <stop offset="20%" style="stop-color:#22C55E"/>
+      <stop offset="80%" style="stop-color:#16A34A"/>
+      <stop offset="100%" style="stop-color:#16A34A;stop-opacity:0"/>
     </linearGradient>
+    <linearGradient id="accentTop" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#22C55E;stop-opacity:0"/>
+      <stop offset="30%" style="stop-color:#22C55E;stop-opacity:0.6"/>
+      <stop offset="70%" style="stop-color:#16A34A;stop-opacity:0.6"/>
+      <stop offset="100%" style="stop-color:#16A34A;stop-opacity:0"/>
+    </linearGradient>
+    <linearGradient id="titleGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF"/>
+      <stop offset="100%" style="stop-color:#CBD5E1"/>
+    </linearGradient>
+    <radialGradient id="centerGlow" cx="50%" cy="40%" r="40%">
+      <stop offset="0%" style="stop-color:#22C55E;stop-opacity:0.06"/>
+      <stop offset="100%" style="stop-color:#22C55E;stop-opacity:0"/>
+    </radialGradient>
     <filter id="shadow">
-      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#22C55E" flood-opacity="0.3"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#22C55E" flood-opacity="0.25"/>
+    </filter>
+    <filter id="subtleShadow">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#22C55E" flood-opacity="0.15"/>
     </filter>
   </defs>
 
   <!-- Background -->
-  <rect width="900" height="300" fill="url(#bg)"/>
+  <rect width="900" height="320" fill="url(#bg)"/>
 
-  <!-- Grid pattern -->
-  <g opacity="0.06" stroke="#94A3B8" stroke-width="0.5">
-    <line x1="0" y1="50" x2="900" y2="50"/>
-    <line x1="0" y1="100" x2="900" y2="100"/>
-    <line x1="0" y1="150" x2="900" y2="150"/>
-    <line x1="0" y1="200" x2="900" y2="200"/>
-    <line x1="0" y1="250" x2="900" y2="250"/>
-    <line x1="100" y1="0" x2="100" y2="300"/>
-    <line x1="200" y1="0" x2="200" y2="300"/>
-    <line x1="300" y1="0" x2="300" y2="300"/>
-    <line x1="400" y1="0" x2="400" y2="300"/>
-    <line x1="500" y1="0" x2="500" y2="300"/>
-    <line x1="600" y1="0" x2="600" y2="300"/>
-    <line x1="700" y1="0" x2="700" y2="300"/>
-    <line x1="800" y1="0" x2="800" y2="300"/>
+  <!-- Center radial glow -->
+  <rect width="900" height="320" fill="url(#centerGlow)"/>
+
+  <!-- Subtle grid -->
+  <g opacity="0.04" stroke="#94A3B8" stroke-width="0.5">
+    <line x1="0" y1="64" x2="900" y2="64"/>
+    <line x1="0" y1="128" x2="900" y2="128"/>
+    <line x1="0" y1="192" x2="900" y2="192"/>
+    <line x1="0" y1="256" x2="900" y2="256"/>
+    <line x1="150" y1="0" x2="150" y2="320"/>
+    <line x1="300" y1="0" x2="300" y2="320"/>
+    <line x1="450" y1="0" x2="450" y2="320"/>
+    <line x1="600" y1="0" x2="600" y2="320"/>
+    <line x1="750" y1="0" x2="750" y2="320"/>
   </g>
 
-  <!-- Accent glow line -->
-  <rect x="0" y="296" width="900" height="4" fill="url(#accent)"/>
-  <rect x="150" y="140" width="600" height="1" fill="url(#glow)"/>
+  <!-- Top accent line -->
+  <rect x="0" y="0" width="900" height="2" fill="url(#accentTop)"/>
 
-  <!-- Decorative brackets -->
-  <g opacity="0.12" fill="none" stroke="#22C55E" stroke-width="1.5">
-    <!-- Left bracket -->
-    <path d="M 80,80 L 60,80 L 60,220 L 80,220"/>
-    <!-- Right bracket -->
-    <path d="M 820,80 L 840,80 L 840,220 L 820,220"/>
+  <!-- Bottom accent line -->
+  <rect x="0" y="316" width="900" height="4" fill="url(#accent)"/>
+
+  <!-- Decorative corner brackets -->
+  <g fill="none" stroke="#22C55E" stroke-width="1.2">
+    <path d="M 70,55 L 50,55 L 50,75" opacity="0.2"/>
+    <path d="M 830,55 L 850,55 L 850,75" opacity="0.2"/>
+    <path d="M 70,265 L 50,265 L 50,245" opacity="0.2"/>
+    <path d="M 830,265 L 850,265 L 850,245" opacity="0.2"/>
   </g>
 
-  <!-- Small decorative dots -->
-  <circle cx="120" cy="90" r="2" fill="#22C55E" opacity="0.4"/>
-  <circle cx="780" cy="90" r="2" fill="#22C55E" opacity="0.4"/>
-  <circle cx="120" cy="210" r="2" fill="#22C55E" opacity="0.4"/>
-  <circle cx="780" cy="210" r="2" fill="#22C55E" opacity="0.4"/>
+  <!-- Decorative dots at corners -->
+  <circle cx="50" cy="55" r="1.5" fill="#22C55E" opacity="0.5"/>
+  <circle cx="850" cy="55" r="1.5" fill="#22C55E" opacity="0.5"/>
+  <circle cx="50" cy="265" r="1.5" fill="#22C55E" opacity="0.5"/>
+  <circle cx="850" cy="265" r="1.5" fill="#22C55E" opacity="0.5"/>
 
   <!-- TITAN text -->
-  <text x="450" y="135" font-family="'SF Mono', 'Fira Code', 'JetBrains Mono', Consolas, monospace" font-size="72" font-weight="700" fill="#F8FAFC" text-anchor="middle" letter-spacing="16" filter="url(#shadow)">TITAN</text>
+  <text x="450" y="128" font-family="'SF Mono', 'Fira Code', 'JetBrains Mono', 'Cascadia Code', Consolas, monospace" font-size="76" font-weight="700" fill="url(#titleGlow)" text-anchor="middle" letter-spacing="20" filter="url(#shadow)">TITAN</text>
+
+  <!-- Horizontal rule under title -->
+  <line x1="280" y1="145" x2="620" y2="145" stroke="#22C55E" stroke-width="0.5" opacity="0.2"/>
 
   <!-- Tagline -->
-  <text x="450" y="175" font-family="'SF Mono', 'Fira Code', 'JetBrains Mono', Consolas, monospace" font-size="13" fill="#94A3B8" text-anchor="middle" letter-spacing="4">THE COMPLETE SOFTWARE DEVELOPMENT FRAMEWORK</text>
+  <text x="450" y="172" font-family="'SF Mono', 'Fira Code', 'JetBrains Mono', 'Cascadia Code', Consolas, monospace" font-size="11.5" fill="#64748B" text-anchor="middle" letter-spacing="5">THE COMPLETE SOFTWARE DEVELOPMENT FRAMEWORK</text>
 
   <!-- Version badge -->
-  <rect x="385" y="195" width="130" height="24" rx="12" fill="#22C55E" opacity="0.15"/>
-  <rect x="385" y="195" width="130" height="24" rx="12" fill="none" stroke="#22C55E" stroke-width="0.8" opacity="0.5"/>
-  <text x="450" y="211" font-family="'SF Mono', 'Fira Code', 'JetBrains Mono', Consolas, monospace" font-size="11" fill="#22C55E" text-anchor="middle" letter-spacing="1">v2.1</text>
+  <rect x="370" y="192" width="72" height="24" rx="4" fill="#22C55E" opacity="0.1"/>
+  <rect x="370" y="192" width="72" height="24" rx="4" fill="none" stroke="#22C55E" stroke-width="0.8" opacity="0.4"/>
+  <text x="406" y="208" font-family="'SF Mono', 'Fira Code', 'JetBrains Mono', Consolas, monospace" font-size="11" font-weight="600" fill="#22C55E" text-anchor="middle" letter-spacing="1">v2.1</text>
 
-  <!-- Terminal prompt hint -->
-  <text x="450" y="255" font-family="'SF Mono', 'Fira Code', 'JetBrains Mono', Consolas, monospace" font-size="12" fill="#475569" text-anchor="middle">
-    <tspan fill="#22C55E">$</tspan> /titan:01-init
+  <!-- Stat pills -->
+  <g font-family="'SF Mono', 'Fira Code', 'JetBrains Mono', Consolas, monospace" font-size="10">
+    <!-- 24 commands -->
+    <rect x="452" y="192" width="100" height="24" rx="4" fill="#334155" opacity="0.4"/>
+    <text x="502" y="208" fill="#94A3B8" text-anchor="middle"><tspan fill="#F8FAFC" font-weight="600">24</tspan> commands</text>
+
+    <!-- 9 agents -->
+    <rect x="560" y="192" width="82" height="24" rx="4" fill="#334155" opacity="0.4"/>
+    <text x="601" y="208" fill="#94A3B8" text-anchor="middle"><tspan fill="#F8FAFC" font-weight="600">9</tspan> agents</text>
+
+    <!-- 8 domains -->
+    <rect x="650" y="192" width="90" height="24" rx="4" fill="#334155" opacity="0.4"/>
+    <text x="695" y="208" fill="#94A3B8" text-anchor="middle"><tspan fill="#F8FAFC" font-weight="600">8</tspan> domains</text>
+  </g>
+
+  <!-- Features row -->
+  <g font-family="'SF Mono', 'Fira Code', 'JetBrains Mono', Consolas, monospace" font-size="10" fill="#475569">
+    <text x="165" y="253" text-anchor="middle" filter="url(#subtleShadow)"><tspan fill="#22C55E">+</tspan> crash recovery</text>
+    <text x="330" y="253" text-anchor="middle" filter="url(#subtleShadow)"><tspan fill="#22C55E">+</tspan> cost tracking</text>
+    <text x="490" y="253" text-anchor="middle" filter="url(#subtleShadow)"><tspan fill="#22C55E">+</tspan> dynamic routing</text>
+    <text x="660" y="253" text-anchor="middle" filter="url(#subtleShadow)"><tspan fill="#22C55E">+</tspan> auto-verify</text>
+    <text x="795" y="253" text-anchor="middle" filter="url(#subtleShadow)"><tspan fill="#22C55E">+</tspan> roadmap learning</text>
+  </g>
+
+  <!-- Terminal prompt -->
+  <text x="450" y="290" font-family="'SF Mono', 'Fira Code', 'JetBrains Mono', Consolas, monospace" font-size="12" fill="#334155" text-anchor="middle">
+    <tspan fill="#22C55E" opacity="0.7">$</tspan><tspan fill="#475569"> /titan:01-init</tspan>
   </text>
 </svg>
