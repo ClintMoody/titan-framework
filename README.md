@@ -29,41 +29,39 @@ TITAN fixes all of this.
 
 ## What TITAN Actually Does
 
-TITAN is a development system that runs inside **Claude Code** (or **OpenCode**). You install it once, and it gives you 24 slash commands that manage your entire project lifecycle — from first idea to shipped release.
+TITAN is a development system that runs inside **Claude Code** (or **OpenCode**). You install it once, and it gives you 24 slash commands that manage your entire project lifecycle.
 
-Here's what makes it different from "just prompting":
+<table>
+<tr>
+<td width="50%" valign="top">
 
-### It verifies everything. Twice.
+**Verifies everything. Twice.**
+Two independent AI reviewers check every phase. One checks spec compliance, the other checks code quality. Both have a halt condition: find zero issues and they're forced to look harder. No rubber-stamping allowed.
 
-After you build a phase, TITAN runs **two independent AI reviewers**. The first checks: *does this code do what the spec says?* The second checks: *is this code actually well-written?* Both reviewers have a **halt condition** — if they find zero issues, they're forced to look harder. No rubber-stamping.
+**Recovers from crashes.**
+Lock files track every committed task. Session dies? Resume exactly where you left off. Completed tasks never re-execute.
 
-Every acceptance criterion gets explicitly traced to code. Every deviation from the plan gets documented. "It probably works" is not an acceptable answer.
+**Tracks what things cost.**
+Per-task metrics, running totals, budget ceilings with enforcement (warn, pause, or hard stop). You always know what you're spending.
 
-### It recovers from crashes.
+</td>
+<td width="50%" valign="top">
 
-Sessions crash. Laptops die. Claude Code hangs. Before v2.1, you'd lose your place and spend 20 minutes figuring out where you were.
+**Routes models by complexity.**
+Simple scaffolding gets a cheap model. Complex security work gets Opus. Automatic classification, 40-60% cost savings, zero quality loss where it matters.
 
-Now TITAN writes a lock file during builds, tracks every committed task, and detects crashes automatically. When you come back, it tells you exactly which tasks finished, which one was in flight, and which haven't started. You type "continue" and pick up where you left off. Completed tasks never re-execute.
+**Catches errors immediately.**
+Configure `npm test`, `cargo check`, or any command. TITAN runs it after every task and auto-fixes failures before you even hear about it.
 
-### It knows what things cost.
+**Learns from what it builds.**
+After each phase, the roadmap is reassessed against what was actually learned. No building on day-one assumptions that turned out wrong.
 
-Every task logs its metrics. You see a running total in your dashboard — how much this phase cost, how much the milestone is projected to cost, and whether you're on track to blow your budget. If you set a ceiling, TITAN enforces it (warn, pause, or hard stop — your choice).
+**Solves novel problems.**
+`/titan:investigate` for systematic hypothesis generation. `/titan:experiment` for isolated prototyping and comparison. Structured research, not guesswork.
 
-### It stops wasting expensive models on simple tasks.
-
-TITAN classifies each task by complexity. A 2-file scaffolding task doesn't need Opus. A cross-module security migration does. Simple tasks automatically route to cheaper models. Complex tasks are protected — never downgraded. This cuts costs 40-60% with no quality loss where it matters.
-
-### It catches errors immediately, not later.
-
-Configure verification commands — `npm run lint`, `npm test`, `cargo check`, whatever your project uses — and TITAN runs them automatically after every single task. If lint fails, the executor tries to fix it before you even hear about it. Regressions surface in seconds, not during a manual review pass hours later.
-
-### It learns from what it builds.
-
-After each phase, TITAN reassesses the roadmap. Did we learn something that changes the plan for Phase 5? Did we discover a dependency we didn't know about? The roadmap adapts based on reality, not the assumptions you made on day one.
-
-### It solves problems nobody has solved before.
-
-Most AI tools assume you know what you're building. TITAN has dedicated workflows for when you don't. `/titan:investigate` gives you systematic hypothesis generation and evaluation. `/titan:experiment` lets you prototype approaches in isolation, measure them, and pick the winner. These aren't prompts — they're structured research processes that produce documented, evidence-based decisions.
+</td>
+</tr>
+</table>
 
 ---
 
