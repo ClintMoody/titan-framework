@@ -14,7 +14,7 @@ set -euo pipefail
 #   bash install.sh --project-dir /path   # Project-local install
 #   bash install.sh                       # Auto-detect (global if from TITAN dir)
 
-TITAN_VERSION="1.0.0"
+TITAN_VERSION="2.1.0"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Colors
