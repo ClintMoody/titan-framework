@@ -67,6 +67,21 @@ Read the following files (in this order, stop reading a file if it exceeds 300 l
 5. Phase-specific EXPLORATION.md (`.titan/phases/NN-phase-name/EXPLORATION.md`) — if it exists, incorporate findings
 6. `.titan/config.yaml` — Load domain plugin name for domain-specific planning
 
+### Step 3b — Review Background Captures (Cannibalized from GSD-2)
+
+If `.titan/CAPTURES.md` exists and has entries:
+
+1. Read all unreviewed captures
+2. For each capture, assess relevance to the phase being planned:
+   - **Relevant**: incorporate into the plan (add as a task, constraint, or risk)
+   - **Not relevant**: skip (will be reviewed again at next planning phase)
+   - **Stale**: mark as reviewed in CAPTURES.md
+3. If any captures are relevant, note them in the plan's Context section
+4. Print:
+   ```
+   ◆ Background Captures: [N] reviewed, [X] relevant to this phase
+   ```
+
 ### Step 4 — Spawn titan-researcher Agent (Codebase Analysis)
 
 Launch a subagent with the following brief:

@@ -585,6 +585,57 @@ Review the phase's build and verification process. Identify:
 | [next number] | [decision description] | [rationale — why this choice] | [date] |
 ```
 
+### Step 11b — Roadmap Reassessment (Cannibalized from GSD-2)
+
+If `verification.reassess_roadmap` is true in config.yaml, review the roadmap based on what
+was learned during this phase:
+
+1. Read `.titan/ROADMAP.md`
+2. Read the KNOWLEDGE.md entries just captured (Step 10-11)
+3. Read the deviations from SUMMARY.md (Step 4)
+4. For each remaining phase in the roadmap, assess:
+   - Does this phase still make sense given what we learned?
+   - Has scope changed (should it be bigger/smaller)?
+   - Have new dependencies emerged?
+   - Should phase order change?
+5. If adjustments are needed, present them to the user:
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Roadmap Reassessment
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Based on Phase NN learnings:
+
+  [adjustment 1] — Phase X: [what changed and why]
+  [adjustment 2] — Phase Y: [what changed and why]
+
+  [accept]  — Apply these adjustments to ROADMAP.md
+  [skip]    — Keep the roadmap as-is
+  [discuss] — Let me explain my concerns
+```
+
+6. If accepted: update ROADMAP.md and record the changes in DECISIONS.md
+7. If skipped: note in KNOWLEDGE.md that reassessment was skipped
+
+This prevents building on outdated assumptions. Each phase teaches something
+that may invalidate later phases.
+
+### Step 11c — Capture Background Thoughts
+
+If `captures.enabled` is true in config.yaml:
+
+1. Check `.titan/CAPTURES.md` for any captures logged during this phase
+2. For each capture, determine if it should become:
+   - A deferred item in STATE.md (add to Deferred Items table)
+   - A knowledge entry (add to KNOWLEDGE.md)
+   - A task for a future phase (note in roadmap reassessment)
+   - Dismissed (mark as reviewed in CAPTURES.md)
+3. If any captures were triaged, print:
+   ```
+   ◆ [N] background captures triaged: [X] → deferred, [Y] → knowledge, [Z] → dismissed
+   ```
+
 ### Step 12 — Phase Completion
 
 Print the final verification summary.

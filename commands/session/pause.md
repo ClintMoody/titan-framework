@@ -135,6 +135,14 @@ enough that someone with no context can start immediately.]
 - Knowledge: `.titan/KNOWLEDGE.md`
 ```
 
+### Step 4b: Remove Build Lock (Cannibalized from GSD-2)
+
+If `.titan/build.lock` exists:
+1. Remove the lock file
+2. Print: "✓ Build lock released."
+
+This ensures that `/titan:resume` in the next session does not incorrectly trigger crash recovery.
+
 ### Step 5: Handle Uncommitted Work
 
 Check `git status` for any uncommitted changes.
