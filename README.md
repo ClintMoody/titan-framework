@@ -31,37 +31,15 @@ TITAN fixes all of this.
 
 TITAN is a development system that runs inside **Claude Code** (or **OpenCode**). You install it once, and it gives you 24 slash commands that manage your entire project lifecycle.
 
-<table>
-<tr>
-<td width="50%" valign="top">
-
-**Verifies everything. Twice.**
-Two independent AI reviewers check every phase. One checks spec compliance, the other checks code quality. Both have a halt condition: find zero issues and they're forced to look harder. No rubber-stamping allowed.
-
-**Recovers from crashes.**
-Lock files track every committed task. Session dies? Resume exactly where you left off. Completed tasks never re-execute.
-
-**Tracks what things cost.**
-Per-task metrics, running totals, budget ceilings with enforcement (warn, pause, or hard stop). You always know what you're spending.
-
-</td>
-<td width="50%" valign="top">
-
-**Routes models by complexity.**
-Simple scaffolding gets a cheap model. Complex security work gets Opus. Automatic classification, 40-60% cost savings, zero quality loss where it matters.
-
-**Catches errors immediately.**
-Configure `npm test`, `cargo check`, or any command. TITAN runs it after every task and auto-fixes failures before you even hear about it.
-
-**Learns from what it builds.**
-After each phase, the roadmap is reassessed against what was actually learned. No building on day-one assumptions that turned out wrong.
-
-**Solves novel problems.**
-`/titan:investigate` for systematic hypothesis generation. `/titan:experiment` for isolated prototyping and comparison. Structured research, not guesswork.
-
-</td>
-</tr>
-</table>
+| | |
+|:--|:--|
+| **Verifies everything. Twice.** | Two independent AI reviewers per phase. One checks spec compliance. One checks code quality. Both must find at least one issue or they review harder. |
+| **Recovers from crashes.** | Lock files track every committed task. Session dies? Type "continue" and pick up exactly where you left off. |
+| **Tracks what things cost.** | Per-task metrics. Running totals. Budget ceilings with enforcement. You always know what you're spending. |
+| **Routes models by complexity.** | Simple tasks get cheap models. Complex tasks get Opus. Automatic. 40-60% cost savings. |
+| **Catches errors immediately.** | Configure `npm test` or `cargo check`. Runs after every task. Auto-fixes failures before you hear about it. |
+| **Learns from what it builds.** | After each phase, the roadmap is reassessed against what was learned. No building on stale assumptions. |
+| **Solves novel problems.** | `/titan:investigate` for hypothesis generation. `/titan:experiment` for isolated prototyping. Structured research, not guesswork. |
 
 ---
 
