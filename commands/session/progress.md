@@ -69,7 +69,7 @@ For the progress bar, use:
 - `▓` for completed phases
 - `▒` for active phase
 - `░` for pending phases
-- Format: `Phase 3 of 8 ▓▓▓▓▓▒░░░░░░░░░░ 37%`
+- Format: `Phase 3 of 9 ▓▓▓▓▓░░░░░░░░░░░ 33%`
 
 ### Step 5: Display Current Phase Tasks
 
@@ -91,7 +91,7 @@ If no PLAN.md exists:
 ```
   Current Phase Tasks
   ─────────────────────────────────────────────────
-  No plan created yet. Run /titan:05-plan to create one.
+  No plan created yet. Run /titan:06-plan to create one.
 ```
 
 ### Step 6: Display Blockers
@@ -205,7 +205,7 @@ If `.titan/CAPTURES.md` exists and has entries:
 ```
   Background Captures
   ─────────────────────────────────────────────────
-  [N] unreviewed captures. Review during next /titan:05-plan.
+  [N] unreviewed captures. Review during next /titan:06-plan.
 
   Latest:
   • [capture 1 summary — date]
@@ -258,4 +258,4 @@ None. This command does not modify any state files.
 - Run `/titan:progress` whenever you feel lost — it shows exactly where things stand.
 - The dashboard is designed to be scannable in under 10 seconds.
 - Compare the "Phase Tasks" section against actual code to catch any drift.
-- If the dashboard shows stale data, run `/titan:07-verify` on the current phase to reconcile.
+- If the dashboard shows stale data, run `/titan:08-verify` on the current phase to reconcile.

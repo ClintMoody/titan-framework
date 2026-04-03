@@ -33,7 +33,7 @@ GSD-2 reports 40-60% token cost savings.
 
 **Files Modified:**
 - `templates/config.yaml` — new `dynamic_routing` section
-- `commands/core/06-build.md` — Step 1d (classification + routing)
+- `commands/core/07-build.md` — Step 1d (classification + routing)
 - `core/dynamic-routing.md` — detailed spec
 
 ---
@@ -53,7 +53,7 @@ immediately, not during manual verification.
 
 **Files Modified:**
 - `templates/config.yaml` — new fields in `verification` section
-- `commands/core/06-build.md` — Step C-2 (verification command execution)
+- `commands/core/07-build.md` — Step C-2 (verification command execution)
 
 ---
 
@@ -72,7 +72,7 @@ squash-merge per milestone. Eliminated ~770 lines of merge/conflict code.
 
 **Files Modified:**
 - `templates/config.yaml` — new `git.isolation`, `git.worktree_dir`, `git.commit_docs`
-- `commands/core/06-build.md` — Step 2 (branch/worktree/none selection)
+- `commands/core/07-build.md` — Step 2 (branch/worktree/none selection)
 
 ---
 
@@ -93,7 +93,7 @@ after N tasks. Dashboard shows spending by phase/model.
 **Files Modified:**
 - `templates/config.yaml` — new `budget` section
 - `templates/STATE.md` — new "Cost & Budget" section
-- `commands/core/06-build.md` — Step C-4 (metric logging + forecasting)
+- `commands/core/07-build.md` — Step C-4 (metric logging + forecasting)
 - `commands/session/progress.md` — Step 8b (cost dashboard)
 - `core/cost-tracking.md` — detailed spec
 
@@ -115,7 +115,7 @@ from surviving tool calls. PID liveness detection. Auto-restart on crash.
 **Files Modified:**
 - `templates/config.yaml` — new `crash_recovery` section
 - `templates/STATE.md` — new "Crash Recovery" section
-- `commands/core/06-build.md` — Steps 1c, C-3, 6c
+- `commands/core/07-build.md` — Steps 1c, C-3, 6c
 - `commands/session/resume.md` — Step 2b (crash detection)
 - `commands/session/pause.md` — Step 4b (lock removal)
 - `core/crash-recovery.md` — detailed spec
@@ -137,7 +137,7 @@ reviews remaining work against new knowledge.
 
 **Files Modified:**
 - `templates/config.yaml` — new `verification.reassess_roadmap` flag
-- `commands/core/07-verify.md` — Step 11b (roadmap reassessment)
+- `commands/core/08-verify.md` — Step 11b (roadmap reassessment)
 
 ---
 
@@ -155,7 +155,7 @@ verify deliverables.
 
 **Files Modified:**
 - `templates/UAT.md` — new template
-- `commands/core/06-build.md` — Step 6b (UAT generation)
+- `commands/core/07-build.md` — Step 6b (UAT generation)
 
 ---
 
@@ -172,7 +172,7 @@ the blocker type and suggest resolution. This avoids endless retry loops.
 - Offers auto-resolve for high-confidence cases
 
 **Files Modified:**
-- `commands/core/06-build.md` — Step C-5 (stuck detection)
+- `commands/core/07-build.md` — Step C-5 (stuck detection)
 
 ---
 
@@ -191,7 +191,7 @@ without interrupting the current workflow. Triaged during planning and verificat
 **Files Modified:**
 - `templates/CAPTURES.md` — new template
 - `templates/config.yaml` — new `captures` section
-- `commands/core/07-verify.md` — Step 11c (capture triage)
+- `commands/core/08-verify.md` — Step 11c (capture triage)
 - `commands/session/progress.md` — Step 8c (captures display)
 
 ---

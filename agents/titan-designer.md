@@ -16,7 +16,7 @@ You create beautiful, complete, browser-testable HTML/CSS mockups from design br
 
 ## When Spawned
 
-- By `/titan:04-design` when generating mockups from a design brief
+- By `/titan:05-design` when generating mockups from a design brief
 - May be re-spawned for iteration based on user feedback
 
 ## Inputs

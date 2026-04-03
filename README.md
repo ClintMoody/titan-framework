@@ -45,7 +45,7 @@ TITAN is a development system that runs inside **Claude Code** (or **OpenCode**)
 
 ## The Golden Path
 
-8 steps. Follow them in order. Repeat 05-07 for each phase.
+9 steps. Follow them in order. Repeat 06-08 for each phase.
 
 ```
         01 INIT ──> 02 VISION ──> 03 EXPLORE ──> 04 DESIGN
@@ -60,12 +60,12 @@ TITAN is a development system that runs inside **Claude Code** (or **OpenCode**)
 |:----:|---------|-------------|
 | `01` | `/titan:01-init` | Scaffold the project. Detect greenfield or brownfield. Configure your domain. |
 | `02` | `/titan:02-vision` | Three AI personas interview you — Visionary, Product Strategist, Technical Architect. You walk out with a vision doc, requirements with BDD acceptance criteria, a system architecture, and a phased roadmap. |
-| `03` | `/titan:03-explore` | Research what you don't know. Prior art, technology evaluation, risk mapping. |
-| `04` | `/titan:04-design` | Design your UI through conversation. Get real HTML/CSS mockups you can open in a browser and iterate on. |
-| `05` | `/titan:05-plan` | A researcher agent scans your codebase, then TITAN builds a task-level execution plan with waves, boundaries, and acceptance criteria. |
-| `06` | `/titan:06-build` | The thin orchestrator dispatches parallel agents — each in a fresh 200k-token context window. One task = one commit. Verification commands run after each task. Cost tracked per task. Crash recovery active. |
-| `07` | `/titan:07-verify` | Mandatory 3-part gate: reconciliation (plan vs reality), two-stage adversarial review (spec + quality), and knowledge capture. Then reassess the roadmap based on what you learned. |
-| `08` | `/titan:08-ship` | Pre-flight checklist. Merge branches. Tag release. Archive phase data. Cost report. Done. |
+| `03` | `/titan:04-explore` | Research what you don't know. Prior art, technology evaluation, risk mapping. |
+| `04` | `/titan:05-design` | Design your UI through conversation. Get real HTML/CSS mockups you can open in a browser and iterate on. |
+| `05` | `/titan:06-plan` | A researcher agent scans your codebase, then TITAN builds a task-level execution plan with waves, boundaries, and acceptance criteria. |
+| `06` | `/titan:07-build` | The thin orchestrator dispatches parallel agents — each in a fresh 200k-token context window. One task = one commit. Verification commands run after each task. Cost tracked per task. Crash recovery active. |
+| `07` | `/titan:08-verify` | Mandatory 3-part gate: reconciliation (plan vs reality), two-stage adversarial review (spec + quality), and knowledge capture. Then reassess the roadmap based on what you learned. |
+| `08` | `/titan:09-ship` | Pre-flight checklist. Merge branches. Tag release. Archive phase data. Cost report. Done. |
 
 ---
 
@@ -154,7 +154,7 @@ Use these anytime, outside the Golden Path.
 
 | Command | Purpose |
 |---------|---------|
-| `/titan:00-bootstrap` | Create autonomous scaffold |
+| `/titan:03-bootstrap` | Create autonomous scaffold |
 | `/titan:loop-start` | Start feature-driven autonomous loop |
 | `/titan:loop-status` | Loop health + progress |
 | `/titan:loop-stop` | Graceful stop |
@@ -178,8 +178,8 @@ We studied the [GSD-2 framework](https://github.com/gsd-build/gsd-2) — a stand
 | **Cost tracking** | Per-task metrics, budget ceiling, forecasting. | `budget.tracking_enabled: true` |
 | **Crash recovery** | Lock files + completed-unit tracking + forensic recovery briefings. | `crash_recovery.lock_file: true` |
 | **Roadmap reassessment** | After each phase, review the roadmap against new learnings. | `verification.reassess_roadmap: true` |
-| **Stuck detection** | Classifies blockers, suggests resolutions, offers auto-resolve. | Built into `/titan:06-build` |
-| **UAT scripts** | Generates manual test scripts mapped to acceptance criteria. | Built into `/titan:06-build` |
+| **Stuck detection** | Classifies blockers, suggests resolutions, offers auto-resolve. | Built into `/titan:07-build` |
+| **UAT scripts** | Generates manual test scripts mapped to acceptance criteria. | Built into `/titan:07-build` |
 | **Background captures** | Log stray ideas without interrupting workflow. Triaged at planning. | `captures.enabled: true` |
 | **Step mode** | Pause between tasks/waves for review. Graduated oversight. | `step_mode.enabled: true` |
 
@@ -230,10 +230,10 @@ bash uninstall.sh --global --purge      # Also remove .titan/ project data
 ```
 /titan:01-init          # Start here
 /titan:02-vision        # Define your product
-/titan:05-plan          # Plan the first phase
-/titan:06-build         # Build it
-/titan:07-verify        # Prove it works
-/titan:08-ship          # Ship it
+/titan:06-plan          # Plan the first phase
+/titan:07-build         # Build it
+/titan:08-verify        # Prove it works
+/titan:09-ship          # Ship it
 ```
 
 That's it. Six commands from zero to shipped.

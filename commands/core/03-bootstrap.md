@@ -1,11 +1,11 @@
 ---
-name: titan:00-bootstrap
+name: titan:03-bootstrap
 description: First-run initializer — creates autonomous scaffold for multi-session work
 ---
 
-# /titan:00-bootstrap — Autonomous Bootstrap
+# /titan:03-bootstrap — Autonomous Bootstrap
 
-> Run this command once to create the autonomous development scaffold. This is Step 0 of the Golden Path — it generates everything needed for multi-session, loop-driven development.
+> Run this command once to create the autonomous development scaffold. This is Step 3 of the Golden Path — it generates everything needed for multi-session, loop-driven development.
 
 ## Prerequisites
 
@@ -219,14 +219,14 @@ Write `.titan/AGENTS.md` — the v2.0 table-of-contents format (~100 lines). Thi
 
 | Agent | Role | Commands | Trigger |
 |-------|------|----------|---------|
-| titan-designer | Architecture & design | 04-design, refactor | Design phases |
-| titan-executor | Implementation | 06-build, quick | Build phases |
+| titan-designer | Architecture & design | 05-design, refactor | Design phases |
+| titan-executor | Implementation | 07-build, quick | Build phases |
 | titan-investigator | Deep analysis | investigate, debug | On-demand |
 | titan-optimizer | Performance | audit (perf) | Audit, review |
-| titan-researcher | Research & learning | 03-explore, learn | Explore phases |
+| titan-researcher | Research & learning | 04-explore, learn | Explore phases |
 | titan-security | Security analysis | audit (security), scan | Audit, build |
-| titan-strategist | Planning & roadmap | 02-vision, 05-plan | Planning phases |
-| titan-tester | Test & verification | 07-verify, test | Verify phases |
+| titan-strategist | Planning & roadmap | 02-vision, 06-plan | Planning phases |
+| titan-tester | Test & verification | 08-verify, test | Verify phases |
 | titan-verifier | Acceptance testing | verify-e2e, loop | Loop verification |
 ...
 ```
@@ -266,20 +266,20 @@ Print (as markdown, NOT in a code block):
 | ✓ | `.titan/prompts/` | Agent prompts |
 | ✓ | `.titan/AGENTS.md` | Agent directory |
 
-Step 0 of Golden Path ▓▓░░░░░░░░░░░░░░ Ready
+Step 3 of 9 ▓▓▓▓▓░░░░░░░░░░░ 33%
 
 ---
 
 ### ★ Recommended
 
-> Run `/titan:loop-start` to begin autonomous development, or `/titan:05-plan` for manual phase-by-phase work.
+> Run `/titan:loop-start` to begin autonomous development, or `/titan:06-plan` for manual phase-by-phase work.
 
 ### Other options
 
 | Command | Action |
 |---------|--------|
 | `/titan:loop-status` | Check loop readiness before starting |
-| `/titan:05-plan` | Plan manually instead of autonomous loop |
+| `/titan:06-plan` | Plan manually instead of autonomous loop |
 | `/titan:progress` | View the full project dashboard |
 
 ---
@@ -300,7 +300,7 @@ Step 0 of Golden Path ▓▓░░░░░░░░░░░░░░ Ready
 
 After this command completes:
 - STATE.md step → "bootstrap (complete)"
-- STATE.md Next Action → "/titan:loop-start or /titan:05-plan"
+- STATE.md Next Action → "/titan:loop-start or /titan:06-plan"
 
 ## Error Handling
 

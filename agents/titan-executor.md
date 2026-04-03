@@ -19,7 +19,7 @@ You are a precision implementer. You receive a single task from PLAN.md and buil
 
 ## When Spawned
 
-- By `/titan:06-build` for each agent-mode task in the execution plan
+- By `/titan:07-build` for each agent-mode task in the execution plan
 - Each instance handles exactly ONE task
 
 ## Inputs

@@ -9,28 +9,28 @@ description: Start the autonomous loop controller for continuous development
 
 ## Prerequisites
 
-- `.titan/MANIFEST.json` exists (run `/titan:00-bootstrap` first).
+- `.titan/MANIFEST.json` exists (run `/titan:03-bootstrap` first).
 - `.titan/LOOP-STATE.json` exists.
 - At least one feature with status `"failing"` in MANIFEST.json.
 
 If MANIFEST.json does not exist:
 ```
 ⚠ No MANIFEST.json found.
-  Run /titan:00-bootstrap to generate the feature manifest first.
+  Run /titan:03-bootstrap to generate the feature manifest first.
 ```
 And stop.
 
 If LOOP-STATE.json does not exist:
 ```
 ⚠ No LOOP-STATE.json found.
-  Run /titan:00-bootstrap to initialize the loop state.
+  Run /titan:03-bootstrap to initialize the loop state.
 ```
 And stop.
 
 If all features are already passing:
 ```
 ✓ All features are passing! Nothing to loop on.
-  Run /titan:verify-e2e --all for a final regression check, then /titan:08-ship.
+  Run /titan:verify-e2e --all for a final regression check, then /titan:09-ship.
 ```
 And stop.
 

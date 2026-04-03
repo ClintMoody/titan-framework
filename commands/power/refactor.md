@@ -145,7 +145,7 @@ After the refactoring is complete, display (as markdown, NOT in a code block):
 
 > **Verify the refactoring didn't break anything.**
 > [If tests all pass: Tests pass — you're good. Continue your workflow.]
-> [If in a phase: Continue `/titan:06-build` or `/titan:07-verify` for Phase NN.]
+> [If in a phase: Continue `/titan:07-build` or `/titan:08-verify` for Phase NN.]
 
 ### Other options
 

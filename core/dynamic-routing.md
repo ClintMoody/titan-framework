@@ -58,7 +58,7 @@ Budget pressure NEVER downgrades heavy tasks.
 
 ## Integration with Build Command
 
-During `/titan:06-build`, before dispatching each agent task:
+During `/titan:07-build`, before dispatching each agent task:
 
 1. Read `config.yaml` for `dynamic_routing` settings
 2. Classify the task using the heuristics above

@@ -13,8 +13,8 @@
 During any TITAN command, if you notice something that isn't directly relevant
 to the current task but should be recorded, add it here as a capture.
 
-Captures are triaged during `/titan:05-plan` (review for relevance to upcoming phase)
-and during `/titan:07-verify` (review for missed concerns).
+Captures are triaged during `/titan:06-plan` (review for relevance to upcoming phase)
+and during `/titan:08-verify` (review for missed concerns).
 
 ---
 

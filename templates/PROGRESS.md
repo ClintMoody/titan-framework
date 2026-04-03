@@ -9,7 +9,7 @@
 **Model:** bootstrap
 **Feature:** —
 **Status:** INITIALIZED
-**Changes:** Autonomous scaffold created via /titan:00-bootstrap
+**Changes:** Autonomous scaffold created via /titan:03-bootstrap
 **Commits:** {{INITIAL_COMMIT_HASH}}
 **Verification:** —
 **Next Priority:** F-001

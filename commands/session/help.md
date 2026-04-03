@@ -31,21 +31,22 @@ Print this exactly:
 ### Step 2: Display the Golden Path
 
 ```
-  THE GOLDEN PATH — 8 Core Commands
+  THE GOLDEN PATH — 9 Core Commands
   ═══════════════════════════════════════════════════
 
   Follow these in order for any new project:
 
   01. /titan:01-init       Initialize project — scaffold .titan/, detect type, configure domain
   02. /titan:02-vision     Define vision — project scope, requirements, architecture, roadmap
-  03. /titan:03-explore    Discover unknowns — research, prior art, technology evaluation
-  04. /titan:04-design     Design UI/UX — conversational design → browser-testable mockups
-  05. /titan:05-plan       Plan execution — research codebase → task plan with ACs and waves
-  06. /titan:06-build      Build phase — orchestrate executor agents → atomic commits
-  07. /titan:07-verify     Prove quality — reconciliation + adversarial review (MANDATORY)
-  08. /titan:08-ship       Release — pre-flight checks → merge → tag → release notes
+  03. /titan:03-bootstrap  Create autonomous scaffold — MANIFEST, init.sh, docs, prompts
+  04. /titan:04-explore    Discover unknowns — research, prior art, technology evaluation
+  05. /titan:05-design     Design UI/UX — conversational design → browser-testable mockups
+  06. /titan:06-plan       Plan execution — research codebase → task plan with ACs and waves
+  07. /titan:07-build      Build phase — orchestrate executor agents → atomic commits
+  08. /titan:08-verify     Prove quality — reconciliation + adversarial review (MANDATORY)
+  09. /titan:09-ship       Release — pre-flight checks → merge → tag → release notes
 
-  Repeat steps 05-07 for each phase in your roadmap.
+  Repeat steps 06-08 for each phase in your roadmap.
 
   ┌─────────────────────────────────────────────────────────┐
   │  init → vision → explore → design → plan → build → verify → ship  │
@@ -92,7 +93,7 @@ Print this exactly:
   AUTONOMOUS LOOP (v2.0)
   ═══════════════════════════════════════════════════
 
-    /titan:00-bootstrap  Create autonomous scaffold — MANIFEST, init.sh, docs, prompts
+    /titan:03-bootstrap  Create autonomous scaffold — MANIFEST, init.sh, docs, prompts
     /titan:loop-start    Start autonomous loop — continuous feature development
     /titan:loop-stop     Gracefully stop the loop after current feature completes
     /titan:loop-status   Loop dashboard — health, progress, escalation status
@@ -109,15 +110,15 @@ Print this exactly:
   New Project (Manual):
     1. /titan:01-init          (one time — set up TITAN)
     2. /titan:02-vision        (one time — define what you're building)
-    3. /titan:05-plan          (per phase — create execution plan)
-    4. /titan:06-build         (per phase — implement the plan)
-    5. /titan:07-verify        (per phase — prove it works)
-    6. /titan:08-ship          (per milestone — release it)
+    3. /titan:06-plan          (per phase — create execution plan)
+    4. /titan:07-build         (per phase — implement the plan)
+    5. /titan:08-verify        (per phase — prove it works)
+    6. /titan:09-ship          (per milestone — release it)
 
   New Project (Autonomous):
     1. /titan:01-init          (one time — set up TITAN)
     2. /titan:02-vision        (one time — define what you're building)
-    3. /titan:00-bootstrap     (one time — create autonomous scaffold)
+    3. /titan:03-bootstrap     (one time — create autonomous scaffold)
     4. /titan:loop-start       (starts autonomous loop — features built overnight)
 
   Returning to Work:
@@ -246,7 +247,7 @@ If no `.titan/` project exists (as markdown, NOT in a code block):
 
 ## Tips
 
-- Bookmark the Golden Path — those 8 commands cover 95% of development work.
+- Bookmark the Golden Path — those 9 commands cover 95% of development work.
 - Power tools are optional but powerful — use them when the situation calls for it.
 - When in doubt, run `/titan:progress` to see where you are, then follow the suggested next action.
 - The best command to learn first is `/titan:quick` — it gives you the full TITAN experience in a single command for small tasks.

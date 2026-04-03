@@ -318,7 +318,7 @@ Print (as markdown, NOT in a code block):
 
 - `/titan:investigate` --> `/titan:experiment`: When confidence is MEDIUM or LOW, chain to experiment to validate the recommendation with hands-on prototyping.
 - `/titan:investigate` --> `/titan:learn`: When research reveals a technology the team is unfamiliar with, chain to learn for a deep dive before committing.
-- `/titan:investigate` --> `/titan:05-plan`: When confidence is HIGH and the approach is clear, chain directly to planning the implementation.
+- `/titan:investigate` --> `/titan:06-plan`: When confidence is HIGH and the approach is clear, chain directly to planning the implementation.
 
 ## Tips
 

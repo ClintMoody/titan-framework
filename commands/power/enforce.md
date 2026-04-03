@@ -251,8 +251,8 @@ Teaching messages for each violation explain:
 |---------|--------|
 | `/titan:refactor` | Refactor files flagged for structural issues |
 | `/titan:audit` | Run a full multi-dimensional audit |
-| `/titan:07-verify` | Run verification suite |
-| `/titan:06-build` | Continue building |
+| `/titan:08-verify` | Run verification suite |
+| `/titan:07-build` | Continue building |
 
 ---
 

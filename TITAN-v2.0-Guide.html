@@ -505,7 +505,7 @@
     <h3>New Commands <span class="badge new">NEW</span></h3>
     <table>
       <tr><th>Command</th><th>Purpose</th></tr>
-      <tr><td><code>/titan:00-bootstrap</code></td><td>Create autonomous scaffold (MANIFEST, init.sh, docs, prompts)</td></tr>
+      <tr><td><code>/titan:03-bootstrap</code></td><td>Create autonomous scaffold (MANIFEST, init.sh, docs, prompts)</td></tr>
       <tr><td><code>/titan:loop-start</code></td><td>Start autonomous development loop</td></tr>
       <tr><td><code>/titan:loop-stop</code></td><td>Gracefully stop the loop</td></tr>
       <tr><td><code>/titan:loop-status</code></td><td>Dashboard &mdash; progress, health, escalation status</td></tr>
@@ -516,9 +516,9 @@
     <h3>Enhanced Existing Commands <span class="badge existing">ENHANCED</span></h3>
     <table>
       <tr><th>Command</th><th>What Changed</th></tr>
-      <tr><td><code>/titan:01-init</code></td><td>Now suggests <code>/titan:00-bootstrap</code> after vision</td></tr>
-      <tr><td><code>/titan:06-build</code></td><td>E2E smoke test after build waves complete</td></tr>
-      <tr><td><code>/titan:07-verify</code></td><td>E2E verification layer before adversarial review</td></tr>
+      <tr><td><code>/titan:01-init</code></td><td>Now suggests <code>/titan:03-bootstrap</code> after vision</td></tr>
+      <tr><td><code>/titan:07-build</code></td><td>E2E smoke test after build waves complete</td></tr>
+      <tr><td><code>/titan:08-verify</code></td><td>E2E verification layer before adversarial review</td></tr>
       <tr><td><code>/titan:audit</code></td><td>Documentation staleness detection for <code>.titan/docs/</code></td></tr>
       <tr><td><code>/titan:pause</code></td><td>Updates LOOP-STATE.json when loop is active</td></tr>
       <tr><td><code>/titan:autopilot</code></td><td>MANIFEST integration, escalation awareness</td></tr>
@@ -580,7 +580,7 @@
         <pre><span class="cmd">ls</span> <span class="path">core/</span>           <span class="comment"># 9 spec files</span>
 <span class="cmd">ls</span> <span class="path">prompts/</span>         <span class="comment"># 2 prompt files</span>
 <span class="cmd">ls</span> <span class="path">scripts/</span>         <span class="comment"># 2 shell scripts</span>
-<span class="cmd">ls</span> <span class="path">commands/core/00-bootstrap.md</span>   <span class="comment"># New command</span>
+<span class="cmd">ls</span> <span class="path">commands/core/03-bootstrap.md</span>   <span class="comment"># New command</span>
 <span class="cmd">ls</span> <span class="path">commands/session/loop-*.md</span>     <span class="comment"># 3 loop commands</span></pre>
       </div>
     </div>
@@ -630,17 +630,17 @@
       <span class="flow-arrow">&rarr;</span>
       <span class="flow-node">02-vision</span>
       <span class="flow-arrow">&rarr;</span>
-      <span class="flow-node">03-explore</span>
+      <span class="flow-node">04-explore</span>
       <span class="flow-arrow">&rarr;</span>
-      <span class="flow-node">04-design</span>
+      <span class="flow-node">05-design</span>
       <span class="flow-arrow">&rarr;</span>
-      <span class="flow-node">05-plan</span>
+      <span class="flow-node">06-plan</span>
       <span class="flow-arrow">&rarr;</span>
-      <span class="flow-node">06-build</span>
+      <span class="flow-node">07-build</span>
       <span class="flow-arrow">&rarr;</span>
-      <span class="flow-node">07-verify</span>
+      <span class="flow-node">08-verify</span>
       <span class="flow-arrow">&rarr;</span>
-      <span class="flow-node">08-ship</span>
+      <span class="flow-node">09-ship</span>
     </div>
 
     <h3>What's Different Under the Hood</h3>
@@ -648,7 +648,7 @@
     <div class="card">
       <div class="card-header">
         <div class="card-icon accent">B</div>
-        <div class="card-title">/titan:06-build &mdash; E2E Smoke Test</div>
+        <div class="card-title">/titan:07-build &mdash; E2E Smoke Test</div>
       </div>
       <p>After all build waves complete, if a MANIFEST.json exists, a quick E2E smoke test runs to catch obvious breakage before you move to verification. Non-blocking &mdash; it warns but doesn't stop the build.</p>
     </div>
@@ -656,7 +656,7 @@
     <div class="card">
       <div class="card-header">
         <div class="card-icon accent">V</div>
-        <div class="card-title">/titan:07-verify &mdash; E2E Verification Layer</div>
+        <div class="card-title">/titan:08-verify &mdash; E2E Verification Layer</div>
       </div>
       <p>If MANIFEST.json exists, Part 1b runs domain-specific E2E verification on features before the adversarial review. Features only move from "failing" to "passing" when E2E checks pass.</p>
     </div>
@@ -705,7 +705,7 @@
       <span class="flow-arrow">&rarr;</span>
       <span class="flow-node">02-vision</span>
       <span class="flow-arrow">&rarr;</span>
-      <span class="flow-node new">00-bootstrap</span>
+      <span class="flow-node new">03-bootstrap</span>
       <span class="flow-arrow">&rarr;</span>
       <span class="flow-node new">loop-start</span>
       <span class="flow-arrow">&rarr;</span>
@@ -726,7 +726,7 @@
       <div class="step-num">2</div>
       <div class="step-content">
         <h3>Bootstrap the Autonomous Scaffold</h3>
-        <pre><span class="cmd">/titan:00-bootstrap</span></pre>
+        <pre><span class="cmd">/titan:03-bootstrap</span></pre>
         <p>This reads your vision documents and generates:</p>
         <table>
           <tr><th>Artifact</th><th>What It Is</th></tr>
@@ -910,7 +910,7 @@ To resume: /titan:loop-start --from F-023</span></pre>
       <tr><th>Dependency</th><th>Check</th><th>Install</th></tr>
       <tr><td><code>claude</code> CLI</td><td><code>claude --version</code></td><td>Already installed (you're using it now)</td></tr>
       <tr><td><code>jq</code></td><td><code>jq --version</code></td><td><code>brew install jq</code></td></tr>
-      <tr><td><code>.titan/MANIFEST.json</code></td><td><code>ls .titan/MANIFEST.json</code></td><td>Run <code>/titan:00-bootstrap</code></td></tr>
+      <tr><td><code>.titan/MANIFEST.json</code></td><td><code>ls .titan/MANIFEST.json</code></td><td>Run <code>/titan:03-bootstrap</code></td></tr>
     </table>
 
     <h3>Monitoring While It Runs</h3>
@@ -1064,7 +1064,7 @@ To resume: /titan:loop-start --from F-023</span></pre>
 
     <table>
       <tr><th>Command</th><th>When to Use</th><th>Frequency</th></tr>
-      <tr><td><code>/titan:00-bootstrap</code></td><td>After vision is defined, before autonomous work</td><td>Once per project</td></tr>
+      <tr><td><code>/titan:03-bootstrap</code></td><td>After vision is defined, before autonomous work</td><td>Once per project</td></tr>
       <tr><td><code>/titan:loop-start</code></td><td>Begin autonomous development</td><td>Each time you want to start/resume the loop</td></tr>
       <tr><td><code>/titan:loop-stop</code></td><td>Pause the loop gracefully</td><td>When you want to stop</td></tr>
       <tr><td><code>/titan:loop-status</code></td><td>Check progress and health</td><td>Anytime during a run</td></tr>

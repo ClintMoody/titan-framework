@@ -12,7 +12,7 @@ description: Initialize TITAN project — scaffold .titan/ directory, detect pro
 - You are in the root directory of a project (or about to create one).
 - No `.titan/` directory exists yet. If one does, inform the user: "This project is already initialized. Use `/titan:resume` to continue or delete `.titan/` to start over."
 
-**v2.0 Bootstrap Check:** After initialization completes, if the user intends to use autonomous multi-session development, suggest running `/titan:00-bootstrap` after `/titan:02-vision` to create the autonomous scaffold (MANIFEST.json, PROGRESS.md, LOOP-STATE.json, init.sh, docs/).
+**v2.0 Bootstrap Check:** After initialization completes, if the user intends to use autonomous multi-session development, suggest running `/titan:03-bootstrap` after `/titan:02-vision` to create the autonomous scaffold (MANIFEST.json, PROGRESS.md, LOOP-STATE.json, init.sh, docs/).
 
 ## Process
 
@@ -290,7 +290,7 @@ Run `/titan:help` for the complete command reference.
 To continue from where you left off: `/titan:resume`
 
 ## Rules
-- Never skip verification (/titan:07-verify)
+- Never skip verification (/titan:08-verify)
 - Always read PLAN.md before building
 - Always update STATE.md after completing work
 - Respect file boundaries defined in plans
@@ -329,7 +329,7 @@ Run `/titan:help` for the complete command reference.
 To continue from where you left off: `/titan:resume`
 
 ## Rules
-- Never skip verification (/titan:07-verify)
+- Never skip verification (/titan:08-verify)
 - Always read PLAN.md before building
 - Always update STATE.md after completing work
 - Respect file boundaries defined in plans
@@ -363,7 +363,7 @@ Print (as markdown, NOT in a code block):
 | ✓ | `CLAUDE.md` | Claude Code project rules |
 | ✓ | `AGENTS.md` | OpenCode project rules |
 
-Step 1 of 8 ▓▓░░░░░░░░░░░░░░ 12%
+Step 1 of 9 ▓▓░░░░░░░░░░░░░░ 11%
 
 ---
 
@@ -376,7 +376,7 @@ Step 1 of 8 ▓▓░░░░░░░░░░░░░░ 12%
 | Command | Action |
 |---------|--------|
 | `/titan:scan` | Deep-scan an existing codebase first (brownfield projects) |
-| `/titan:00-bootstrap` | Set up autonomous scaffold (after vision is defined) |
+| `/titan:03-bootstrap` | Set up autonomous scaffold (after vision is defined) |
 
 ---
 

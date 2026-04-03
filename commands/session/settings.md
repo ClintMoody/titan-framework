@@ -217,7 +217,7 @@ For toggle (a): flip `tdd.strict` in config.yaml. When enabling, print:
   - No production code without a failing test first
   - Executors will refuse to write code before writing tests
 
-  This affects /titan:06-build. Use /titan:test for standalone TDD work.
+  This affects /titan:07-build. Use /titan:test for standalone TDD work.
 ```
 
 For context target (b): validate range 20-60, update `tdd.context_target` in config.yaml.

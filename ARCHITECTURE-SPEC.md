@@ -41,7 +41,7 @@ TITAN takes FORGE's 9.1/10 foundation and evolves it into a fully general-purpos
 ## Core Philosophy: 7 Principles
 
 ### 1. The Golden Path is Simple
-8 numbered steps: init → vision → explore → design → plan → build → verify → ship.
+9 numbered steps: init → vision → bootstrap → explore → design → plan → build → verify → ship.
 Anyone can follow 1, 2, 3, 4, 5, 6, 7, 8. Repeat 5-7 for each phase.
 
 ### 2. Novel Problems Deserve Systematic Treatment
@@ -75,12 +75,12 @@ Parallel execution, fresh-context agents, wave-based task distribution — these
 |---|---------|-------|-------------|
 | 01 | `/titan:01-init` | Setup | Scaffold `.titan/`, detect brownfield/greenfield, configure domain |
 | 02 | `/titan:02-vision` | Define | Progressive persona chain → PROJECT.md, REQUIREMENTS.md, ARCHITECTURE.md, ROADMAP.md |
-| 03 | `/titan:03-explore` | Discover | Deep research, prior art, technology evaluation, novel problem mapping |
-| 04 | `/titan:04-design` | Design | Conversational UI/UX → iterative HTML mockups → approved specs |
-| 05 | `/titan:05-plan` | Plan | Researcher agent → execution plan with waves, ACs, boundaries |
-| 06 | `/titan:06-build` | Execute | Thin orchestrator → parallel executor agents + in-session work |
-| 07 | `/titan:07-verify` | Prove | Reconciliation + adversarial review + knowledge capture (MANDATORY) |
-| 08 | `/titan:08-ship` | Release | Pre-flight → merge → tag → release notes → celebrate |
+| 03 | `/titan:04-explore` | Discover | Deep research, prior art, technology evaluation, novel problem mapping |
+| 04 | `/titan:05-design` | Design | Conversational UI/UX → iterative HTML mockups → approved specs |
+| 05 | `/titan:06-plan` | Plan | Researcher agent → execution plan with waves, ACs, boundaries |
+| 06 | `/titan:07-build` | Execute | Thin orchestrator → parallel executor agents + in-session work |
+| 07 | `/titan:08-verify` | Prove | Reconciliation + adversarial review + knowledge capture (MANDATORY) |
+| 08 | `/titan:09-ship` | Release | Pre-flight → merge → tag → release notes → celebrate |
 
 ---
 
@@ -206,7 +206,7 @@ project-root/
 │   ├── phases/
 │   │   ├── 01-phase-name/
 │   │   │   ├── PLAN.md         # Execution plan
-│   │   │   ├── EXPLORATION.md  # Research findings (from /titan:03-explore)
+│   │   │   ├── EXPLORATION.md  # Research findings (from /titan:04-explore)
 │   │   │   ├── SUMMARY.md      # Post-verify reconciliation
 │   │   │   ├── EVALUATION.md   # Post-verify adversarial review
 │   │   │   └── ...
@@ -336,7 +336,7 @@ profiles:
 
 ### Progress Format
 ```
-Phase 3 of 8 ▓▓▓▓▓▓▓▓░░░░░░░░ 37%
+Phase 3 of 9 ▓▓▓▓▓░░░░░░░░░░░ 33%
 ```
 
 ---
@@ -456,9 +456,9 @@ GSD-2's best *concepts* into TITAN's architecture, not its code.
 | Git Worktree Isolation | Worktree-per-milestone avoiding branch-switch pain | `config.yaml` `git.isolation: worktree` option |
 | Cost/Budget Tracking | Per-unit token/cost ledger with forecasting | `.titan/metrics.json` + budget ceiling + enforcement |
 | Crash Recovery | Lock files + completed-units + session forensics | `.titan/build.lock` + `completed-units.json` + recovery protocol |
-| Roadmap Reassessment | Reassess roadmap after each slice based on learning | `/titan:07-verify` Step 11b |
-| UAT Script Generation | Generate user acceptance test scripts per slice | `/titan:06-build` Step 6b generates `UAT.md` |
-| Stuck Detection | Retry + diagnostic pattern classification | `/titan:06-build` Step C-5 |
+| Roadmap Reassessment | Reassess roadmap after each slice based on learning | `/titan:08-verify` Step 11b |
+| UAT Script Generation | Generate user acceptance test scripts per slice | `/titan:07-build` Step 6b generates `UAT.md` |
+| Stuck Detection | Retry + diagnostic pattern classification | `/titan:07-build` Step C-5 |
 | Background Captures | Stray thoughts captured without interrupting workflow | `.titan/CAPTURES.md` template |
 | Step Mode | Pause between units for human review | `config.yaml` `step_mode` section |
 | Completed Units Tracking | Prevent re-execution of committed work after recovery | `.titan/completed-units.json` |
@@ -510,9 +510,9 @@ GSD-2's best *concepts* into TITAN's architecture, not its code.
 | Novel Problems | No dedicated workflow | investigate + experiment commands |
 | Agents | 4 | 9 (5 new specialists) |
 | Learning | None | /titan:learn + knowledge accumulation |
-| Verification | Separate reconcile + evaluate | Combined /titan:07-verify (both in one) |
-| Exploration | None | /titan:03-explore as core step 03 |
+| Verification | Separate reconcile + evaluate | Combined /titan:08-verify (both in one) |
+| Exploration | None | /titan:04-explore as core step 03 |
 | Audit | None | Security + performance + accessibility |
 | Refactoring | None | Dedicated /titan:refactor |
-| Commands | 24 | 24 (restructured: 8 core + 10 power + 6 session) |
+| Commands | 24 | 24 (restructured: 9 core + 10 power + 6 session) |
 | State | Sparse (6.5/10) | Rich with knowledge + decisions |

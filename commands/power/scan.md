@@ -322,7 +322,7 @@ opportunities and risks? What should the developer focus on first?]
 
 ## Recommended TITAN Configuration
 - Domain: [recommended domain plugin]
-- Focus areas for /titan:05-plan: [suggested priorities]
+- Focus areas for /titan:06-plan: [suggested priorities]
 - Suggested first phase: [what to tackle first]
 
 ## Detailed Reports
@@ -402,7 +402,7 @@ After the scan completes, display (as markdown, NOT in a code block):
 
 ### ★ Recommended
 
-> Run `/titan:05-plan` to plan the next phase. The scan results will inform the planner's decisions.
+> Run `/titan:06-plan` to plan the next phase. The scan results will inform the planner's decisions.
 
 ### Other options
 
@@ -417,7 +417,7 @@ After the scan completes, display (as markdown, NOT in a code block):
 
 ## Tips
 
-- Run `/titan:scan` before `/titan:05-plan` on any brownfield project. The research output gives the planner critical context about conventions to follow and risks to avoid.
+- Run `/titan:scan` before `/titan:06-plan` on any brownfield project. The research output gives the planner critical context about conventions to follow and risks to avoid.
 - After scanning, use `/titan:learn` on any unfamiliar technology found in the stack.
 - The Concerns report is excellent input for `/titan:refactor` planning.
 - Re-scan after major refactoring to measure improvement in health scores.

@@ -28,7 +28,7 @@ You are an expert security specialist. You find vulnerabilities, misconfiguratio
 ## When Spawned
 
 - By `/titan:audit` for the security dimension
-- By `/titan:07-verify` when security-relevant code was modified
+- By `/titan:08-verify` when security-relevant code was modified
 - By `/titan:review` for on-demand security review
 - Can be spawned standalone for focused security analysis
 

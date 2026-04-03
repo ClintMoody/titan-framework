@@ -126,7 +126,7 @@ Detailed log of phase transitions:
 
 > **What to do next:**
 >
-> Run `/titan:03-explore` to analyze the codebase and gather context for planning.
+> Run `/titan:04-explore` to analyze the codebase and gather context for planning.
 >
 > **Context:** The project has been initialized with TITAN. No phases have been
 > executed yet. The exploration phase will identify the tech stack, existing
@@ -178,7 +178,7 @@ If starting a fresh session, read this section first:
 
 ## Autonomous Loop (v2.0)
 
-> This section is populated when `/titan:00-bootstrap` has been run.
+> This section is populated when `/titan:03-bootstrap` has been run.
 
 | Field | Value |
 |-------|-------|

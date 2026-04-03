@@ -16,11 +16,11 @@ This isn't aspirational. It's architectural. TITAN is designed from the ground u
 
 ### 1. Simplicity Is Power
 
-The Golden Path is 8 steps. You can learn it in 5 minutes. You can master it in a day.
+The Golden Path is 9 steps. You can learn it in 5 minutes. You can master it in a day.
 
 Complexity is the enemy of execution. Every time we considered adding a feature, we asked: "Does this make the developer's life simpler?" If the answer was no — or even "it depends" — we didn't add it.
 
-TITAN has 24 commands, but you only need 8 to build a complete product. The other 16 are power tools that appear when you need them, not before.
+TITAN has 24 commands, but you only need 9 to build a complete product. The other 15 are power tools that appear when you need them, not before.
 
 **Design rule:** If a workflow requires the developer to make more than 2 decisions before starting, it's too complex. Simplify.
 
@@ -118,7 +118,7 @@ The developer who spends 2 hours planning and 4 hours building ships faster than
 
 ## Architectural Decisions
 
-### Why 8 Core Steps (Not 5, Not 12)?
+### Why 9 Core Steps?
 
 - Steps 01-02 (init, vision) are **setup** — you do them once per project
 - Step 03 (explore) is **research** — you do it when facing unknowns

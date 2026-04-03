@@ -9,14 +9,14 @@ description: End-to-end verification for features — tests like a user, not a c
 
 ## Prerequisites
 
-- `.titan/MANIFEST.json` exists (run `/titan:00-bootstrap` first).
+- `.titan/MANIFEST.json` exists (run `/titan:03-bootstrap` first).
 - `.titan/config.yaml` exists with domain configured.
 - At least one feature in MANIFEST.json to verify.
 
 If MANIFEST.json does not exist, print:
 ```
 ⚠ No MANIFEST.json found.
-  Run /titan:00-bootstrap to generate the feature manifest first.
+  Run /titan:03-bootstrap to generate the feature manifest first.
 ```
 And stop.
 
@@ -137,7 +137,7 @@ Progress: ▓▓▓▓▓▓░░░░░░░░░░ [X]/[T] features
 ### ★ Recommended
 
 > [If failures exist: "Fix failing features and re-verify: `/titan:verify-e2e F-XXX`"]
-> [If all pass: "All features verified. Continue with `/titan:loop-start` or `/titan:08-ship`."]
+> [If all pass: "All features verified. Continue with `/titan:loop-start` or `/titan:09-ship`."]
 
 ### Other options
 
@@ -145,7 +145,7 @@ Progress: ▓▓▓▓▓▓░░░░░░░░░░ [X]/[T] features
 |---------|--------|
 | `/titan:verify-e2e --passing` | Regression test all passing features |
 | `/titan:debug` | Debug a specific failing feature |
-| `/titan:06-build` | Build/fix a failing feature |
+| `/titan:07-build` | Build/fix a failing feature |
 | `/titan:loop-start` | Resume autonomous development |
 
 ---

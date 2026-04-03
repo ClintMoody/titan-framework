@@ -268,7 +268,7 @@ After the audit report is presented, display based on results:
 | `/titan:debug` | Debug a specific issue from the audit |
 | `/titan:refactor` | Refactor code flagged for structural issues |
 | `/titan:test` | Add tests for areas with low coverage |
-| `/titan:08-ship` | Ship (only if all critical issues are resolved) |
+| `/titan:09-ship` | Ship (only if all critical issues are resolved) |
 
 ---
 
@@ -279,22 +279,22 @@ After the audit report is presented, display based on results:
 ### ★ Recommended
 
 > **Continue with your workflow.**
-> [If pre-ship: Run `/titan:08-ship` — your codebase is audit-clean.]
-> [If mid-build: Continue `/titan:06-build` for Phase NN.]
+> [If pre-ship: Run `/titan:09-ship` — your codebase is audit-clean.]
+> [If mid-build: Continue `/titan:07-build` for Phase NN.]
 
 ### Other options
 
 | Command | Action |
 |---------|--------|
-| `/titan:08-ship` | Ship the milestone |
-| `/titan:07-verify` | Run verification if not done yet |
+| `/titan:09-ship` | Ship the milestone |
+| `/titan:08-verify` | Run verification if not done yet |
 | `/titan:progress` | See full project dashboard and current position |
 
 ---
 
 ## Tips
 
-- Run `/titan:audit` before every `/titan:08-ship` — it catches what `/titan:07-verify` might miss.
+- Run `/titan:audit` before every `/titan:09-ship` — it catches what `/titan:08-verify` might miss.
 - Security audits are most valuable after adding authentication, payment, or user data features.
 - Performance audits are most valuable after the codebase has grown past initial scaffolding.
 - Treat the audit score as a compass, not a judgment — it shows where to focus next.

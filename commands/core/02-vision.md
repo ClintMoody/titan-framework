@@ -390,7 +390,7 @@ Print (as markdown, NOT in a code block):
 | **Tech Stack** | [key technologies] |
 | **Complexity** | [overall estimate] |
 
-Step 2 of 8 ▓▓▓▓░░░░░░░░░░░░ 25%
+Step 2 of 9 ▓▓▓░░░░░░░░░░░░░ 22%
 
 > ⟳ **Clear context before your next command.** Vision is conversation-heavy. Clearing context gives the next step fresh, focused attention. Your state is saved.
 
@@ -399,13 +399,13 @@ Step 2 of 8 ▓▓▓▓░░░░░░░░░░░░ 25%
 ### ★ Recommended
 
 > **If your project has unknowns or novel challenges:**
-> Run `/titan:03-explore` to research before planning.
+> Run `/titan:04-explore` to research before planning.
 >
 > **If your project has a UI component:**
-> Run `/titan:04-design` to create mockups.
+> Run `/titan:05-design` to create mockups.
 >
 > **If you're ready to start building:**
-> Run `/titan:05-plan` to create Phase 1 execution plan.
+> Run `/titan:06-plan` to create Phase 1 execution plan.
 
 ### Other options
 
@@ -431,9 +431,9 @@ Add to Completed Phases:
 Add relevant decisions to the Active Decisions table and to `.titan/DECISIONS.md` — especially technology choices from the architecture phase.
 
 Update Next Action based on context:
-- If project has unknowns: "Run `/titan:03-explore` to research unknowns before planning."
-- If project has UI: "Run `/titan:04-design` to create UI mockups."
-- Otherwise: "Run `/titan:05-plan` to create Phase 1 execution plan."
+- If project has unknowns: "Run `/titan:04-explore` to research unknowns before planning."
+- If project has UI: "Run `/titan:05-design` to create UI mockups."
+- Otherwise: "Run `/titan:06-plan` to create Phase 1 execution plan."
 
 ## Outputs
 
@@ -451,14 +451,14 @@ Update Next Action based on context:
 | User says "skip" during persona | Wrap up current persona with whatever info was gathered, note gaps, move to next persona |
 | User says "done" during persona | Finalize current persona's artifact with available info, note areas needing further definition |
 | User provides very short answers | Ask specific follow-up questions to draw out more detail. "Can you tell me more about [specific aspect]?" |
-| User is unsure about technical choices | Offer 2-3 concrete recommendations with trade-offs. Let them choose or defer to /titan:03-explore. |
+| User is unsure about technical choices | Offer 2-3 concrete recommendations with trade-offs. Let them choose or defer to /titan:04-explore. |
 | User wants to change earlier answers | Allow it. "Of course — what would you like to change in [artifact]?" Update the file. |
 | Brownfield project | Reference scan results (if `/titan:scan` was run) during architecture discussion |
 
 ## Tips
 
 - The quality of your vision directly determines the quality of everything that follows. Invest time here.
-- It is OK to say "I don't know" — that is exactly what `/titan:03-explore` is for.
+- It is OK to say "I don't know" — that is exactly what `/titan:04-explore` is for.
 - If you realize mid-interview that the scope is too large, the Product Strategist persona should help the user cut scope ruthlessly.
 - Each persona should refer to what previous personas discovered — they are building on each other's work.
 - Technology choices made here should be recorded as decisions in DECISIONS.md. They can be revisited, but not silently changed.
