@@ -121,12 +121,13 @@ The developer who spends 2 hours planning and 4 hours building ships faster than
 ### Why 9 Core Steps?
 
 - Steps 01-02 (init, vision) are **setup** — you do them once per project
-- Step 03 (explore) is **research** — you do it when facing unknowns
-- Step 04 (design) is **design** — you do it when there's a UI
-- Steps 05-07 (plan, build, verify) are **the execution loop** — you repeat this per phase
-- Step 08 (ship) is **release** — you do it per milestone
+- Step 03 (bootstrap) is **scaffolding** — you do it once to set up autonomous development
+- Step 04 (explore) is **research** — you do it when facing unknowns
+- Step 05 (design) is **design** — you do it when there's a UI
+- Steps 06-08 (plan, build, verify) are **the execution loop** — you repeat this per phase
+- Step 09 (ship) is **release** — you do it per milestone
 
-This maps to how software actually gets built: understand → research → design → (plan → build → prove)* → ship.
+This maps to how software actually gets built: understand → scaffold → research → design → (plan → build → prove)* → ship.
 
 Fewer steps would conflate distinct activities. More steps would add ceremony without value.
 

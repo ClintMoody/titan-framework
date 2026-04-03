@@ -78,7 +78,7 @@ They solve the same problem — structured AI-assisted software development for 
 
 These TITAN features remain exactly as they were:
 
-- **Golden Path** (8-step workflow) — unchanged
+- **Golden Path** (9-step workflow) — unchanged
 - **9 specialized agents** — all definitions untouched
 - **Domain plugin system** (8 YAML plugins) — unchanged
 - **Novel problem solving** (investigate + experiment) — unchanged
@@ -112,7 +112,7 @@ These TITAN features remain exactly as they were:
 
 | Feature | TITAN v2.1 | GSD-2 | Verdict |
 |---------|-----------|-------|---------|
-| **Core workflow** | 8-step Golden Path (init → vision → explore → design → plan → build → verify → ship) | Auto mode state machine (research → plan → execute → complete → reassess) | **TITAN** — more granular, explicit steps; GSD-2 — more autonomous |
+| **Core workflow** | 9-step Golden Path (init → vision → bootstrap → explore → design → plan → build → verify → ship) | Auto mode state machine (research → plan → execute → complete → reassess) | **TITAN** — more granular, explicit steps; GSD-2 — more autonomous |
 | **Agent types** | 9 specialized (executor, verifier, researcher, designer, investigator, strategist, security, optimizer, tester) | 3 bundled (Scout, Researcher, Worker) + extension-provided | **TITAN** — deeper role separation |
 | **Domain awareness** | 8 YAML plugins (web, mobile, desktop, audio, game, data, api, infrastructure) with quality gates, patterns, anti-patterns | 16 skills with auto-discovery (frontend, Rust, Tauri, SwiftUI, security, etc.) | **Draw** — different approaches, similar coverage |
 | **Novel problem solving** | /titan:investigate + /titan:experiment — systematic hypothesis-driven workflows | No equivalent | **TITAN** |
@@ -136,7 +136,7 @@ These TITAN features remain exactly as they were:
 
 | Category | TITAN v2.1 | GSD-2 |
 |----------|-----------|-------|
-| **Workflow structure** | Stronger — explicit 8-step path, more agent specialization | More autonomous — state machine requires less manual orchestration |
+| **Workflow structure** | Stronger — explicit 9-step path, more agent specialization | More autonomous — state machine requires less manual orchestration |
 | **Quality assurance** | Stronger — adversarial 2-stage review, halt condition, domain gates | Adequate — verification commands catch regressions, but no deep review |
 | **Novel problem solving** | Stronger — dedicated investigate + experiment workflows | No equivalent |
 | **Autonomy** | Moderate — autopilot exists but isn't the default | Stronger — auto mode is the core design |
