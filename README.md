@@ -48,24 +48,25 @@ TITAN is a development system that runs inside **Claude Code** (or **OpenCode**)
 9 steps. Follow them in order. Repeat 06-08 for each phase.
 
 ```
-        01 INIT ──> 02 VISION ──> 03 EXPLORE ──> 04 DESIGN
-                                                      |
-        08 SHIP <── 07 VERIFY <── 06 BUILD <── 05 PLAN
-                        |                        |
-                        '──── repeat 05->07 ─────'
-                              for each phase
+  01 INIT ──> 02 VISION ──> 03 BOOTSTRAP ──> 04 EXPLORE ──> 05 DESIGN
+                                                                  |
+  09 SHIP <── 08 VERIFY <── 07 BUILD <──────────────────── 06 PLAN
+                  |                                          |
+                  '──────────── repeat 06->08 ───────────────'
+                                for each phase
 ```
 
 | Step | Command | What Happens |
 |:----:|---------|-------------|
 | `01` | `/titan:01-init` | Scaffold the project. Detect greenfield or brownfield. Configure your domain. |
 | `02` | `/titan:02-vision` | Three AI personas interview you — Visionary, Product Strategist, Technical Architect. You walk out with a vision doc, requirements with BDD acceptance criteria, a system architecture, and a phased roadmap. |
-| `03` | `/titan:04-explore` | Research what you don't know. Prior art, technology evaluation, risk mapping. |
-| `04` | `/titan:05-design` | Design your UI through conversation. Get real HTML/CSS mockups you can open in a browser and iterate on. |
-| `05` | `/titan:06-plan` | A researcher agent scans your codebase, then TITAN builds a task-level execution plan with waves, boundaries, and acceptance criteria. |
-| `06` | `/titan:07-build` | The thin orchestrator dispatches parallel agents — each in a fresh 200k-token context window. One task = one commit. Verification commands run after each task. Cost tracked per task. Crash recovery active. |
-| `07` | `/titan:08-verify` | Mandatory 3-part gate: reconciliation (plan vs reality), two-stage adversarial review (spec + quality), and knowledge capture. Then reassess the roadmap based on what you learned. |
-| `08` | `/titan:09-ship` | Pre-flight checklist. Merge branches. Tag release. Archive phase data. Cost report. Done. |
+| `03` | `/titan:03-bootstrap` | Create the autonomous scaffold — MANIFEST, init.sh, docs, prompts. Run once for loop-driven development. |
+| `04` | `/titan:04-explore` | Research what you don't know. Prior art, technology evaluation, risk mapping. |
+| `05` | `/titan:05-design` | Design your UI through conversation. Get real HTML/CSS mockups you can open in a browser and iterate on. |
+| `06` | `/titan:06-plan` | A researcher agent scans your codebase, then TITAN builds a task-level execution plan with waves, boundaries, and acceptance criteria. |
+| `07` | `/titan:07-build` | The thin orchestrator dispatches parallel agents — each in a fresh 200k-token context window. One task = one commit. Verification commands run after each task. Cost tracked per task. Crash recovery active. |
+| `08` | `/titan:08-verify` | Mandatory 3-part gate: reconciliation (plan vs reality), two-stage adversarial review (spec + quality), and knowledge capture. Then reassess the roadmap based on what you learned. |
+| `09` | `/titan:09-ship` | Pre-flight checklist. Merge branches. Tag release. Archive phase data. Cost report. Done. |
 
 ---
 

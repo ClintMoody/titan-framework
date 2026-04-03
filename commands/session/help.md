@@ -48,10 +48,10 @@ Print this exactly:
 
   Repeat steps 06-08 for each phase in your roadmap.
 
-  ┌─────────────────────────────────────────────────────────┐
-  │  init → vision → explore → design → plan → build → verify → ship  │
-  │                                       ↑_______________↩            │
-  └─────────────────────────────────────────────────────────┘
+  ┌──────────────────────────────────────────────────────────────────────┐
+  │  init → vision → bootstrap → explore → design → plan → build → verify → ship  │
+  │                                                  ↑_______________↩             │
+  └──────────────────────────────────────────────────────────────────────┘
 ```
 
 ### Step 3: Display Power Tools

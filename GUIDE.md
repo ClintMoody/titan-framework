@@ -76,26 +76,27 @@
 The Golden Path is TITAN's core workflow. 9 numbered steps, followed in order.
 
 ```
-  01 INIT ──→ 02 VISION ──→ 03 EXPLORE ──→ 04 DESIGN
-                                               │
-  08 SHIP ←── 07 VERIFY ←── 06 BUILD ←── 05 PLAN
-                  │                        │
-                  └────── repeat 05→07 ────┘
-                       for each phase
+  01 INIT ──→ 02 VISION ──→ 03 BOOTSTRAP ──→ 04 EXPLORE ──→ 05 DESIGN
+                                                                  │
+  09 SHIP ←── 08 VERIFY ←── 07 BUILD ←──────────────────── 06 PLAN
+                  │                                          │
+                  └──────────── repeat 06→08 ────────────────┘
+                                for each phase
 ```
 
-**Steps 01-04** run once per project (or milestone).
-**Steps 05-07** repeat for each phase in your roadmap.
-**Step 08** runs once per milestone to ship.
+**Steps 01-05** run once per project (or milestone).
+**Steps 06-08** repeat for each phase in your roadmap.
+**Step 09** runs once per milestone to ship.
 
 ### When to Skip Steps
 
 | Step | Skip When |
 |------|-----------|
-| 03 Explore | Technology stack is well-known, no unknowns |
-| 04 Design | Project has no UI (API, library, CLI, infrastructure) |
+| 03 Bootstrap | Not using autonomous loop — manual phase-by-phase with plan/build/verify |
+| 04 Explore | Technology stack is well-known, no unknowns |
+| 05 Design | Project has no UI (API, library, CLI, infrastructure) |
 
-Never skip: 01 Init, 02 Vision, 05 Plan, 06 Build, 07 Verify, 08 Ship.
+Never skip: 01 Init, 02 Vision, 06 Plan, 07 Build, 08 Verify, 09 Ship.
 
 ---
 

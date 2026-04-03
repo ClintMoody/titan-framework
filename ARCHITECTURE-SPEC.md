@@ -42,7 +42,7 @@ TITAN takes FORGE's 9.1/10 foundation and evolves it into a fully general-purpos
 
 ### 1. The Golden Path is Simple
 9 numbered steps: init → vision → bootstrap → explore → design → plan → build → verify → ship.
-Anyone can follow 1, 2, 3, 4, 5, 6, 7, 8. Repeat 5-7 for each phase.
+Anyone can follow 1, 2, 3, 4, 5, 6, 7, 8, 9. Repeat 6-8 for each phase.
 
 ### 2. Novel Problems Deserve Systematic Treatment
 When you encounter something you've never seen before, you don't panic — you investigate, hypothesize, experiment, and evaluate. TITAN has dedicated workflows for this.
@@ -67,20 +67,21 @@ Parallel execution, fresh-context agents, wave-based task distribution — these
 ## The Golden Path (Core Workflow)
 
 ```
-01-INIT → 02-VISION → 03-EXPLORE → 04-DESIGN → 05-PLAN → 06-BUILD → 07-VERIFY → 08-SHIP
-                                                   ↑________________________↩ (repeat per phase)
+01-INIT → 02-VISION → 03-BOOTSTRAP → 04-EXPLORE → 05-DESIGN → 06-PLAN → 07-BUILD → 08-VERIFY → 09-SHIP
+                                                                  ↑__________________________↩ (repeat per phase)
 ```
 
 | # | Command | Phase | What It Does |
 |---|---------|-------|-------------|
 | 01 | `/titan:01-init` | Setup | Scaffold `.titan/`, detect brownfield/greenfield, configure domain |
 | 02 | `/titan:02-vision` | Define | Progressive persona chain → PROJECT.md, REQUIREMENTS.md, ARCHITECTURE.md, ROADMAP.md |
-| 03 | `/titan:04-explore` | Discover | Deep research, prior art, technology evaluation, novel problem mapping |
-| 04 | `/titan:05-design` | Design | Conversational UI/UX → iterative HTML mockups → approved specs |
-| 05 | `/titan:06-plan` | Plan | Researcher agent → execution plan with waves, ACs, boundaries |
-| 06 | `/titan:07-build` | Execute | Thin orchestrator → parallel executor agents + in-session work |
-| 07 | `/titan:08-verify` | Prove | Reconciliation + adversarial review + knowledge capture (MANDATORY) |
-| 08 | `/titan:09-ship` | Release | Pre-flight → merge → tag → release notes → celebrate |
+| 03 | `/titan:03-bootstrap` | Scaffold | Create autonomous scaffold — MANIFEST, init.sh, docs, prompts |
+| 04 | `/titan:04-explore` | Discover | Deep research, prior art, technology evaluation, novel problem mapping |
+| 05 | `/titan:05-design` | Design | Conversational UI/UX → iterative HTML mockups → approved specs |
+| 06 | `/titan:06-plan` | Plan | Researcher agent → execution plan with waves, ACs, boundaries |
+| 07 | `/titan:07-build` | Execute | Thin orchestrator → parallel executor agents + in-session work |
+| 08 | `/titan:08-verify` | Prove | Reconciliation + adversarial review + knowledge capture (MANDATORY) |
+| 09 | `/titan:09-ship` | Release | Pre-flight → merge → tag → release notes → celebrate |
 
 ---
 
@@ -511,7 +512,7 @@ GSD-2's best *concepts* into TITAN's architecture, not its code.
 | Agents | 4 | 9 (5 new specialists) |
 | Learning | None | /titan:learn + knowledge accumulation |
 | Verification | Separate reconcile + evaluate | Combined /titan:08-verify (both in one) |
-| Exploration | None | /titan:04-explore as core step 03 |
+| Exploration | None | /titan:04-explore as core step 04 |
 | Audit | None | Security + performance + accessibility |
 | Refactoring | None | Dedicated /titan:refactor |
 | Commands | 24 | 24 (restructured: 9 core + 10 power + 6 session) |

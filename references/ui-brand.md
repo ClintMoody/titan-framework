@@ -20,6 +20,7 @@ Every command starts with its stage banner:
 |---------|------------|
 | `/titan:01-init` | INITIALIZING |
 | `/titan:02-vision` | VISION |
+| `/titan:03-bootstrap` | BOOTSTRAPPING |
 | `/titan:04-explore` | EXPLORING |
 | `/titan:05-design` | DESIGN |
 | `/titan:06-plan` | PLANNING |
