@@ -94,7 +94,7 @@ Then [expected result]
 1. [Step 1 -- specific action]
 2. [Step 2 -- specific action]
 3. [Step 3 -- specific action]
-[Maximum 5 steps. If more are needed, this is not a quick task -- suggest /titan:05-plan instead.]
+[Maximum 5 steps. If more are needed, this is not a quick task -- suggest /titan:06-plan instead.]
 
 ## Risk Check
 - [ ] Could this break existing tests?
@@ -234,7 +234,7 @@ Print (as markdown, NOT in a code block):
 
 ## Error Handling
 
-- **Task is too large:** If the plan requires more than 5 steps or would touch more than 10 files, stop and recommend `/titan:05-plan` + `/titan:06-build` instead. Display: "This task is too large for /titan:quick. Suggesting /titan:05-plan instead."
+- **Task is too large:** If the plan requires more than 5 steps or would touch more than 10 files, stop and recommend `/titan:06-plan` + `/titan:07-build` instead. Display: "This task is too large for /titan:quick. Suggesting /titan:06-plan instead."
 - **Tests fail after execution:** Do NOT commit. Report the failure. Offer to fix or revert.
 - **Git working tree dirty:** Warn the user. Offer to `git stash` before proceeding or abort.
 - **User rejects plan:** Revise based on feedback. Allow up to 3 revisions before suggesting the user provide a more specific task description.
@@ -257,7 +257,7 @@ Print (as markdown, NOT in a code block):
 - Maximum 30 minutes estimated effort
 - Maximum 3 acceptance criteria
 
-If ANY limit is exceeded, halt and redirect to `/titan:05-plan`.
+If ANY limit is exceeded, halt and redirect to `/titan:06-plan`.
 
 ## What's Next
 
@@ -268,7 +268,7 @@ After the quick task completes, display (as markdown, NOT in a code block):
 ### ★ Recommended
 
 > **Return to your main workflow.**
-> [If a phase is active: Continue with `/titan:06-build` for Phase NN.]
+> [If a phase is active: Continue with `/titan:07-build` for Phase NN.]
 > [If no phase is active: Run `/titan:progress` to see where you left off.]
 
 ### Other options

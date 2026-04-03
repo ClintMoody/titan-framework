@@ -1,9 +1,9 @@
 ---
-name: titan:08-ship
+name: titan:09-ship
 description: Ship a milestone — pre-flight checks, branch merges, release tagging, archival, and celebration.
 ---
 
-# /titan:08-ship — Release a Milestone
+# /titan:09-ship — Release a Milestone
 
 > Ship what you've built. This command runs pre-flight checks, merges phase branches,
 > creates a release tag, archives phase data, and celebrates your achievement.
@@ -19,7 +19,7 @@ Before running, verify ALL of the following. If any are missing, STOP and tell t
 - `.titan/DECISIONS.md` exists (created during vision or build phases)
 - Git repository is initialized
 
-If no phases are verified, tell the user: "No verified phases to ship. Run `/titan:07-verify` on your completed phases first."
+If no phases are verified, tell the user: "No verified phases to ship. Run `/titan:08-verify` on your completed phases first."
 
 ---
 
@@ -98,7 +98,7 @@ Every check below MUST pass. If any fails, the ship is BLOCKED until the issue i
 Cannot ship until the following are resolved:
   [list of failed checks with remediation steps]
 
-Fix these issues and re-run /titan:08-ship.
+Fix these issues and re-run /titan:09-ship.
 ```
 STOP. Do not proceed.
 
@@ -310,7 +310,7 @@ final_commit: [full commit hash]
 [Keep items deferred to future milestones]
 
 ## Next Action
-> Milestone [RELEASE_VERSION] shipped. Start next milestone with /titan:02-vision or /titan:05-plan.
+> Milestone [RELEASE_VERSION] shipped. Start next milestone with /titan:02-vision or /titan:06-plan.
 ```
 
 ### Step 8 — Celebration Banner
@@ -392,7 +392,7 @@ Print (as markdown, NOT in a code block):
 - This command does NOT push to remote. It only performs local git operations (merge + tag). Pushing is explicitly left to the user. The celebration banner includes push instructions.
 - Phase branches are NOT deleted after merge. They remain as historical references. The user can delete them manually if desired.
 - The archive preserves a complete record of every phase's plan, execution, and evaluation. This is your project's institutional memory.
-- If the roadmap has additional phases beyond this milestone, STATE.md will guide the user to continue planning. A new milestone doesn't require re-running `/titan:01-init` or `/titan:02-vision` — just `/titan:05-plan` for the next phase.
+- If the roadmap has additional phases beyond this milestone, STATE.md will guide the user to continue planning. A new milestone doesn't require re-running `/titan:01-init` or `/titan:02-vision` — just `/titan:06-plan` for the next phase.
 
 ---
 
@@ -406,14 +406,14 @@ After shipping, display based on the roadmap state:
 
 ### ★ Recommended
 
-> Run `/titan:05-plan` to plan **Phase NN — [Next Phase Name]**. Your roadmap shows [X] phases remaining.
+> Run `/titan:06-plan` to plan **Phase NN — [Next Phase Name]**. Your roadmap shows [X] phases remaining.
 
 ### Other options
 
 | Command | Action |
 |---------|--------|
 | `/titan:02-vision` | Revisit the roadmap if priorities have shifted |
-| `/titan:03-explore` | Research unknowns before planning the next phase |
+| `/titan:04-explore` | Research unknowns before planning the next phase |
 | `/titan:progress` | See full project dashboard and current position |
 | `/titan:pause` | Save state and take a break — you've earned it |
 

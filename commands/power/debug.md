@@ -326,8 +326,8 @@ After the bug is fixed, display (as markdown, NOT in a code block):
 ### ★ Recommended
 
 > **Return to your main workflow.**
-> [If mid-build: Continue with `/titan:06-build` for Phase NN.]
-> [If mid-verify: Continue with `/titan:07-verify` for Phase NN.]
+> [If mid-build: Continue with `/titan:07-build` for Phase NN.]
+> [If mid-verify: Continue with `/titan:08-verify` for Phase NN.]
 > [If standalone: Run `/titan:progress` to see your current position.]
 
 ### Other options

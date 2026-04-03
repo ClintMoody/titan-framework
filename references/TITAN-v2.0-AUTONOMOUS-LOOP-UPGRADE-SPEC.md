@@ -135,7 +135,7 @@ The Initializer Agent executes on first run and produces:
 
 5. **Initial git commit** — Clean baseline with descriptive message. All future sessions can `git log` and `git diff` to understand trajectory.
 
-**New command:** `/titan:00-bootstrap`
+**New command:** `/titan:03-bootstrap`
 - Replaces the initialization portion of `/titan:01-init`
 - Only runs once per project (detects `.titan/MANIFEST.json` existence)
 - Generates all 5 artifacts above
@@ -740,7 +740,7 @@ The knowledge store can optionally live at `~/.titan/global-knowledge.db` in add
 
 | Command | Phase | Purpose |
 |---------|-------|---------|
-| `/titan:00-bootstrap` | 5 | First-run initializer — creates autonomous scaffold |
+| `/titan:03-bootstrap` | 5 | First-run initializer — creates autonomous scaffold |
 | `/titan:verify-e2e` | 6 | End-to-end verification for features |
 | `/titan:loop-start` | 6 | Start autonomous loop controller |
 | `/titan:loop-stop` | 6 | Gracefully stop the loop (finish current feature) |

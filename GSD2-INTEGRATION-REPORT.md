@@ -36,11 +36,11 @@ They solve the same problem — structured AI-assisted software development for 
 | # | Capability | Before | After |
 |---|-----------|--------|-------|
 | 1 | **Dynamic model routing** | Static profiles only (quality/balanced/budget). Same model for every task in a role. | Heuristic classification (light/standard/heavy) routes tasks to cost-appropriate models. Light tasks get cheaper models. Heavy tasks are protected. 40-60% potential cost savings. |
-| 2 | **Verification commands** | Manual — user runs lint/test themselves, or waits for /titan:07-verify to catch issues. | Configurable shell commands auto-run after each task commit. Failures trigger auto-fix with retry limits. Catches regressions immediately. |
+| 2 | **Verification commands** | Manual — user runs lint/test themselves, or waits for /titan:08-verify to catch issues. | Configurable shell commands auto-run after each task commit. Failures trigger auto-fix with retry limits. Catches regressions immediately. |
 | 3 | **Git isolation strategies** | Branch-per-phase only. Requires branch switching. Planning artifacts invisible across branches. | Three options: `branch` (default, unchanged), `worktree` (complete file isolation, no switching, artifacts visible), `none` (direct commits for simple projects). |
 | 4 | **Cost/budget tracking** | None. No visibility into token spend or cost per task. | Per-task metrics logged to `.titan/metrics.json`. Budget ceiling with enforcement (warn/pause/halt). Forecasting after N tasks. Cost dashboard in /titan:progress. |
 | 5 | **Crash recovery** | HANDOFF.md only (requires explicit /titan:pause before crash). If session crashes without pause, context is lost. | Lock files detect crashes. Completed-units tracking prevents re-execution. Session forensics reconstruct what happened. Recovery briefing shows exactly where to resume. |
-| 6 | **Roadmap reassessment** | Roadmap is static after /titan:02-vision. What you planned is what you build, even if you learn it's wrong. | After each phase verifies, /titan:07-verify reviews the roadmap against learnings and suggests adjustments. Prevents building on outdated assumptions. |
+| 6 | **Roadmap reassessment** | Roadmap is static after /titan:02-vision. What you planned is what you build, even if you learn it's wrong. | After each phase verifies, /titan:08-verify reviews the roadmap against learnings and suggests adjustments. Prevents building on outdated assumptions. |
 | 7 | **UAT script generation** | None. Manual testing is unstructured. | After build completes, generates a UAT script with test cases mapped to acceptance criteria. Gives users a structured way to verify before formal review. |
 | 8 | **Stuck detection** | Task blocks → one retry → mark BLOCKED. No analysis of why. | Classifies blocker type (missing dependency, auth issue, test setup, etc.). Suggests specific resolution. Offers auto-resolve for high-confidence cases. |
 | 9 | **Background captures** | None. Stray thoughts during execution are lost. | `.titan/CAPTURES.md` stores ideas, concerns, and observations without interrupting workflow. Triaged during planning and verification. |
@@ -52,13 +52,13 @@ They solve the same problem — structured AI-assisted software development for 
 | File | Changes | What Changed |
 |------|---------|-------------|
 | `templates/config.yaml` | +140 lines | 5 new config sections: dynamic routing, git isolation options, verification commands, budget tracking, crash recovery, step mode, captures |
-| `commands/core/06-build.md` | +166 lines | Steps 1c (crash recovery check), 1d (dynamic routing setup), Step 2 (worktree option), Steps C-2 through C-5 (verification commands, completed units, cost metrics, stuck detection), Step 6b (UAT generation), Step 6c (lock cleanup) |
+| `commands/core/07-build.md` | +166 lines | Steps 1c (crash recovery check), 1d (dynamic routing setup), Step 2 (worktree option), Steps C-2 through C-5 (verification commands, completed units, cost metrics, stuck detection), Step 6b (UAT generation), Step 6c (lock cleanup) |
 | `commands/session/settings.md` | +116 lines | Options 7-11: dynamic routing, budget/cost, crash recovery, verification commands, step mode |
 | `commands/session/progress.md` | +57 lines | Steps 8b (cost dashboard), 8c (background captures display) |
-| `commands/core/07-verify.md` | +51 lines | Steps 11b (roadmap reassessment), 11c (capture triage) |
+| `commands/core/08-verify.md` | +51 lines | Steps 11b (roadmap reassessment), 11c (capture triage) |
 | `commands/session/resume.md` | +35 lines | Step 2b (crash detection and recovery briefing) |
-| `commands/core/05-plan.md` | +15 lines | Step 3b (review background captures before planning) |
-| `commands/core/08-ship.md` | +11 lines | Cost summary section in release report |
+| `commands/core/06-plan.md` | +15 lines | Step 3b (review background captures before planning) |
+| `commands/core/09-ship.md` | +11 lines | Cost summary section in release report |
 | `commands/session/pause.md` | +8 lines | Step 4b (remove build lock on pause) |
 | `ARCHITECTURE-SPEC.md` | +62 lines | Full GSD-2 integration section with comparison tables |
 | `templates/STATE.md` | +30 lines | Cost & Budget section, Crash Recovery section |

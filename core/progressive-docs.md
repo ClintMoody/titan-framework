@@ -390,7 +390,7 @@ Different agents need different documentation. Loading irrelevant docs wastes co
 
 ### How Partitioning Works
 
-The orchestrating command (e.g., `/titan:06-build`) is responsible for loading the correct documentation partition before spawning an agent. The process:
+The orchestrating command (e.g., `/titan:07-build`) is responsible for loading the correct documentation partition before spawning an agent. The process:
 
 ```
 1. Determine which agent is being spawned

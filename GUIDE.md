@@ -8,7 +8,7 @@
 
 1. [Quick Start](#quick-start)
 2. [The Golden Path](#the-golden-path)
-3. [Core Commands (01-08)](#core-commands)
+3. [Core Commands (01-09)](#core-commands)
 4. [Power Tools](#power-tools)
 5. [Session Management](#session-management)
 6. [Agents](#agents)
@@ -30,12 +30,12 @@
 ```
 /titan:01-init              ← Set up project structure
 /titan:02-vision            ← Define what you're building
-/titan:03-explore           ← Research unknowns (skip if straightforward)
-/titan:04-design            ← Design the UI (skip if no UI)
-/titan:05-plan              ← Plan the first phase
-/titan:06-build             ← Build it
-/titan:07-verify            ← Prove it works
-/titan:08-ship              ← Release
+/titan:04-explore           ← Research unknowns (skip if straightforward)
+/titan:05-design            ← Design the UI (skip if no UI)
+/titan:06-plan              ← Plan the first phase
+/titan:07-build             ← Build it
+/titan:08-verify            ← Prove it works
+/titan:09-ship              ← Release
 ```
 
 ### Existing Project (Brownfield)
@@ -44,10 +44,10 @@
 /titan:01-init              ← Set up TITAN in existing project
 /titan:scan              ← Analyze the codebase (4 parallel researchers)
 /titan:02-vision            ← Define goals for this milestone
-/titan:05-plan              ← Plan the first phase
-/titan:06-build             ← Build it
-/titan:07-verify            ← Prove it works
-/titan:08-ship              ← Release
+/titan:06-plan              ← Plan the first phase
+/titan:07-build             ← Build it
+/titan:08-verify            ← Prove it works
+/titan:09-ship              ← Release
 ```
 
 ### Resuming Work
@@ -73,7 +73,7 @@
 
 ## The Golden Path
 
-The Golden Path is TITAN's core workflow. 8 numbered steps, followed in order.
+The Golden Path is TITAN's core workflow. 9 numbered steps, followed in order.
 
 ```
   01 INIT ──→ 02 VISION ──→ 03 EXPLORE ──→ 04 DESIGN
@@ -138,11 +138,11 @@ Never skip: 01 Init, 02 Vision, 05 Plan, 06 Build, 07 Verify, 08 Ship.
 - `ARCHITECTURE.md` — System design, components, patterns, tech choices
 - `ROADMAP.md` — Phase breakdown with milestones
 
-**Next step:** `/titan:03-explore` (if unknowns) or `/titan:04-design` (if UI) or `/titan:05-plan`
+**Next step:** `/titan:04-explore` (if unknowns) or `/titan:05-design` (if UI) or `/titan:06-plan`
 
 ---
 
-### /titan:03-explore — Research the Unknown
+### /titan:04-explore — Research the Unknown
 
 **When:** Before planning, when there are things you don't fully understand.
 
@@ -155,11 +155,11 @@ Never skip: 01 Init, 02 Vision, 05 Plan, 06 Build, 07 Verify, 08 Ship.
 
 **Produces:** `EXPLORATION.md` in the current phase directory, updates to `KNOWLEDGE.md`
 
-**Next step:** `/titan:04-design` (if UI) or `/titan:05-plan`
+**Next step:** `/titan:05-design` (if UI) or `/titan:06-plan`
 
 ---
 
-### /titan:04-design — Design the UI/UX
+### /titan:05-design — Design the UI/UX
 
 **When:** Your project has a user interface.
 
@@ -174,11 +174,11 @@ Never skip: 01 Init, 02 Vision, 05 Plan, 06 Build, 07 Verify, 08 Ship.
 
 **Skip if:** API-only, library, CLI tool, infrastructure
 
-**Next step:** `/titan:05-plan`
+**Next step:** `/titan:06-plan`
 
 ---
 
-### /titan:05-plan — Create Execution Plan
+### /titan:06-plan — Create Execution Plan
 
 **When:** Starting a new phase. Run for each phase in your roadmap.
 
@@ -194,11 +194,11 @@ Never skip: 01 Init, 02 Vision, 05 Plan, 06 Build, 07 Verify, 08 Ship.
 
 **Produces:** `PLAN.md` in the current phase directory
 
-**Next step:** `/titan:06-build`
+**Next step:** `/titan:07-build`
 
 ---
 
-### /titan:06-build — Execute the Plan
+### /titan:07-build — Execute the Plan
 
 **When:** After plan is approved.
 
@@ -213,11 +213,11 @@ Never skip: 01 Init, 02 Vision, 05 Plan, 06 Build, 07 Verify, 08 Ship.
 
 **Produces:** Working code, atomic git commits, progress updates
 
-**Next step:** `/titan:07-verify`
+**Next step:** `/titan:08-verify`
 
 ---
 
-### /titan:07-verify — Prove It Works (MANDATORY)
+### /titan:08-verify — Prove It Works (MANDATORY)
 
 **When:** After build completes. Cannot be skipped.
 
@@ -240,12 +240,12 @@ Never skip: 01 Init, 02 Vision, 05 Plan, 06 Build, 07 Verify, 08 Ship.
 
 **Produces:** `SUMMARY.md`, `EVALUATION.md`, knowledge updates
 
-**If FAIL:** Fix issues, return to `/titan:06-build`
-**If PASS:** `/titan:05-plan` (next phase) or `/titan:08-ship` (if milestone complete)
+**If FAIL:** Fix issues, return to `/titan:07-build`
+**If PASS:** `/titan:06-plan` (next phase) or `/titan:09-ship` (if milestone complete)
 
 ---
 
-### /titan:08-ship — Release
+### /titan:09-ship — Release
 
 **When:** All phases for the milestone are verified.
 
@@ -412,12 +412,12 @@ TITAN deploys 9 specialized agents, each in a fresh 200k-token context window.
 
 | Agent | Role | Default Model | Spawned By |
 |-------|------|--------------|------------|
-| **titan-executor** | Implements tasks from plans | sonnet | /titan:06-build |
-| **titan-verifier** | Adversarial code review | sonnet (opus for complex) | /titan:07-verify, /titan:review |
-| **titan-researcher** | Codebase analysis | sonnet | /titan:05-plan, /titan:scan |
-| **titan-designer** | HTML/CSS mockup generation | sonnet | /titan:04-design |
+| **titan-executor** | Implements tasks from plans | sonnet | /titan:07-build |
+| **titan-verifier** | Adversarial code review | sonnet (opus for complex) | /titan:08-verify, /titan:review |
+| **titan-researcher** | Codebase analysis | sonnet | /titan:06-plan, /titan:scan |
+| **titan-designer** | HTML/CSS mockup generation | sonnet | /titan:05-design |
 | **titan-investigator** | Novel problem research | sonnet (opus for novel) | /titan:investigate |
-| **titan-strategist** | Architecture evaluation | opus | /titan:03-explore, /titan:02-vision |
+| **titan-strategist** | Architecture evaluation | opus | /titan:04-explore, /titan:02-vision |
 | **titan-security** | Vulnerability detection | sonnet | /titan:audit |
 | **titan-optimizer** | Performance analysis | sonnet | /titan:audit |
 | **titan-tester** | Test generation | sonnet | /titan:test, /titan:refactor |
@@ -505,12 +505,12 @@ anti_patterns:
 | `REQUIREMENTS.md` | /titan:02-vision | Requirements with BDD acceptance criteria |
 | `ARCHITECTURE.md` | /titan:02-vision | System design and technology choices |
 | `ROADMAP.md` | /titan:02-vision | Phase breakdown with milestones |
-| `KNOWLEDGE.md` | /titan:07-verify | Accumulated project learnings |
-| `DECISIONS.md` | /titan:07-verify | Decision log with rationale |
-| `PLAN.md` | /titan:05-plan | Per-phase execution plan |
-| `EXPLORATION.md` | /titan:03-explore | Research findings |
-| `SUMMARY.md` | /titan:07-verify | Per-phase reconciliation report |
-| `EVALUATION.md` | /titan:07-verify | Per-phase adversarial review |
+| `KNOWLEDGE.md` | /titan:08-verify | Accumulated project learnings |
+| `DECISIONS.md` | /titan:08-verify | Decision log with rationale |
+| `PLAN.md` | /titan:06-plan | Per-phase execution plan |
+| `EXPLORATION.md` | /titan:04-explore | Research findings |
+| `SUMMARY.md` | /titan:08-verify | Per-phase reconciliation report |
+| `EVALUATION.md` | /titan:08-verify | Per-phase adversarial review |
 | `INVESTIGATION.md` | /titan:investigate | Novel problem analysis |
 | `EXPERIMENT.md` | /titan:experiment | Experiment results |
 | `AUDIT.md` | /titan:audit | Security/performance audit |
@@ -573,7 +573,7 @@ git:
 
 # Reconciliation
 reconciliation:
-  mandatory: true       # Cannot skip /titan:07-verify
+  mandatory: true       # Cannot skip /titan:08-verify
   state_consistency_check: true
 
 # Context management
@@ -666,7 +666,7 @@ PROBLEM → RESEARCH → HYPOTHESIZE → EXPERIMENT → EVALUATE → DECIDE
 
 1. **Run `/titan:investigate`** — Articulate the problem, research prior art, generate minimum 3 hypotheses, define evaluation criteria, get a recommendation.
 
-2. **If confident:** Proceed to `/titan:05-plan` with the recommended approach.
+2. **If confident:** Proceed to `/titan:06-plan` with the recommended approach.
 
 3. **If uncertain:** Run `/titan:experiment` — Build minimal prototypes for top 2-3 approaches, measure results, compare, pick the winner.
 
@@ -688,13 +688,13 @@ PROBLEM → RESEARCH → HYPOTHESIZE → EXPERIMENT → EVALUATE → DECIDE
 ### Starting Fresh
 
 ```
-/titan:01-init → /titan:02-vision → /titan:03-explore → /titan:04-design → /titan:05-plan → /titan:06-build → /titan:07-verify → /titan:08-ship
+/titan:01-init → /titan:02-vision → /titan:04-explore → /titan:05-design → /titan:06-plan → /titan:07-build → /titan:08-verify → /titan:09-ship
 ```
 
 ### Adding a Feature to Existing Project
 
 ```
-/titan:01-init (if TITAN not set up) → /titan:scan → /titan:05-plan → /titan:06-build → /titan:07-verify
+/titan:01-init (if TITAN not set up) → /titan:scan → /titan:06-plan → /titan:07-build → /titan:08-verify
 ```
 
 ### Debugging a Production Issue
@@ -751,7 +751,7 @@ Run `/titan:progress` to see current state. If needed, manually update `.titan/S
 
 ### "Verify found critical issues"
 
-This is working as intended. Fix the issues flagged in `EVALUATION.md`, then run `/titan:06-build` to implement fixes, then `/titan:07-verify` again.
+This is working as intended. Fix the issues flagged in `EVALUATION.md`, then run `/titan:07-build` to implement fixes, then `/titan:08-verify` again.
 
 ### "Context is running low"
 
@@ -796,7 +796,7 @@ The planner auto-splits work that exceeds 50% context or 3 tasks. If it doesn't,
 ### Progress Bar
 
 ```
-Phase 3 of 8 ▓▓▓▓▓▓▓▓░░░░░░░░ 37%
+Phase 3 of 9 ▓▓▓▓▓░░░░░░░░░░░ 33%
 ```
 
 ---

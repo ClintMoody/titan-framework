@@ -213,7 +213,7 @@ tdd:
   context_target: 40
 
 # ── Verification ─────────────────────────────────────────────
-# Controls how verification (07-verify) behaves.
+# Controls how verification (08-verify) behaves.
 verification:
   # Whether verification is mandatory (strongly recommended)
   mandatory: true
@@ -222,7 +222,7 @@ verification:
   adversarial: true
 
   # Two-stage review: separate spec compliance from code quality
-  # When true (default): 07-verify spawns two verifier agents —
+  # When true (default): 08-verify spawns two verifier agents —
   #   Stage A (spec compliance) then Stage B (code quality)
   # When false: single-pass review across all 5 dimensions (legacy)
   two_stage_review: true
@@ -252,7 +252,7 @@ verification:
   # Roadmap reassessment (Cannibalized from GSD-2)
   # After each phase verifies successfully, reassess the roadmap.
   # The roadmap may need adjustment based on what was learned.
-  # When true: 07-verify adds a Step 12b that reviews ROADMAP.md
+  # When true: 08-verify adds a Step 12b that reviews ROADMAP.md
   # against what was built and suggests adjustments.
   reassess_roadmap: true
 
@@ -325,7 +325,7 @@ crash_recovery:
 # Pause between units for human review. Useful when you want
 # oversight without full manual control.
 step_mode:
-  # Enable pause between tasks during /titan:06-build
+  # Enable pause between tasks during /titan:07-build
   enabled: false
 
   # Pause between waves (less granular than between tasks)

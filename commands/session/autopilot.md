@@ -254,7 +254,7 @@ After autopilot completes all phases, display (as markdown, NOT in a code block)
 
 ### ★ Recommended
 
-> Run `/titan:08-ship` to **release the milestone**. All phases are built and verified.
+> Run `/titan:09-ship` to **release the milestone**. All phases are built and verified.
 
 ### Other options
 
@@ -279,7 +279,7 @@ If autopilot was stopped mid-run, display (as markdown, NOT in a code block):
 
 | Command | Action |
 |---------|--------|
-| `/titan:06-build` | Continue building manually (more control) |
+| `/titan:07-build` | Continue building manually (more control) |
 | `/titan:debug` | Debug the issue that stopped autopilot |
 | `/titan:progress` | See what was completed vs. what remains |
 | `/titan:pause` | Save state and come back later |
@@ -291,4 +291,4 @@ If autopilot was stopped mid-run, display (as markdown, NOT in a code block):
 - Autopilot works best for well-defined phases with clear acceptance criteria.
 - For exploratory or research-heavy phases, manual execution gives better results.
 - You can start autopilot mid-phase — it picks up where the current PLAN.md left off.
-- If you're unsure about a phase, run `/titan:05-plan` manually first, review it, then start autopilot from the build step.
+- If you're unsure about a phase, run `/titan:06-plan` manually first, review it, then start autopilot from the build step.

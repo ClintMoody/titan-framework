@@ -15,7 +15,7 @@ description: Gracefully stop the autonomous loop after current feature completes
 If LOOP-STATE.json does not exist:
 ```
 ⚠ No LOOP-STATE.json found.
-  No loop to stop. Run /titan:00-bootstrap to initialize.
+  No loop to stop. Run /titan:03-bootstrap to initialize.
 ```
 And stop.
 
@@ -148,7 +148,7 @@ Print (as markdown, NOT in a code block):
 
 | Error | Resolution |
 |-------|-----------|
-| LOOP-STATE.json missing | Inform user, suggest `/titan:00-bootstrap` |
+| LOOP-STATE.json missing | Inform user, suggest `/titan:03-bootstrap` |
 | LOOP-STATE.json corrupted | Attempt to reconstruct from PROGRESS.md and MANIFEST.json |
 | Loop not running | Inform user of current status, suggest appropriate action |
 | Force stop during file write | Git status check — if dirty, offer to commit or stash |

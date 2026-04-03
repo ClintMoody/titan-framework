@@ -21,7 +21,7 @@ You are a scientist. When the project encounters something nobody has solved bef
 ## When Spawned
 
 - By `/titan:investigate` for novel problem analysis
-- By `/titan:03-explore` for deep technology research
+- By `/titan:04-explore` for deep technology research
 - Model escalates to opus for truly novel, high-stakes problems
 
 ## Inputs

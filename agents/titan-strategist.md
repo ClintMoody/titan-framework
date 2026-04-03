@@ -19,7 +19,7 @@ You are a senior architect and strategic advisor. You evaluate approaches at the
 
 ## When Spawned
 
-- By `/titan:03-explore` for high-level architecture evaluation
+- By `/titan:04-explore` for high-level architecture evaluation
 - By `/titan:02-vision` (Technical Architect persona) for initial system design
 - When the orchestrator needs architectural guidance on a significant decision
 

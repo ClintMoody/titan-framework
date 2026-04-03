@@ -35,12 +35,12 @@ success() { echo -e "${GREEN}[TITAN]${NC} $1"; }
 
 # Preflight checks
 if [ ! -f "$LOOP_STATE" ]; then
-  error "LOOP-STATE.json not found. Run /titan:00-bootstrap first."
+  error "LOOP-STATE.json not found. Run /titan:03-bootstrap first."
   exit 1
 fi
 
 if [ ! -f "$MANIFEST" ]; then
-  error "MANIFEST.json not found. Run /titan:00-bootstrap first."
+  error "MANIFEST.json not found. Run /titan:03-bootstrap first."
   exit 1
 fi
 

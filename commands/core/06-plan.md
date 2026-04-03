@@ -1,9 +1,9 @@
 ---
-name: titan:05-plan
+name: titan:06-plan
 description: Create a detailed execution plan for the current phase with tasks, waves, acceptance criteria, and boundaries.
 ---
 
-# /titan:05-plan — Phase Execution Planning
+# /titan:06-plan — Phase Execution Planning
 
 > Create the execution blueprint for the current phase. This command analyzes the codebase,
 > maps acceptance criteria to concrete tasks, organizes work into parallel waves, and produces
@@ -20,7 +20,7 @@ Before running, verify ALL of the following exist. If any are missing, STOP and 
 - `.titan/config.yaml` exists (created by `/titan:01-init`)
 - STATE.md shows current step is `plan` or current phase status is `pending`
 
-If STATE.md shows step is `build` or `verify`, warn the user: "Phase NN already has a plan. Run `/titan:06-build` to execute it, or confirm you want to re-plan."
+If STATE.md shows step is `build` or `verify`, warn the user: "Phase NN already has a plan. Run `/titan:07-build` to execute it, or confirm you want to re-plan."
 
 ---
 
@@ -374,7 +374,7 @@ Set the PLAN.md frontmatter `status` from `draft` to `approved`.
 - STATE.md `Step` set to `build (ready)`
 - STATE.md `Status` set to `active`
 - STATE.md `Last Action` set to plan approval description
-- STATE.md `Next Action` set to `Run /titan:06-build to execute Phase NN`
+- STATE.md `Next Action` set to `Run /titan:07-build to execute Phase NN`
 
 ---
 
@@ -382,12 +382,12 @@ Set the PLAN.md frontmatter `status` from `draft` to `approved`.
 
 | Situation | Response |
 |-----------|----------|
-| ROADMAP.md has no pending phases | "All phases are complete. Run `/titan:08-ship` to release, or add new phases to ROADMAP.md." |
+| ROADMAP.md has no pending phases | "All phases are complete. Run `/titan:09-ship` to release, or add new phases to ROADMAP.md." |
 | REQUIREMENTS.md has no ACs for this phase | "No acceptance criteria mapped to Phase NN. Either update REQUIREMENTS.md or re-run `/titan:02-vision` to add requirements." |
 | Researcher reports critical blockers | Present blockers to user. Offer: fix blockers first, plan around them, or skip phase. |
 | Estimated scope exceeds 50% context | Auto-split into sub-phases. Present split for approval. |
 | User rejects plan | Ask what to change. Apply modifications. Re-validate. Re-present. |
-| EXPLORATION.md not found for phase | Proceed without exploration context. Note in plan: "No prior exploration. Consider running `/titan:03-explore` if unknowns exist." |
+| EXPLORATION.md not found for phase | Proceed without exploration context. Note in plan: "No prior exploration. Consider running `/titan:04-explore` if unknowns exist." |
 | Phase directory already has PLAN.md | Ask: "Phase NN already has a plan. Overwrite? [yes/no]" |
 
 ---
@@ -402,14 +402,14 @@ After the plan is approved, display (as markdown, NOT in a code block):
 
 ### ★ Recommended
 
-> Run `/titan:06-build` to execute **Phase NN**. [X] tasks across [Y] waves are ready to go.
+> Run `/titan:07-build` to execute **Phase NN**. [X] tasks across [Y] waves are ready to go.
 
 ### Other options
 
 | Command | Action |
 |---------|--------|
-| `/titan:03-explore` | Research unknowns before building (if the plan revealed gaps) |
-| `/titan:04-design` | Design UI screens referenced in the plan (if not done yet) |
+| `/titan:04-explore` | Research unknowns before building (if the plan revealed gaps) |
+| `/titan:05-design` | Design UI screens referenced in the plan (if not done yet) |
 | `/titan:audit` | Run a security audit before building security-sensitive features |
 | `/titan:progress` | See full project dashboard and current position |
 
@@ -453,7 +453,7 @@ If ANY validation check fails, fix the plan before presenting it. Do NOT ask for
 
 ## Tips
 
-- Run `/titan:03-explore` before `/titan:05-plan` if the phase involves unfamiliar technologies or novel problems.
+- Run `/titan:04-explore` before `/titan:06-plan` if the phase involves unfamiliar technologies or novel problems.
 - If you find yourself wanting more than 3 tasks, the phase is probably too big. Let TITAN split it.
 - Boundary definitions save enormous debugging time. Be generous with what you protect.
 - The researcher agent's output is your best friend — it finds patterns and conventions you'd otherwise miss.

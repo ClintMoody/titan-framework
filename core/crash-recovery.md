@@ -14,7 +14,7 @@ Claude Code sessions can crash, timeout, or be interrupted. Without crash recove
 
 ### Layer 1: Lock Files
 
-During `/titan:06-build`, a lock file is created at `.titan/build.lock`:
+During `/titan:07-build`, a lock file is created at `.titan/build.lock`:
 
 ```json
 {
@@ -111,7 +111,7 @@ When a stale lock is detected, TITAN reconstructs context:
 
 ## Integration Points
 
-### /titan:06-build
+### /titan:07-build
 - Step 1b (new): Check for stale lock → trigger recovery if found
 - After Step 3: Write lock file
 - After each task: Update lock heartbeat + append to completed-units

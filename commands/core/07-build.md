@@ -1,9 +1,9 @@
 ---
-name: titan:06-build
+name: titan:07-build
 description: Execute the phase plan using parallel agents and in-session work. Thin orchestrator pattern — delegate, don't implement.
 ---
 
-# /titan:06-build — Phase Execution
+# /titan:07-build — Phase Execution
 
 > Execute the approved PLAN.md for the current phase. This command uses the Thin Orchestrator
 > Pattern: it stays at 10-15% context usage by delegating implementation to fresh-context
@@ -19,7 +19,7 @@ Before running, verify ALL of the following. If any are missing, STOP and tell t
 - PLAN.md frontmatter `status` is `approved` (not `draft`)
 - Git working tree is clean (no uncommitted changes). If dirty, ask user to commit or stash first.
 
-If STATE.md shows step is `verify`, warn: "Phase NN is already built. Run `/titan:07-verify` to verify it."
+If STATE.md shows step is `verify`, warn: "Phase NN is already built. Run `/titan:08-verify` to verify it."
 
 ---
 
@@ -412,7 +412,7 @@ Behavior per bracket:
   ```
   ⚠ Context bracket: CRITICAL — Saving state now.
   ```
-  Execute the state save procedure (Step 7) and instruct the user to resume with `/titan:resume` then `/titan:06-build`.
+  Execute the state save procedure (Step 7) and instruct the user to resume with `/titan:resume` then `/titan:07-build`.
 
 ### Step 6 — Build Complete (All Waves Done)
 
@@ -437,12 +437,12 @@ Print (as markdown, NOT in a code block):
 **Result:** [count DONE] of [total] tasks completed
 
 [If all DONE:]
-> ✓ All tasks complete. Run `/titan:07-verify` to verify this phase.
+> ✓ All tasks complete. Run `/titan:08-verify` to verify this phase.
 
 [If any BLOCKED:]
 > ⚠ [count] tasks blocked. Review blockers above.
 >
-> **Options:** `[verify]` Proceed with completed tasks → `[retry]` Retry blocked tasks → `[replan]` Return to `/titan:05-plan`
+> **Options:** `[verify]` Proceed with completed tasks → `[retry]` Retry blocked tasks → `[replan]` Return to `/titan:06-plan`
 
 ---
 
@@ -472,13 +472,13 @@ If `crash_recovery.lock_file` is enabled:
 If `.titan/MANIFEST.json` exists (v2.0 autonomous scaffold):
 
 1. After all waves complete, run a quick E2E smoke test on the features built in this phase
-2. This is NOT the full verification (that's in /titan:07-verify) — it's a quick check to catch obvious breakage
+2. This is NOT the full verification (that's in /titan:08-verify) — it's a quick check to catch obvious breakage
 3. If smoke test fails on a feature just built:
    - Print: `⚠ E2E smoke test failed for [feature]. Consider fixing before verification.`
    - Do NOT block the build — let verification handle the formal pass/fail
 4. If smoke test passes: `✓ E2E smoke test passed for [N] features`
 
-This pairs with the full E2E verification in `/titan:07-verify` and `/titan:verify-e2e`.
+This pairs with the full E2E verification in `/titan:08-verify` and `/titan:verify-e2e`.
 
 ### Step 7 — Update State
 
@@ -494,7 +494,7 @@ Update STATE.md regardless of outcome:
 - Updated: [ISO timestamp]
 
 ## Next Action
-> Run /titan:07-verify to verify Phase NN — [Phase Name]
+> Run /titan:08-verify to verify Phase NN — [Phase Name]
 ```
 
 **If some tasks BLOCKED:**
@@ -512,7 +512,7 @@ Update STATE.md regardless of outcome:
 | T[X]: [blocker description] | [which dependent tasks are affected] | [suggested fix] |
 
 ## Next Action
-> Resolve blockers and re-run /titan:06-build, or run /titan:07-verify with partial completion
+> Resolve blockers and re-run /titan:07-build, or run /titan:08-verify with partial completion
 ```
 
 **If context save triggered:**
@@ -525,7 +525,7 @@ Update STATE.md regardless of outcome:
 - Updated: [ISO timestamp]
 
 ## Next Action
-> Run /titan:resume then /titan:06-build to continue Phase NN
+> Run /titan:resume then /titan:07-build to continue Phase NN
 ```
 
 Update PLAN.md frontmatter `status` to `built` (or `partial` if blockers).
@@ -548,7 +548,7 @@ These rules are NON-NEGOTIABLE. Violating them defeats the purpose of the agent 
 
 1. **DO NOT write production code in the orchestrator session.** Delegate to titan-executor agents. The only exception is `in-session` tasks explicitly marked in the plan.
 2. **DO NOT read large files into the orchestrator context.** Pass file paths to agents. Let agents read what they need.
-3. **DO NOT improvise.** Execute the plan literally. If the plan is wrong, go back to `/titan:05-plan`.
+3. **DO NOT improvise.** Execute the plan literally. If the plan is wrong, go back to `/titan:06-plan`.
 4. **DO NOT combine tasks into single commits.** One task = one commit. This is non-negotiable for `git bisect` and reconciliation.
 5. **DO NOT modify files listed in Boundaries.** Not even "small fixes." Not even comments. Nothing.
 6. **Monitor your context usage.** If you feel yourself approaching DEEP bracket, save state proactively.
@@ -579,13 +579,13 @@ After all tasks are complete, display (as markdown, NOT in a code block):
 
 ### ★ Recommended
 
-> Run `/titan:07-verify` to verify **Phase NN**. This is mandatory — nothing ships without verification.
+> Run `/titan:08-verify` to verify **Phase NN**. This is mandatory — nothing ships without verification.
 
 ### Other options
 
 | Command | Action |
 |---------|--------|
-| `/titan:05-plan` | Re-plan if tasks revealed the plan was wrong |
+| `/titan:06-plan` | Re-plan if tasks revealed the plan was wrong |
 | `/titan:debug` | Debug a specific issue discovered during build |
 | `/titan:progress` | See full project dashboard and current position |
 | `/titan:pause` | Save state if you need to stop for now |
@@ -598,14 +598,14 @@ If some tasks are blocked, display (as markdown, NOT in a code block):
 
 ### ★ Recommended
 
-> Resolve blockers, then continue `/titan:06-build`.
+> Resolve blockers, then continue `/titan:07-build`.
 
 ### Other options
 
 | Command | Action |
 |---------|--------|
-| `/titan:07-verify` | Verify what's been built so far (partial verification) |
-| `/titan:05-plan` | Re-plan with different approach to blocked tasks |
+| `/titan:08-verify` | Verify what's been built so far (partial verification) |
+| `/titan:06-plan` | Re-plan with different approach to blocked tasks |
 | `/titan:debug` | Investigate the root cause of blockers |
 | `/titan:investigate` | Research if the blocker involves a novel problem |
 
@@ -647,7 +647,7 @@ If ANY validation check fails, fix it before presenting the build complete banne
 ## Tips
 
 - Trust the thin orchestrator pattern. The urge to "just do it myself" is strong, but fresh-context agents produce better code because they aren't fatigued.
-- If a task keeps blocking, it usually means the plan was underspecified. Go back to `/titan:05-plan` and add more detail.
+- If a task keeps blocking, it usually means the plan was underspecified. Go back to `/titan:06-plan` and add more detail.
 - Watch context consumption. Building is the most context-hungry phase. Save early, save often.
 - Review agent output at checkpoints. Catching issues between waves is much cheaper than catching them in verification.
 - The atomic commit history is your safety net. If anything goes wrong, you can revert individual tasks cleanly.

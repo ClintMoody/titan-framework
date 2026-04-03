@@ -20,12 +20,12 @@ Every command starts with its stage banner:
 |---------|------------|
 | `/titan:01-init` | INITIALIZING |
 | `/titan:02-vision` | VISION |
-| `/titan:03-explore` | EXPLORING |
-| `/titan:04-design` | DESIGN |
-| `/titan:05-plan` | PLANNING |
-| `/titan:06-build` | BUILDING |
-| `/titan:07-verify` | VERIFYING |
-| `/titan:08-ship` | SHIPPING |
+| `/titan:04-explore` | EXPLORING |
+| `/titan:05-design` | DESIGN |
+| `/titan:06-plan` | PLANNING |
+| `/titan:07-build` | BUILDING |
+| `/titan:08-verify` | VERIFYING |
+| `/titan:09-ship` | SHIPPING |
 | `/titan:scan` | SCANNING CODEBASE |
 | `/titan:quick` | QUICK TASK |
 | `/titan:debug` | DEBUGGING |
@@ -84,7 +84,7 @@ Every command starts with its stage banner:
 
 ### Phase Progress Bar
 ```
-Phase 3 of 8 ▓▓▓▓▓▓▓▓░░░░░░░░ 37%
+Phase 3 of 9 ▓▓▓▓▓░░░░░░░░░░░ 33%
 ```
 
 ### Task Progress

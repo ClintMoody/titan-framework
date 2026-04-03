@@ -15,7 +15,7 @@ description: Show autonomous loop health, progress, and next priority
 If either file is missing:
 ```
 ⚠ Loop infrastructure not found.
-  Run /titan:00-bootstrap to set up autonomous development.
+  Run /titan:03-bootstrap to set up autonomous development.
 ```
 And stop.
 
@@ -207,8 +207,8 @@ None — this command only reads state, it does not modify it.
 
 | Error | Resolution |
 |-------|-----------|
-| LOOP-STATE.json missing | Direct to `/titan:00-bootstrap` |
-| MANIFEST.json missing | Direct to `/titan:00-bootstrap` |
+| LOOP-STATE.json missing | Direct to `/titan:03-bootstrap` |
+| MANIFEST.json missing | Direct to `/titan:03-bootstrap` |
 | LOOP-STATE.json corrupted | Attempt to reconstruct from PROGRESS.md |
 | PROGRESS.md missing | Show status without recent activity section |
 | Inconsistent state (LOOP-STATE says running but no process active) | Suggest `/titan:loop-stop --force` then `/titan:loop-start` |

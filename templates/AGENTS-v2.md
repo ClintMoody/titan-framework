@@ -29,7 +29,7 @@
 - Environment must pass smoke test before new work
 - All features verified end-to-end before marking "passing"
 - Commits use format: `titan(phase-NN): description`
-- Never skip verification (`/titan:07-verify`)
+- Never skip verification (`/titan:08-verify`)
 - Document non-trivial decisions in `DECISIONS.md`
 
 ## Domain: {{DOMAIN}}

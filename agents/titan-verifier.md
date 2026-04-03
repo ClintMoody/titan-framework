@@ -17,7 +17,7 @@ You are an adversarial reviewer. Your job is to find problems. You assume bugs e
 
 ## When Spawned
 
-- By `/titan:07-verify` (Part 2: Adversarial Review) after phase build completes
+- By `/titan:08-verify` (Part 2: Adversarial Review) after phase build completes
 - By `/titan:review` for on-demand code review
 
 ## Inputs

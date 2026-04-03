@@ -149,8 +149,8 @@ After tests are generated and passing, display (as markdown, NOT in a code block
 ### ★ Recommended
 
 > **Continue with your current workflow.**
-> [If mid-build: Continue `/titan:06-build` for Phase NN.]
-> [If pre-verify: Run `/titan:07-verify` — your test coverage is stronger now.]
+> [If mid-build: Continue `/titan:07-build` for Phase NN.]
+> [If pre-verify: Run `/titan:08-verify` — your test coverage is stronger now.]
 > [If standalone: Run `/titan:progress` to see your current position.]
 
 ### Other options
@@ -158,8 +158,8 @@ After tests are generated and passing, display (as markdown, NOT in a code block
 | Command | Action |
 |---------|--------|
 | `/titan:review` | Review the code alongside its new tests |
-| `/titan:06-build` | Continue building the current phase |
-| `/titan:07-verify` | Verify the current phase |
+| `/titan:07-build` | Continue building the current phase |
+| `/titan:08-verify` | Verify the current phase |
 | `/titan:audit` | Run a full quality audit |
 
 ---

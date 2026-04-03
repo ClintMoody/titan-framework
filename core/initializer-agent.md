@@ -2,7 +2,7 @@
 
 ## Purpose
 
-The Initializer Agent is a one-time bootstrap routine that transforms a raw project into a TITAN-managed autonomous development loop. It runs during `/titan:00-bootstrap` and produces every artifact the coding agent needs to begin iterating without human guidance.
+The Initializer Agent is a one-time bootstrap routine that transforms a raw project into a TITAN-managed autonomous development loop. It runs during `/titan:03-bootstrap` and produces every artifact the coding agent needs to begin iterating without human guidance.
 
 The Initializer Agent answers one question: **"What does this project need to become, and what does the machine need to build it?"**
 
@@ -10,7 +10,7 @@ The Initializer Agent answers one question: **"What does this project need to be
 
 ## When It Runs
 
-- Triggered by `/titan:00-bootstrap` on first run
+- Triggered by `/titan:03-bootstrap` on first run
 - Re-runnable safely (all outputs are idempotent)
 - Should complete in a single session
 - Requires: project source (or empty repo), a vision statement or README describing what the project will become

@@ -1,9 +1,9 @@
 ---
-name: titan:07-verify
+name: titan:08-verify
 description: Mandatory 3-part verification — reconciliation, adversarial review, and knowledge capture. Cannot be skipped.
 ---
 
-# /titan:07-verify — Phase Verification (MANDATORY)
+# /titan:08-verify — Phase Verification (MANDATORY)
 
 > Prove that what was built matches what was planned, stands up to adversarial scrutiny, and
 > captures knowledge for future phases. This command is MANDATORY — it cannot be skipped.
@@ -336,8 +336,8 @@ Critical spec failures:
 
 To resolve:
   1. Fix the spec compliance issues above
-  2. Re-run /titan:06-build for the affected tasks
-  3. Re-run /titan:07-verify
+  2. Re-run /titan:07-build for the affected tasks
+  3. Re-run /titan:08-verify
 
 Phase NN cannot proceed until the code matches its specification.
 ```
@@ -462,8 +462,8 @@ Major issues:
 
 To resolve:
   1. Fix the critical issues listed above
-  2. Re-run /titan:06-build for the affected tasks (or fix in-session)
-  3. Re-run /titan:07-verify
+  2. Re-run /titan:07-build for the affected tasks (or fix in-session)
+  3. Re-run /titan:08-verify
 
 Phase NN cannot proceed until critical issues are resolved.
 ```
@@ -656,10 +656,10 @@ Print (as markdown, NOT in a code block):
 
 [If next phase exists in ROADMAP.md:]
 > **Phase NN complete.** Next: Phase [NN+1] — [Next Phase Name]
-> Run `/titan:05-plan` to plan the next phase.
+> Run `/titan:06-plan` to plan the next phase.
 
 [If this is the last phase:]
-> **All phases complete!** Run `/titan:08-ship` to release this milestone.
+> **All phases complete!** Run `/titan:09-ship` to release this milestone.
 
 ---
 
@@ -681,8 +681,8 @@ Print (as markdown, NOT in a code block):
 ```
 
 Set `Next Action` to either:
-- `Run /titan:05-plan for Phase [NN+1]` (if more phases exist)
-- `Run /titan:08-ship to release milestone` (if last phase)
+- `Run /titan:06-plan for Phase [NN+1]` (if more phases exist)
+- `Run /titan:09-ship to release milestone` (if last phase)
 
 **If FAIL:**
 ```markdown
@@ -694,7 +694,7 @@ Set `Next Action` to either:
 - Updated: [ISO timestamp]
 
 ## Next Action
-> Fix critical issues and re-run /titan:06-build, then /titan:07-verify
+> Fix critical issues and re-run /titan:07-build, then /titan:08-verify
 ```
 
 ---
@@ -715,14 +715,14 @@ Set `Next Action` to either:
 
 | Situation | Response |
 |-----------|----------|
-| No commits on phase branch | "No build work found. Run `/titan:06-build` first." |
-| Plan exists but no build | "Phase has a plan but no build. Run `/titan:06-build` first." |
+| No commits on phase branch | "No build work found. Run `/titan:07-build` first." |
+| Plan exists but no build | "Phase has a plan but no build. Run `/titan:07-build` first." |
 | Verifier returns zero findings initially | Verifier must re-review (HALT CONDITION). This is enforced in the agent brief. |
-| Verifier verdict is FAIL | Present critical issues. Update STATE.md. Return user to /titan:06-build. |
+| Verifier verdict is FAIL | Present critical issues. Update STATE.md. Return user to /titan:07-build. |
 | State consistency check fails | Auto-fix if possible. If user judgment needed, ask before proceeding. |
 | Context running low during verification | Prioritize: write SUMMARY.md and EVALUATION.md first, then knowledge capture. If CRITICAL bracket, save state and resume. |
 | User asks to skip verification | Refuse. Print the non-skippable warning. This is a core TITAN principle. |
-| All ACs fail | Likely the build went wrong. Suggest re-planning: "Consider running `/titan:05-plan` to restructure this phase." |
+| All ACs fail | Likely the build went wrong. Suggest re-planning: "Consider running `/titan:06-plan` to restructure this phase." |
 
 ---
 
@@ -737,16 +737,16 @@ After verification completes, display based on the result:
 ### ★ Recommended
 
 > **Plan the next phase.**
-> [If more phases remain: Run `/titan:05-plan` for **Phase NN+1 — [Next Phase Name]**.]
-> [If all phases done: Run `/titan:08-ship` to **release the milestone**.]
+> [If more phases remain: Run `/titan:06-plan` for **Phase NN+1 — [Next Phase Name]**.]
+> [If all phases done: Run `/titan:09-ship` to **release the milestone**.]
 
 ### Other options
 
 | Command | Action |
 |---------|--------|
-| `/titan:08-ship` | Ship now (if all phases are complete) |
+| `/titan:09-ship` | Ship now (if all phases are complete) |
 | `/titan:audit` | Run a full audit before shipping |
-| `/titan:05-plan` | Plan the next phase |
+| `/titan:06-plan` | Plan the next phase |
 | `/titan:progress` | See full project dashboard and current position |
 
 ---
@@ -757,15 +757,15 @@ After verification completes, display based on the result:
 
 ### ★ Recommended
 
-> **Fix the critical issues, then re-verify.** Run `/titan:06-build` to address the findings, then run `/titan:07-verify` again.
+> **Fix the critical issues, then re-verify.** Run `/titan:07-build` to address the findings, then run `/titan:08-verify` again.
 
 ### Other options
 
 | Command | Action |
 |---------|--------|
-| `/titan:06-build` | Resume building to fix issues |
+| `/titan:07-build` | Resume building to fix issues |
 | `/titan:debug` | Debug a specific failing issue |
-| `/titan:05-plan` | Re-plan if the approach was fundamentally wrong |
+| `/titan:06-plan` | Re-plan if the approach was fundamentally wrong |
 
 ---
 

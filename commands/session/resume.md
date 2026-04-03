@@ -169,14 +169,14 @@ Use this decision table to determine the single best next action:
 | Current State | Suggested Action |
 |---------------|-----------------|
 | Mid-build (tasks in progress) | "Continue building: [specific task description]" |
-| Plan exists, build not started | "Start building phase [NN]: run `/titan:06-build`" |
-| Phase build complete, not verified | "Verify phase [NN]: run `/titan:07-verify`" |
-| Phase verified, next phase planned | "Start planning next phase: run `/titan:05-plan`" |
-| Phase verified, no next phase | "Plan next phase from ROADMAP.md or run `/titan:08-ship` if complete" |
+| Plan exists, build not started | "Start building phase [NN]: run `/titan:07-build`" |
+| Phase build complete, not verified | "Verify phase [NN]: run `/titan:08-verify`" |
+| Phase verified, next phase planned | "Start planning next phase: run `/titan:06-plan`" |
+| Phase verified, no next phase | "Plan next phase from ROADMAP.md or run `/titan:09-ship` if complete" |
 | Blocker exists | "Resolve blocker: [blocker description]" |
 | No active phase | "Define project vision: run `/titan:02-vision`" |
-| Vision exists, no exploration | "Explore the problem space: run `/titan:03-explore`" |
-| Exploration done, no design | "Design the solution: run `/titan:04-design`" |
+| Vision exists, no exploration | "Explore the problem space: run `/titan:04-explore`" |
+| Exploration done, no design | "Design the solution: run `/titan:05-design`" |
 
 Present the suggestion:
 
