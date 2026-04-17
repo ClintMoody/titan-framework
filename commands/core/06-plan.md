@@ -24,6 +24,20 @@ If STATE.md shows step is `build` or `verify`, warn the user: "Phase NN already 
 
 ---
 
+## Adaptive Planning Depth (v2.3)
+
+Classify the phase scope BEFORE generating the plan (silently — do not announce):
+
+| Class | Signals | Execution mode |
+|-------|---------|----------------|
+| Lightweight | <5 tasks, <1 day effort | Sequential inline, skip wave grouping and parallel dispatch, quick self-check only |
+| Standard | 5-15 tasks, 1-5 days | Wave-based execution + parallel dispatch (v2.2 default). Full verification gate |
+| Complex | 15+ tasks, 5+ days | Standard mode PLUS checkpoint reviews every 2 waves, decompose into sub-phases, generate risk register |
+
+Classify on actual scope, not user description. A user saying "quick fix" that touches 12 files is Standard, not Lightweight.
+
+---
+
 ## Process
 
 ### Step 1 — Display Banner and Orientation

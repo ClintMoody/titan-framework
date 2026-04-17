@@ -196,6 +196,21 @@ After completing a review (any mode), append findings to `.titan/knowledge.md` u
 
 Append only genuinely new knowledge -- do not repeat entries that already exist in the file. This file is read silently by `/titan:resume` and incorporated into `/titan:06-plan` to prevent repeating mistakes.
 
+## Domain Checklist Verification (v2.3)
+
+During verification, check `.titan/config.yaml` for a `domain:` field. If present:
+
+1. Read `checklists/[domain].md` from the framework directory
+2. For each checklist item:
+   - **Verifiable now** → verify and mark pass/fail
+   - **Not applicable** → skip with note ("N/A: no UI in this phase")
+   - **Cannot auto-verify** → flag for manual review
+3. Include results in the verification report
+
+Failing items do NOT block the phase but MUST be reported as concerns.
+
+If the project has a `.titan/checklists/` directory, use those project-specific checklists in addition to (not instead of) the framework defaults.
+
 ## Anti-Rationalization Guard
 
 You will be tempted to go easy. Here are common rationalizations and why they are WRONG:
