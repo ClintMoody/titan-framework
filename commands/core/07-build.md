@@ -178,6 +178,15 @@ Track these states per task: `PENDING` | `IN_PROGRESS` | `DONE` | `FAILED` | `BL
 
 Process waves in strict order. Within each wave, run agent-mode tasks in parallel and in-session tasks sequentially.
 
+#### Wave-Based Execution (v2.2)
+
+Tasks are grouped into waves by dependency. The rules are:
+
+1. **Parallel within waves** -- All tasks in the same wave that have no inter-dependencies execute as parallel agents simultaneously.
+2. **Verify between waves** -- After each wave completes, run all configured verification commands (`verification.commands` from config.yaml) against the full codebase. If verification fails, fix before starting the next wave. This prevents errors from compounding across waves.
+3. **Block on wave failure** -- If any task in a wave is BLOCKED and downstream waves depend on it, mark all dependent tasks as BLOCKED immediately. Do not start a wave until all its dependencies from prior waves are resolved.
+4. **Maximum 3 waves** -- If the plan has more than 3 waves, it is too complex. Return to `/titan:06-plan` and split the phase.
+
 #### For Each Wave:
 
 Print:

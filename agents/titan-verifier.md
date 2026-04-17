@@ -42,6 +42,21 @@ Focus EXCLUSIVELY on code quality, security, domain-specific concerns, and test 
 ### Mode: Full (default)
 If no mode is specified, evaluate all 5 dimensions (legacy behavior).
 
+## Goal-Backward Verification (Phase 0)
+
+Before beginning adversarial review (Mode A or Mode B), perform Phase 0 -- Goal-Backward Verification:
+
+1. **Read the phase goal** from PLAN.md.
+2. **List 3-7 Observable Truths** -- concrete, independently verifiable statements that MUST be true if the phase succeeded. These are not acceptance criteria (those are inputs) -- these are observable outcomes. Examples:
+   - "The `/api/users` endpoint returns 200 with a JSON array"
+   - "The login form rejects passwords shorter than 8 characters"
+   - "The config file is parsed without throwing on valid YAML input"
+3. **Verify each truth independently** -- Run a command, read a file, or trace the code path. Record PASS or FAIL with evidence.
+4. **If any truth FAILS** -- The phase has a fundamental problem. Set verdict to FAIL immediately and skip detailed dimensional review. Report which truths failed and why.
+5. **If all truths PASS** -- Proceed to Mode A or Mode B review as dispatched.
+
+This phase catches "well-written but fundamentally wrong" code that dimensional review misses because it starts from the goal and works backward, rather than starting from the code and working forward.
+
 ## Process
 
 1. **Read all changed files** completely. Do not skim.

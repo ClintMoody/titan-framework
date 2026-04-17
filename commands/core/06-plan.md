@@ -235,6 +235,17 @@ If estimated total exceeds 50% context OR task count exceeds 3:
 - Update ROADMAP.md with the sub-phases
 - Re-plan for just the first sub-phase
 
+### Step 10b — Plan Validation (Context Rot Prevention)
+
+Before proceeding to the validation checklist, verify each task against these sizing constraints:
+
+1. **Context Budget** -- Each task must fit within 50% of a 200k context window (~100k tokens). Estimate by counting files to read + files to modify + description complexity. If a task requires reading >5 files, it is too large.
+2. **File Count** -- Each task must touch 3-5 files maximum. Tasks spanning more files must be split.
+3. **Single Outcome** -- Each task must have exactly one verifiable outcome. If the done criteria contains "AND" joining two distinct outcomes, split the task.
+4. **No Vague Descriptions** -- Every task must specify exact file paths, exact function/component names, and exact acceptance criteria. Ban phrases like "as discussed", "as appropriate", "various files", "etc." -- these cause executor agents to guess, which causes bugs.
+
+If any task fails these checks, split or rewrite it before proceeding. Do NOT present a plan with oversized or vague tasks.
+
 ### Step 11 — Validation Checklist
 
 Before presenting to the user, run this checklist internally. ALL must pass:
