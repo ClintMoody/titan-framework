@@ -379,6 +379,20 @@ Tests must pass before AND after every change.
 
 ---
 
+## Power Tools (v2.2 Additions)
+
+### /titan:capture — Background Capture
+
+Capture a stray thought without interrupting your flow. Appends a timestamped note to `.titan/captures.md` and prints "Captured." -- nothing else.
+
+```
+/titan:capture We should add rate limiting before launch
+```
+
+Captures are triaged automatically during `/titan:06-plan` (Step 3b). Relevant captures become tasks or risks in the plan.
+
+---
+
 ## Session Management
 
 ### /titan:resume — Continue Previous Work
