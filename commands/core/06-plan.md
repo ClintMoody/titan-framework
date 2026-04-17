@@ -426,6 +426,25 @@ After the plan is approved, display (as markdown, NOT in a code block):
 
 ---
 
+## Plan Digestibility Standard (v2.2)
+
+Every task in the plan MUST meet these digestibility requirements. A plan that fails these is not ready for approval.
+
+**Required in every task:**
+- **Exact file paths** -- `src/auth/login.ts`, not "the login file" or "auth module"
+- **Exact function/component names** -- `validatePassword()`, not "the validation logic"
+- **Exact acceptance criteria** -- `Returns 401 with body {"error":"invalid_credentials"}`, not "handles errors appropriately"
+
+**Banned phrases** (if any appear in a task description, rewrite the task):
+- "as discussed" / "as mentioned" / "as agreed"
+- "as appropriate" / "as needed" / "where necessary"
+- "various files" / "relevant files" / "related components"
+- "etc." / "and so on" / "and more"
+- "improve" / "enhance" / "optimize" (without specific measurable criteria)
+- "handle edge cases" (without listing which edge cases)
+
+These phrases transfer decision-making to the executor agent, which has zero context about what was "discussed" or what is "appropriate." Every ambiguity in a plan becomes a bug in the build.
+
 ## Anti-Rationalization Guard
 
 During planning, you will be tempted to take shortcuts. Here are common rationalizations and why they are WRONG:
