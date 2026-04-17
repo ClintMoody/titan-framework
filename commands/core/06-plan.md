@@ -481,6 +481,10 @@ If ANY validation check fails, fix the plan before presenting it. Do NOT ask for
 
 ---
 
+## Capture Triage (v2.2)
+
+During Step 3b, all entries in `.titan/captures.md` are triaged. If captures were added via `/titan:capture` during previous build or verify phases, they are reviewed here. This ensures no stray ideas are lost between phases. See `/titan:capture` command reference for the capture format and triage rules.
+
 ## Tips
 
 - Run `/titan:04-explore` before `/titan:06-plan` if the phase involves unfamiliar technologies or novel problems.
