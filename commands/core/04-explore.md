@@ -139,6 +139,21 @@ For each research question, conduct systematic research using available tools. T
   ◆ Researching Q2: [question]...
 ```
 
+### Step 4b: Parallel Research Execution (v2.2)
+
+When the research questions are finalized (3-7 questions from Step 3), decompose them into independent sub-questions and dispatch parallel subagents:
+
+1. **Decompose** -- Group the questions into 3-5 independent research threads. Questions are independent if answering one does not require the answer to another.
+2. **Dispatch** -- Spawn one subagent per thread. Each subagent receives:
+   - Its assigned questions
+   - The project context (PROJECT.md, ARCHITECTURE.md summaries)
+   - The domain plugin (if configured)
+   - Instructions to return structured findings in the EXPLORATION.md format
+3. **Collect** -- Wait for all subagents to complete.
+4. **Synthesize** -- Merge all subagent findings into a single `EXPLORE-REPORT.md` at `.titan/phases/NN-phase-name/EXPLORE-REPORT.md` (or `.titan/EXPLORE-REPORT.md` for project-wide exploration). Resolve any contradictions between subagent findings by noting both perspectives and flagging for user decision.
+
+If fewer than 3 questions exist, skip parallel dispatch and execute sequentially in Step 4 as before.
+
 ### Step 5: Synthesize Findings
 
 After completing research, synthesize findings into a structured document. If the exploration involved a deep novel problem, consider whether to recommend spawning a `titan-investigator` agent for further analysis.
