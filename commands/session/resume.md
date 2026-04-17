@@ -248,6 +248,23 @@ No new artifacts are created. Existing HANDOFF.md is archived if present.
 | HANDOFF.md references files that no longer exist | Warn user, suggest checking git log for changes |
 | Git not available | Skip git-related checks, continue with state files only |
 
+## Multi-Work-Stream Support (v2.2)
+
+When the user provides a name: `/titan:resume auth-refactor`
+
+1. Check for `.titan/paused/auth-refactor/` directory
+2. If found:
+   - Read `.titan/paused/auth-refactor/HANDOFF.md` as the priority handoff source
+   - Read `.titan/paused/auth-refactor/STATE.md` for position
+   - Read `.titan/paused/auth-refactor/branch.txt` and switch to that git branch
+   - Copy STATE.md back to `.titan/STATE.md`
+   - Delete the `.titan/paused/auth-refactor/` directory
+   - Print: `✓ Work stream "auth-refactor" restored.`
+   - Continue with the normal resume flow (Step 3 onward)
+3. If not found: print `⚠ No paused work stream named "auth-refactor". Run /titan:pause --list to see available streams.`
+
+Without a name, resume behaves as before (unnamed, single stream).
+
 ## Tips
 
 - If you're resuming the same day, HANDOFF.md usually won't exist — STATE.md is sufficient.

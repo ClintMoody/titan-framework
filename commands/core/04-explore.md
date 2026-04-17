@@ -338,6 +338,29 @@ Add a Knowledge Snapshot with the most important finding from this exploration.
 - **Feeds into `/titan:investigate`:** When exploration reveals a genuinely novel problem
 - **Feeds into `/titan:experiment`:** When exploration narrows to 2-3 viable approaches that need empirical testing
 
+## Explore Mode Guardrail (v2.2)
+
+During exploration, the following actions are **FORBIDDEN**:
+- Writing, modifying, or deleting source code files
+- Running test suites (`npm test`, `pytest`, `cargo test`, etc.)
+- Running build commands (`npm run build`, `cargo build`, etc.)
+- Creating or modifying configuration files outside `.titan/`
+
+The following actions are **ALLOWED**:
+- Reading any file (source, config, tests) for analysis
+- Running read-only commands (`git log`, `wc -l`, `grep`, `find`, etc.)
+- Creating markdown files inside `.titan/` (EXPLORATION.md, KNOWLEDGE.md, etc.)
+- Web research and documentation lookup
+
+If during exploration you identify something that should be implemented or fixed, use `/titan:capture <note>` to record it, then continue exploring. When exploration is complete, offer the user a transition:
+```
+Exploration complete. Ready to act on findings?
+  [plan]    — Run /titan:06-plan to create an execution plan
+  [capture] — I'll capture the key findings and continue exploring
+```
+
+This guardrail prevents exploration from accidentally becoming implementation.
+
 ## Tips
 
 - It is better to explore too much than too little. Unknown unknowns cause the worst delays.

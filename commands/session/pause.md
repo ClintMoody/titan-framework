@@ -222,6 +222,28 @@ Everything is saved in `STATE.md` and `HANDOFF.md`. You can close this session s
 
 ---
 
+## Multi-Work-Stream Support (v2.2)
+
+You can pause and resume named work streams independently. This is useful when context-switching between features or bug fixes.
+
+### Named Pause
+
+When the user provides a name: `/titan:pause auth-refactor`
+
+1. Create directory `.titan/paused/auth-refactor/`
+2. Copy STATE.md to `.titan/paused/auth-refactor/STATE.md`
+3. Write HANDOFF.md to `.titan/paused/auth-refactor/HANDOFF.md`
+4. Save the current git branch name to `.titan/paused/auth-refactor/branch.txt`
+5. Print: `✓ Work stream "auth-refactor" paused. Resume with: /titan:resume auth-refactor`
+
+### Listing Paused Streams
+
+If the user runs `/titan:pause --list` or asks "what's paused":
+1. List all directories in `.titan/paused/`
+2. For each, show the stream name, phase, and last action from its STATE.md
+
+Without a name, pause behaves as before (unnamed, single stream).
+
 ## Tips
 
 - Always run `/titan:pause` before ending a session, especially before long breaks.

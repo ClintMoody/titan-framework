@@ -489,6 +489,31 @@ If ANY validation check fails, fix the plan before presenting it. Do NOT ask for
 
 ---
 
+## Delta Specs for Brownfield Projects (v2.2)
+
+When planning changes to an existing codebase (brownfield), frame every task as a delta -- not an absolute specification:
+
+- **ADDED**: New files, new functions, new exports that do not exist yet.
+- **MODIFIED**: Existing files/functions that change. Specify WHAT changes, not the entire function. Reference the current behavior and the target behavior.
+- **REMOVED**: Files, functions, exports, or dependencies being deleted.
+
+Each task's "Action" field must use delta language:
+```
+MODIFIED: src/auth/login.ts — validatePassword()
+  Current: accepts any string, returns boolean
+  Target: rejects strings <8 chars, returns {valid: boolean, reason?: string}
+
+ADDED: src/auth/password-policy.ts
+  New file exporting getPasswordPolicy() returning policy object
+
+REMOVED: src/auth/legacy-validator.ts
+  Entire file — functionality moved to password-policy.ts
+```
+
+This prevents executor agents from rewriting entire files when only a delta was needed, and makes verification precise (check the delta, not the whole file).
+
+The researcher agent populates the "Current State" for each modified file. See the Delta Documentation section in the titan-researcher agent.
+
 ## Capture Triage (v2.2)
 
 During Step 3b, all entries in `.titan/captures.md` are triaged. If captures were added via `/titan:capture` during previous build or verify phases, they are reviewed here. This ensures no stray ideas are lost between phases. See `/titan:capture` command reference for the capture format and triage rules.
