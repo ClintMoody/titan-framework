@@ -7,7 +7,7 @@ description: Deep codebase analysis with 4 parallel researcher agents
 
 > Use this command when joining a brownfield project, onboarding to an unfamiliar codebase, or
 > preparing for a major refactoring effort. Spawns 4 parallel titan-researcher agents, each
-> with a fresh 200k context window focused on a single analysis dimension. Results feed into
+> with a fresh context window focused on a single analysis dimension. Results feed into
 > planning, architecture decisions, and domain configuration.
 
 ## Prerequisites
