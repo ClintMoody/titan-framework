@@ -107,6 +107,10 @@ Check for `.titan/build.lock`:
 
 **If no lock file found:** proceed normally.
 
+### Step 2c-pre: Progress Log Recovery (v2.3)
+
+Read `.titan/progress.log` FIRST — before lock files, before knowledge.md. Use it to populate the Forensic Recovery Briefing fields (last completed task, current position).
+
 ### Step 2c: Forensic Recovery Briefing (v2.2)
 
 On every resume (not just crash recovery), assemble and display a structured briefing before proceeding:

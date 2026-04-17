@@ -120,6 +120,14 @@ The Iron Law: **No production code may exist without a failing test written firs
 8. **Test your work.** Run verification steps before committing. If they fail, fix the issue or report it.
 9. **Use structured status codes.** Report DONE_WITH_CONCERNS when something works but has caveats. Report NEEDS_CONTEXT when the spec is ambiguous — do NOT guess. Never claim DONE if concerns exist.
 
+## Subagent Dispatch Threshold (v2.3)
+
+- **Light tasks** (per routing config): prefer in-session execution over subagent dispatch. Spawning overhead exceeds benefit for renames, formatting, import reorganization, boilerplate.
+- **Standard/heavy tasks**: subagent dispatch is valuable — fresh context window and focused attention outweigh overhead.
+- **Override**: if orchestrator session is past 60% context usage, dispatch even light tasks to subagents to preserve remaining capacity.
+
+This is a preference, not a hard rule — the orchestrator may override.
+
 ## Stuck Detection (v2.2)
 
 If a task fails (verification fails, build error, test failure), track the failure count internally. Apply these rules:
