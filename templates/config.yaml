@@ -339,3 +339,12 @@ step_mode:
 # without interrupting workflow. Stored in .titan/CAPTURES.md.
 captures:
   enabled: true
+
+# ── Model Routing (v2.2) ─────────────────────────────────────
+# Explicit model assignments per task weight class.
+# Used by /titan:07-build to classify tasks before dispatch.
+# Override dynamic_routing when you want explicit control.
+routing:
+  light: "claude-sonnet-4"       # Simple tasks: scaffolding, boilerplate, docs
+  standard: "claude-sonnet-4"    # Typical tasks: features, tests, refactors
+  heavy: "claude-opus-4"         # Complex tasks: migrations, security, architecture
