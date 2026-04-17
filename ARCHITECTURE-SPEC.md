@@ -64,6 +64,30 @@ Parallel execution, fresh-context agents, wave-based task distribution — these
 
 ---
 
+## What v2.2 Added
+
+| # | Feature | Category | Where |
+|---|---------|----------|-------|
+| 1 | Plan Sizing Rule | Context Rot Prevention | titan-researcher, 06-plan |
+| 2 | Wave-Based Execution | Context Rot Prevention | 07-build |
+| 3 | Goal-Backward Verification | Context Rot Prevention | titan-verifier |
+| 4 | Forensic Recovery Briefing | Operational Resilience | resume |
+| 5 | Stuck Detection (typed) | Operational Resilience | titan-executor |
+| 6 | Output Discipline | Operational Resilience | titan-executor |
+| 7 | TDD Protocol | Execution Discipline | titan-tester |
+| 8 | Pre-Implementation Domain Check | Execution Discipline | titan-executor |
+| 9 | Plan Digestibility Standard | Execution Discipline | 06-plan |
+| 10 | Model Routing Config | Cost Efficiency | config.yaml, 07-build, titan-executor |
+| 11 | Rate Limit Handling | Cost Efficiency | 07-build |
+| 12 | /titan:capture Command | Capture Workflow | commands/power/capture |
+| 13 | Parallel Research Execution | Knowledge Persistence | 04-explore |
+| 14 | Knowledge Persistence | Knowledge Persistence | titan-verifier, resume, 06-plan |
+| 15 | Delta Specs for Brownfield | Change Management | 06-plan, titan-researcher |
+| 16 | Multi-Work-Stream | Change Management | pause, resume |
+| 17 | Explore Mode Guardrail | Change Management | 04-explore, titan-researcher |
+
+---
+
 ## The Golden Path (Core Workflow)
 
 ```

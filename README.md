@@ -12,7 +12,7 @@
   <img src="https://img.shields.io/badge/commands-24-22C55E?style=flat-square" alt="24 Commands"/>
   <img src="https://img.shields.io/badge/agents-9-334155?style=flat-square" alt="9 Agents"/>
   <img src="https://img.shields.io/badge/domains-8-22C55E?style=flat-square" alt="8 Domains"/>
-  <img src="https://img.shields.io/badge/v2.1-GSD--2_integrated-F59E0B?style=flat-square" alt="v2.1"/>
+  <img src="https://img.shields.io/badge/v2.2-hardened-F59E0B?style=flat-square" alt="v2.2"/>
 </p>
 
 ---
@@ -185,6 +185,30 @@ We studied the [GSD-2 framework](https://github.com/gsd-build/gsd-2) — a stand
 | **Step mode** | Pause between tasks/waves for review. Graduated oversight. | `step_mode.enabled: true` |
 
 Everything from v2.0 (autonomous loop, TDD strict mode, two-stage verification) is unchanged.
+
+---
+
+## What v2.2 Added
+
+v2.2 hardens TITAN against the failure modes discovered in real-world usage: context rot, stuck loops, vague plans, and lost knowledge.
+
+- **Plan Sizing Rule** -- Tasks must fit 50% context window, 3-5 files max, single verifiable outcome
+- **Wave-Based Execution** -- Group tasks by dependency, verify between waves, block on failures
+- **Goal-Backward Verification** -- Verifier lists 3-7 observable truths before dimensional review
+- **Forensic Recovery Briefing** -- Structured briefing on every resume (not just crash recovery)
+- **Stuck Detection (typed)** -- Classify failures as TEST_LOOP/DEPENDENCY_MISSING/CONTEXT_EXHAUSTION/CIRCULAR_FIX/SPEC_AMBIGUITY
+- **Output Discipline** -- Summarize >20 lines of build/test output as one-line verdicts
+- **TDD Protocol** -- RED-GREEN-REFACTOR-COMMIT mandatory order with violation detection
+- **Pre-Implementation Domain Check** -- Executor silently loads domain quality requirements
+- **Plan Digestibility Standard** -- Exact paths, exact names, exact criteria; banned vague phrases
+- **Model Routing Config** -- Explicit light/standard/heavy model assignments in config.yaml
+- **Rate Limit Handling** -- Commit, mark PAUSED, report, stop. No retry loops.
+- **/titan:capture** -- Append timestamped note to captures file, acknowledge, return to work
+- **Parallel Research Execution** -- Decompose explore questions into 3-5 parallel subagent threads
+- **Knowledge Persistence** -- Verifier appends decisions/surprises/patterns/warnings; plan incorporates them
+- **Delta Specs for Brownfield** -- Frame tasks as ADDED/MODIFIED/REMOVED deltas with current state
+- **Multi-Work-Stream** -- Named pause/resume with `.titan/paused/[name]/` directories
+- **Explore Mode Guardrail** -- No source code changes during explore; offer capture or plan transition
 
 ---
 

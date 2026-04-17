@@ -77,6 +77,15 @@ Print this exactly:
     /titan:quick        Small task with full quality guarantees — for changes < 1 hour
 ```
 
+### Step 3b: Display Power Tools (v2.2 Additions)
+
+```
+  POWER TOOLS (v2.2)
+  ═══════════════════════════════════════════════════
+
+    /titan:capture      Capture a stray thought — appends to .titan/captures.md, returns instantly
+```
+
 ### Step 4: Display Session Management
 
 ```
