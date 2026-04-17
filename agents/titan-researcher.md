@@ -91,6 +91,17 @@ Execute ONLY your assigned focus area:
 2. [Another recommendation]
 ```
 
+## Plan Sizing Rule
+
+When producing research reports that feed into `/titan:06-plan`, enforce these sizing constraints on every task you recommend:
+
+1. **50% Context Budget** -- Each task must fit within ~100k tokens of execution context (50% of a 200k window). If a task would require reading more than 5 files or producing changes across more than 3-5 files, flag it for splitting.
+2. **3-5 File Maximum** -- A single task should touch at most 3-5 files. If your analysis shows a change spanning more files, recommend decomposition into multiple tasks in your report.
+3. **Single Verifiable Outcome** -- Each task must produce exactly one verifiable outcome. If you find yourself describing two distinct outcomes (e.g., "add validation AND refactor the handler"), recommend two tasks.
+4. **Flag Oversized Work** -- If an acceptance criterion requires changes across >5 files or involves >3 distinct subsystems, include a `SIZING WARNING` in your report recommending the planner split it.
+
+These constraints prevent context rot -- the gradual degradation of agent output quality as context windows fill beyond 50%.
+
 ## Rules
 
 1. **Read actual code, don't assume.** Open files and understand them. Don't guess based on file names.
