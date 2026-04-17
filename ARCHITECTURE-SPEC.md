@@ -51,7 +51,7 @@ When you encounter something you've never seen before, you don't panic — you i
 Every phase must pass verification. No orphan plans. No unproven code. Mandatory reconciliation means you always know what was actually built vs. what was planned.
 
 ### 4. Context is Precious
-Fresh-context subagents get clean 200k windows. Work units target 50% context. Document sharding saves 90% tokens on large docs. Context brackets adapt behavior as windows fill.
+Fresh-context subagents get clean context windows. Work units target 50% of available context. Document sharding saves 90% tokens on large docs. Context brackets adapt behavior as windows fill.
 
 ### 5. Decisions Are Documented
 Every non-trivial decision gets recorded with rationale. Future-you (or future-AI) can understand WHY, not just WHAT.
@@ -85,6 +85,18 @@ Parallel execution, fresh-context agents, wave-based task distribution — these
 | 15 | Delta Specs for Brownfield | Change Management | 06-plan, titan-researcher |
 | 16 | Multi-Work-Stream | Change Management | pause, resume |
 | 17 | Explore Mode Guardrail | Change Management | 04-explore, titan-researcher |
+
+## What v2.3 Added (from BMAD, PAUL, Ralph)
+
+| # | Feature | Category | Where |
+|---|---------|----------|-------|
+| 18 | Adaptive Planning Depth | Planning Efficiency | 06-plan |
+| 19 | Domain Checklists (8 domains) | Quality Assurance | checklists/, titan-verifier |
+| 20 | Wave Reconciliation | Drift Detection | 07-build |
+| 21 | Subagent Dispatch Threshold | Cost Efficiency | titan-executor |
+| 22 | Progress Log (append-only) | Operational Resilience | 07-build, resume, progress |
+| 23 | Autopilot Redesign (supervised + full) | Autonomy | autopilot, autopilot-full |
+| 24 | Context-Window-Agnostic Language | Portability | agents/, commands/ |
 
 ---
 
@@ -153,7 +165,7 @@ Parallel execution, fresh-context agents, wave-based task distribution — these
 9. **titan-tester** — Test generation, TDD support, edge case discovery, coverage analysis.
 
 ### Agent Rules (Universal)
-- Fresh 200k context window per spawn
+- Fresh context window per spawn
 - Read first, act second
 - Follow plan literally — no improvisation
 - Report blockers immediately

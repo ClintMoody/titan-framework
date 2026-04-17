@@ -407,9 +407,13 @@ Updates state, creates HANDOFF.md with full narrative, commits WIP.
 
 Clean display of current phase, tasks, blockers, recent decisions, next action.
 
-### /titan:autopilot — Auto-Run Phases
+### /titan:autopilot — Supervised Autonomous Mode
 
-Runs plan → build → verify loop automatically with fresh context per step. Pauses on checkpoints and failures.
+Runs plan-build-verify for each remaining phase with human checkpoints between phases. Pauses for review after each phase completes. Stops gracefully at 60% context or on rate limits.
+
+### /titan:autopilot-full — Full Autonomous Mode
+
+Walk-away execution. Runs plan-build-verify for all remaining phases without human intervention. Self-chains across context windows by spawning successors. Terminates on completion, human-needed blockers, stuck loops, or verification failures requiring architecture decisions.
 
 ### /titan:settings — Configuration
 
@@ -423,7 +427,7 @@ Quick reference for all 24 commands with common workflows.
 
 ## Agents
 
-TITAN deploys 9 specialized agents, each in a fresh 200k-token context window.
+TITAN deploys 9 specialized agents, each in a fresh context window.
 
 | Agent | Role | Default Model | Spawned By |
 |-------|------|--------------|------------|
