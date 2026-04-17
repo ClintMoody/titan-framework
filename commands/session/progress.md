@@ -215,6 +215,14 @@ If `.titan/CAPTURES.md` exists and has entries:
 
 If no captures or file doesn't exist, skip this section.
 
+### Step 8d: Progress Log Summary (v2.3)
+
+Read `.titan/progress.log` and present:
+- Total tasks: N done / M blocked / K skipped / J remaining
+- Current position: Phase X, Wave Y
+- Last completed task + timestamp
+- Blockers list (if any)
+
 ### Step 9: Display Git Activity
 
 ```

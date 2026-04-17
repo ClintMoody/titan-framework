@@ -397,7 +397,19 @@ For `in-session` mode tasks in this wave, execute them directly in the current s
    - If fix succeeds, commit and mark DONE
    - If fix fails, mark BLOCKED
 
-**E) Wave Checkpoint:**
+**E) Wave Reconciliation (v2.3):**
+
+After each wave completes (not just end of phase):
+
+1. Compare wave planned tasks vs what was actually committed
+2. For each task: did the commit match the plan? If not, what diverged?
+3. If any task diverged, append to `.titan/knowledge.md`:
+   `Wave N divergence: Task X planned [thing], actually did [other thing] because [reason]`
+4. If divergence is significant (architecture change, scope expansion, different approach): pause and ask the user before starting the next wave
+
+This is a 30-second drift check, not a full adversarial review.
+
+**F) Wave Checkpoint:**
 
 After all tasks in a wave complete (or are blocked), check if a checkpoint is defined for this point.
 
@@ -583,6 +595,16 @@ If any agent dispatch or API call returns a rate limit error (429, "rate limited
      Resume with: /titan:resume → /titan:07-build
    ```
 5. **Stop execution.** Do NOT retry in a loop. Do NOT sleep-and-retry. Rate limit recovery is the user's decision, not the framework's.
+
+## Progress Log (v2.3)
+
+After each task commits or is marked BLOCKED, append a single line to `.titan/progress.log`:
+```
+[DONE] Phase.Wave.Task — Description (commit SHA)
+[BLOCKED] Phase.Wave.Task — Description — Reason
+[SKIPPED] Phase.Wave.Task — Description — Reason
+```
+This file is append-only. Never edit or truncate it.
 
 ## Critical Rules — Thin Orchestrator Pattern
 
