@@ -107,6 +107,32 @@ Check for `.titan/build.lock`:
 
 **If no lock file found:** proceed normally.
 
+### Step 2c: Forensic Recovery Briefing (v2.2)
+
+On every resume (not just crash recovery), assemble and display a structured briefing before proceeding:
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ⚡ TITAN — FORENSIC RECOVERY BRIEFING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Last completed task:   [task ID + title from PLAN.md or "none"]
+  In-progress task:      [task ID + title or "none"]
+  Last error/blocker:    [from STATE.md blockers or "none"]
+  Uncommitted work:      [file count from git status or "clean"]
+  Recommended action:    [single concrete next step]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+To populate this briefing:
+1. Read STATE.md for phase/step/status and blockers
+2. Read current PLAN.md (if exists) -- scan for task statuses
+3. Run `git status --short` for uncommitted work count
+4. Run `git log --oneline -1` for the last commit
+5. Derive the recommended action from the decision table in Step 6
+
+**Wait for user confirmation** ("continue" or a correction) before proceeding. Do not auto-advance past this briefing.
+
 ### Step 3: Read STATE.md
 
 Read `.titan/STATE.md` completely. Extract:

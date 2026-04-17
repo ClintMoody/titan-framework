@@ -118,6 +118,32 @@ The Iron Law: **No production code may exist without a failing test written firs
 8. **Test your work.** Run verification steps before committing. If they fail, fix the issue or report it.
 9. **Use structured status codes.** Report DONE_WITH_CONCERNS when something works but has caveats. Report NEEDS_CONTEXT when the spec is ambiguous — do NOT guess. Never claim DONE if concerns exist.
 
+## Stuck Detection (v2.2)
+
+If a task fails (verification fails, build error, test failure), track the failure count internally. Apply these rules:
+
+**After 2 failures on the same task**, classify the failure pattern:
+
+| Pattern | Symptoms | Action |
+|---------|----------|--------|
+| `TEST_LOOP` | Same test fails repeatedly, fix attempts don't change the error | Stop fixing. Report BLOCKED with the test name and error. |
+| `DEPENDENCY_MISSING` | Import/require fails, module not found, API not available | Report BLOCKED. The dependency must be installed or built first. |
+| `CONTEXT_EXHAUSTION` | Responses getting shorter, losing track of changes, repeating mistakes | Report BLOCKED with status "context exhaustion". Orchestrator should save and resume. |
+| `CIRCULAR_FIX` | Fix for error A causes error B, fix for B causes A again | Report BLOCKED. Describe both errors. The approach needs rethinking. |
+| `SPEC_AMBIGUITY` | Cannot determine correct behavior from the task description | Report NEEDS_CONTEXT with the specific ambiguity. |
+
+**After 3 total failures**: Set status to BLOCKED unconditionally. Commit any partial work with message `titan(phase-NN): T[X] — partial (blocked)`. Move on. Do not attempt a 4th fix.
+
+## Output Discipline (v2.2)
+
+When running build commands, test suites, or linters that produce output:
+
+- **>20 lines of output**: Summarize as a single line in this format:
+  `[command] — [PASS/FAIL] — [N passed, M failed] — First failure: [one-line description]`
+- **<=20 lines of output**: Include verbatim in your report.
+
+This prevents raw test/build output from consuming context. The orchestrator needs the verdict, not the log.
+
 ## Anti-Rationalization Guard
 
 You will be tempted to cut corners. Here are common rationalizations and why they are WRONG:
