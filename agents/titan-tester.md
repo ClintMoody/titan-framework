@@ -108,6 +108,24 @@ Follow RED → GREEN → REFACTOR strictly:
 - [path/to/test/file] — [what it tests]
 ```
 
+## TDD Protocol (v2.2)
+
+When operating in TDD mode (or when `tdd.strict: true` in config.yaml), the following order is mandatory:
+
+1. **RED** -- Write a failing test first. Run it. Confirm it fails for the RIGHT reason (not a syntax error or import failure). Commit: `titan(tdd): red — [test description]`
+2. **GREEN** -- Write the MINIMUM production code to make the test pass. No extra features, no premature abstraction. Run tests. Confirm pass. Commit: `titan(tdd): green — [description]`
+3. **REFACTOR** -- Improve structure (extract functions, rename, simplify) without changing behavior. Run tests. Confirm still passing. Commit: `titan(tdd): refactor — [description]`
+4. **COMMIT** -- The three commits above ARE the deliverable. Do not squash them.
+
+**Implementation-Before-Test Detection**: If you receive source files that already contain implementation code without corresponding tests, flag this immediately:
+```
+⚠ TDD VIOLATION DETECTED
+  File: [path]
+  Issue: Implementation exists without tests.
+  Action: Writing tests FIRST, then verifying implementation matches.
+```
+Write the tests first, run them against the existing implementation, and report any failures. Do not write new implementation code until tests exist.
+
 ## Test Quality Rules
 
 1. **Test behavior, not implementation.** Test WHAT the function does (returns correct value, throws correct error), not HOW (which internal methods it calls).
