@@ -12,7 +12,7 @@
   <img src="https://img.shields.io/badge/commands-24-22C55E?style=flat-square" alt="24 Commands"/>
   <img src="https://img.shields.io/badge/agents-9-334155?style=flat-square" alt="9 Agents"/>
   <img src="https://img.shields.io/badge/domains-8-22C55E?style=flat-square" alt="8 Domains"/>
-  <img src="https://img.shields.io/badge/v2.2-hardened-F59E0B?style=flat-square" alt="v2.2"/>
+  <img src="https://img.shields.io/badge/v2.3-adaptive-F59E0B?style=flat-square" alt="v2.3"/>
 </p>
 
 ---
@@ -64,7 +64,7 @@ TITAN is a development system that runs inside **Claude Code** (or **OpenCode**)
 | `04` | `/titan:04-explore` | Research what you don't know. Prior art, technology evaluation, risk mapping. |
 | `05` | `/titan:05-design` | Design your UI through conversation. Get real HTML/CSS mockups you can open in a browser and iterate on. |
 | `06` | `/titan:06-plan` | A researcher agent scans your codebase, then TITAN builds a task-level execution plan with waves, boundaries, and acceptance criteria. |
-| `07` | `/titan:07-build` | The thin orchestrator dispatches parallel agents — each in a fresh 200k-token context window. One task = one commit. Verification commands run after each task. Cost tracked per task. Crash recovery active. |
+| `07` | `/titan:07-build` | The thin orchestrator dispatches parallel agents — each in a fresh context window. One task = one commit. Verification commands run after each task. Cost tracked per task. Crash recovery active. |
 | `08` | `/titan:08-verify` | Mandatory 3-part gate: reconciliation (plan vs reality), two-stage adversarial review (spec + quality), and knowledge capture. Then reassess the roadmap based on what you learned. |
 | `09` | `/titan:09-ship` | Pre-flight checklist. Merge branches. Tag release. Archive phase data. Cost report. Done. |
 
@@ -209,6 +209,18 @@ v2.2 hardens TITAN against the failure modes discovered in real-world usage: con
 - **Delta Specs for Brownfield** -- Frame tasks as ADDED/MODIFIED/REMOVED deltas with current state
 - **Multi-Work-Stream** -- Named pause/resume with `.titan/paused/[name]/` directories
 - **Explore Mode Guardrail** -- No source code changes during explore; offer capture or plan transition
+
+## What v2.3 Added
+
+v2.3 adds adaptive intelligence and operational continuity, drawn from BMAD, PAUL, and Ralph patterns.
+
+- **Adaptive Planning Depth** -- Classify phases as Lightweight/Standard/Complex; skip wave overhead for small work
+- **Domain Checklists (8 domains)** -- web, audio, api, mobile, game, desktop, data, infrastructure verification checklists
+- **Wave Reconciliation** -- 30-second drift check after every wave; log divergences to knowledge.md
+- **Subagent Dispatch Threshold** -- Prefer in-session for light tasks; dispatch standard/heavy; override at 60% context
+- **Progress Log** -- Append-only `.titan/progress.log` tracks every task completion, block, and skip
+- **Autopilot Redesign** -- `/titan:autopilot` is now supervised (pauses between phases); `/titan:autopilot-full` is walk-away with self-chaining
+- **Context-Window-Agnostic Language** -- All references use percentage-based sizing, not hardcoded token counts
 
 ---
 

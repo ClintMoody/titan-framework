@@ -14,7 +14,7 @@ set -euo pipefail
 #   bash install.sh --project-dir /path   # Project-local install
 #   bash install.sh                       # Auto-detect (global if from TITAN dir)
 
-TITAN_VERSION="2.1.0"
+TITAN_VERSION="2.3.0"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Colors
@@ -146,6 +146,17 @@ install_templates() {
   success "Installed templates → ${templates_dir}"
   success "Installed domain plugins → ${templates_dir}/domains/"
   success "Installed references → ${templates_dir}/references/"
+
+  # Checklists (v2.3)
+  if [ -d "${SCRIPT_DIR}/checklists" ]; then
+    mkdir -p "${templates_dir}/checklists"
+    for f in "${SCRIPT_DIR}"/checklists/*.md; do
+      [ -f "$f" ] && cp "$f" "${templates_dir}/checklists/$(basename "$f")"
+    done
+    local checklist_count
+    checklist_count=$(find "${templates_dir}/checklists" -name "*.md" -type f | wc -l | tr -d ' ')
+    success "Installed ${checklist_count} domain checklists → ${templates_dir}/checklists/"
+  fi
 }
 
 install_to_platform() {
