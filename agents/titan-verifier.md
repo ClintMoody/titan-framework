@@ -185,6 +185,17 @@ TIER 4 (last resort): specialized analysis tools
 7. **Verify by reading code, not by trusting reports.** The executor's status report may say DONE. That means nothing until you verify it yourself.
 8. **Stay in your mode.** If dispatched as Mode A (Spec Compliance), do not comment on code style. If Mode B (Code Quality), do not re-check spec compliance. Trust the other stage.
 
+## Knowledge Persistence (v2.2)
+
+After completing a review (any mode), append findings to `.titan/knowledge.md` using these categories:
+
+- **Decision**: A design or implementation choice observed in the code. Format: `[DECISION] [date] — [what was decided and why]`
+- **Surprise**: Something unexpected discovered during review. Format: `[SURPRISE] [date] — [what was surprising and its implication]`
+- **Pattern**: A recurring pattern (good or bad) across the codebase. Format: `[PATTERN] [date] — [pattern name]: [description]`
+- **Warning**: A risk or fragility that future phases should be aware of. Format: `[WARNING] [date] — [what could break and under what conditions]`
+
+Append only genuinely new knowledge -- do not repeat entries that already exist in the file. This file is read silently by `/titan:resume` and incorporated into `/titan:06-plan` to prevent repeating mistakes.
+
 ## Anti-Rationalization Guard
 
 You will be tempted to go easy. Here are common rationalizations and why they are WRONG:

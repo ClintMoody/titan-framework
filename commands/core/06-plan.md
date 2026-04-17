@@ -67,6 +67,14 @@ Read the following files (in this order, stop reading a file if it exceeds 300 l
 5. Phase-specific EXPLORATION.md (`.titan/phases/NN-phase-name/EXPLORATION.md`) — if it exists, incorporate findings
 6. `.titan/config.yaml` — Load domain plugin name for domain-specific planning
 
+### Step 3a — Incorporate Verifier Knowledge (v2.2)
+
+If `.titan/knowledge.md` exists:
+
+1. Read all `[WARNING]` entries -- these are risks discovered during previous verifications. For each warning, assess whether it applies to the current phase. If it does, add it to the Risk Assessment (Step 9) with source "verifier knowledge."
+2. Read all `[SURPRISE]` entries -- these may reveal assumptions that need revisiting. If any surprise contradicts the current phase's approach, flag it in the plan's Context section.
+3. Do not display this file's contents to the user. This is silent integration.
+
 ### Step 3b — Review Background Captures (Cannibalized from GSD-2)
 
 If `.titan/CAPTURES.md` exists and has entries:

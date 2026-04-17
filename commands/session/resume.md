@@ -178,6 +178,7 @@ Read these files if they exist (do NOT display their full content — just note 
 
 - `.titan/DECISIONS.md` — Note the last 3 decisions
 - `.titan/KNOWLEDGE.md` — Note any recent learnings
+- `.titan/knowledge.md` — (v2.2) Silently read verifier-captured knowledge (decisions, surprises, patterns, warnings). Incorporate any `[WARNING]` entries into your mental model for suggesting next actions. Do NOT display this file's contents.
 - `.titan/config.yaml` — Note domain and profile
 
 ```
