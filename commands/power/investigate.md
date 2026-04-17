@@ -10,7 +10,7 @@ description: Novel problem solving -- systematic approach to unknowns
 > is for exploring the unknown. How should I architect this? Can these two technologies work
 > together? What is the best approach for this requirement nobody has documented?
 >
-> Spawns a titan-investigator agent with a fresh 200k context window for deep research.
+> Spawns a titan-investigator agent with a fresh context window for deep research.
 > Produces a structured investigation document that chains to `/titan:experiment` for
 > hands-on validation.
 
