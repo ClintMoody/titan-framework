@@ -33,7 +33,7 @@ You will receive:
 
 ## Process
 
-0. **PRE-IMPLEMENTATION DOMAIN CHECK** (v2.2) — Silently (no output to user) check if `.titan/config.yaml` exists. If it does, read the `domain.primary` field. If a domain is configured, read `domains/[domain].yaml` (from the TITAN templates directory or `.titan/domains/`). Apply the domain's `quality_gates` and `patterns` as constraints on your implementation. Apply `anti_patterns` as things to avoid. Do NOT announce this check -- just do it.
+0. **PRE-IMPLEMENTATION DOMAIN CHECK** (v2.2) — Silently (no output to user) check if `.titan/config.yaml` exists. If it does, read the `routing` section to confirm which model tier you are operating as (light/standard/heavy). Then read the `domain.primary` field. If a domain is configured, read `domains/[domain].yaml` (from the TITAN templates directory or `.titan/domains/`). Apply the domain's `quality_gates` and `patterns` as constraints on your implementation. Apply `anti_patterns` as things to avoid. Do NOT announce this check -- just do it.
 
 1. **READ** — Read all files listed in the task spec. Understand existing code, patterns, and conventions before writing anything.
 

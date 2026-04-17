@@ -108,6 +108,23 @@ If `crash_recovery.lock_file` is enabled in config.yaml:
      ```
 3. If no lock found: proceed normally.
 
+### Step 1d-pre — Task Classification for Routing (v2.2)
+
+Before dynamic routing, classify each task into a weight class using these heuristics:
+
+| Weight | Criteria |
+|--------|----------|
+| `light` | <=2 files to modify, <=3 verification steps, no keywords below |
+| `standard` | 3-5 files, or 4-6 verification steps, typical feature work |
+| `heavy` | >=6 files, OR contains keywords: "migrate", "security", "refactor", "architecture", "auth", "database schema", "breaking change" |
+
+Read `routing` from `.titan/config.yaml`. Map each task's weight class to the configured model:
+- `light` tasks use `routing.light`
+- `standard` tasks use `routing.standard`
+- `heavy` tasks use `routing.heavy`
+
+This classification feeds into dynamic routing (Step 1d) if enabled, or is used directly for agent dispatch model selection if dynamic routing is disabled.
+
 ### Step 1d — Dynamic Model Routing Setup (Cannibalized from GSD-2)
 
 If `dynamic_routing.enabled` is true in config.yaml:
@@ -550,6 +567,22 @@ Update PLAN.md frontmatter `status` to `built` (or `partial` if blockers).
 | PLAN.md | `.titan/phases/NN-phase-name/PLAN.md` | Status updated in frontmatter |
 
 ---
+
+## Rate Limit Handling (v2.2)
+
+If any agent dispatch or API call returns a rate limit error (429, "rate limited", "too many requests"):
+
+1. **Commit all completed work immediately** -- Do not lose progress.
+2. **Mark the current task as PAUSED** in the progress tracker.
+3. **Update STATE.md** with status `paused` and last action "Rate limited during Task T[X]".
+4. **Report to the user:**
+   ```
+   ⚠ Rate limit hit during Task T[X].
+     All completed work has been committed.
+     Status: PAUSED
+     Resume with: /titan:resume → /titan:07-build
+   ```
+5. **Stop execution.** Do NOT retry in a loop. Do NOT sleep-and-retry. Rate limit recovery is the user's decision, not the framework's.
 
 ## Critical Rules — Thin Orchestrator Pattern
 
