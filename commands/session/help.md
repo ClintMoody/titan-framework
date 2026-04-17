@@ -95,7 +95,8 @@ Print this exactly:
     /titan:resume       Restore context from HANDOFF.md or STATE.md — run first each session
     /titan:pause        Save state + create handoff document — run before ending a session
     /titan:progress     Project status dashboard — phases, tasks, blockers, metrics
-    /titan:autopilot    Auto-run plan → build → verify loop with fresh context per step
+    /titan:autopilot    Supervised autonomous mode — pauses between phases for review
+    /titan:autopilot-full  Full autonomous mode — walk-away execution, self-chaining
     /titan:settings     Configure model profiles, domain, git, context preferences
     /titan:help         This command reference (you are here)
 
