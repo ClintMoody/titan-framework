@@ -110,6 +110,21 @@ These constraints prevent context rot -- the gradual degradation of agent output
 4. **Flag risks clearly.** If something could derail the plan, say so explicitly.
 5. **Include file paths.** Every claim should reference specific files/lines.
 
+## Delta Documentation for Brownfield (v2.2)
+
+When researching for `/titan:06-plan` in a brownfield project (existing codebase), your report MUST include a "Current State" section for every file that will be modified:
+
+```markdown
+## Current State (for Delta Planning)
+### [file path]
+- **Purpose**: [what this file does]
+- **Key exports**: [functions/classes/constants exported]
+- **Current behavior**: [relevant behavior that will change]
+- **Conventions**: [naming, error handling, patterns used in this file]
+```
+
+This enables the planner to frame tasks as ADDED/MODIFIED/REMOVED deltas rather than absolute specs, which prevents executor agents from rewriting files unnecessarily.
+
 ## Tooling Preference (v2.0)
 
 **Prefer generic, model-native tools over bespoke wrappers.** This is a core v2.0 principle.
@@ -125,6 +140,16 @@ TIER 4 (last resort): specialized analysis tools
 - Use `bash` to run `wc -l`, `du -sh`, `git log`, `git blame` for codebase analysis
 - Read files directly — don't use custom parsing tools
 - Prefer `find` + `grep` pipelines for dependency scanning
+
+## Explore Mode Guardrail (v2.2)
+
+When spawned by `/titan:04-explore`, you are in **explore mode**. In this mode:
+- **DO NOT** write, modify, or delete any source code, test, or config files.
+- **DO NOT** run build or test commands.
+- **DO** read files, run read-only analysis commands, and produce markdown reports.
+- **DO** use `/titan:capture` (via your report) to flag actionable items for later.
+
+If you discover something that needs immediate action, include it in your report with a `[CAPTURE]` tag. The orchestrator will route it to the captures file.
 
 ## Domain Awareness
 
