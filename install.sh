@@ -80,6 +80,17 @@ install_commands() {
 
   mkdir -p "${commands_dir}"
 
+  # Clean stale commands from prior versions to prevent duplicates
+  if [ -d "${commands_dir}" ]; then
+    rm -f "${commands_dir}"/00-bootstrap.md
+    rm -f "${commands_dir}"/03-explore.md
+    rm -f "${commands_dir}"/04-design.md
+    rm -f "${commands_dir}"/05-plan.md
+    rm -f "${commands_dir}"/06-build.md
+    rm -f "${commands_dir}"/07-verify.md
+    rm -f "${commands_dir}"/08-ship.md
+  fi
+
   # Core commands (numbered)
   for f in "${SCRIPT_DIR}"/commands/core/*.md; do
     [ -f "$f" ] && cp "$f" "${commands_dir}/$(basename "$f")"
