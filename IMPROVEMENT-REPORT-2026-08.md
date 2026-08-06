@@ -556,6 +556,210 @@ Ordered by value against effort. "Low effort" means prompt/config edits only.
 
 ---
 
+# Addendum — RLM and Dagu (Requested Follow-Up)
+
+> Added the same day, after the owner confirmed the prompt-based direction
+> and asked about two specific projects: brainqub3/RLM and Dagu.
+> Verdict up front: **steal from both.** RLM gives TITAN a new power tool.
+> Dagu gives TITAN a better skeleton for the autonomous loop.
+
+---
+
+## 12. RLM — Recursive Language Models (brainqub3/RLM)
+
+### 12.1 What it is
+
+- RLM is a technique from MIT CSAIL (Zhang, Kraska, Khattab, late 2025).
+  The idea: do not put a large input into the context window.
+  Put it in a variable instead. The model inspects the variable with code —
+  peek, grep, slice, chunk. It sends the pieces to cheap sub-models.
+  Code does the counting. Sub-models do the judging.
+- The reported results are strong. On a benchmark the base model could not
+  run at all (6-11 million token inputs), RLM scored 91%. On a pairwise
+  reasoning test, the base model scored near zero; RLM scored 58.
+  Caution: these numbers come from secondary coverage. The paper page
+  blocked our fetcher.
+- The brainqub3 repo is small and honest about it. It is a Claude Code
+  **skill plus one Python script**, MIT licensed, marked "not for production."
+  That is good news for TITAN. It is the same kind of artifact TITAN is
+  made of. The patterns port directly, and the license permits it.
+- Sources: github.com/brainqub3/RLM · arxiv.org/abs/2512.24601
+
+### 12.2 What is genuinely new for TITAN
+
+TITAN already has subagents, grep, and fresh context windows.
+RLM adds four things those do not give:
+
+1. **Provable coverage.** A subagent is conversational. It can skip items
+   silently. RLM loops over chunks *in code*. Every chunk is visited.
+   The count is checked with arithmetic before the answer is given.
+2. **The never-read rule.** The orchestrator sees only metadata about the
+   corpus: size, line count, a short preview. The full text never enters
+   any context window. Reads are decided from metadata, then targeted.
+3. **The semantics/bookkeeping split.** Python counts, sorts, and deduplicates.
+   The model only judges. This removes a whole class of model arithmetic errors.
+4. **Replayable runs.** Every step is saved as a re-runnable script with logs.
+   A crashed run resumes from the last finished chunk.
+
+### 12.3 Recommendations
+
+- **R1. Port the skill as a power tool (`/titan:rlm`).**
+  Vendor the REPL script into `scripts/`. Add a command that encodes the
+  workflow: init → probe → chunk → fan out → aggregate → final answer.
+  Keep the key safety mechanics: leaf calls run headless with **no tools**
+  (`claude -p --allowedTools ""`), default to Haiku, truncate stdout,
+  return errors as marker strings. Low effort. MIT license permits reuse
+  with attribution.
+- **R2. Add the never-read rule to researcher and investigator.**
+  Prompt-only change. When input material is large (about 50K characters
+  or more), forbid reading it whole. Require probing first: line counts,
+  grep counts, previews. Then read targeted slices only.
+  Add "read the whole corpus into context" to the anti-patterns file.
+- **R3. Document the map-reduce pattern as a core doc.**
+  For "touch every item" work — classify every finding, check every file
+  against a checklist — the orchestrator should write a small script that
+  batches items into tool-less Haiku calls and accumulates results in files.
+  Batch fat: 50-100 items per call, not one call per item.
+- **R4. Cap recursion at depth 1, as a hard rule.**
+  Field reports on depth 2 are bad: cost explosions (one example: 2.5M
+  tokens for one query), format collapse, and error amplification.
+  A corpus worker must never spawn its own corpus workers.
+- **R5. Add a routing rule for when to use it.**
+  Use RLM when the corpus is large AND the task must touch every item
+  (aggregate, classify, compare pairs, summarize everything).
+  Do not use it to find one thing. Grep and a subagent are cheaper for that.
+  RLM is a specialized tool, not a general upgrade.
+
+---
+
+## 13. Dagu — A Real Skeleton for the Autonomous Loop
+
+### 13.1 What it is
+
+- Dagu is a workflow engine: one Go binary, no database required.
+  You define workflows as steps in a YAML file. It runs them on schedules,
+  retries them, and shows them in a web dashboard.
+- It is very active. Version 2.12.0 was released the day of this research.
+  The repo moved from dagu-org to dagucloud. License is GPL-3.0.
+- The important 2026 change: Dagu now targets AI agents as a first-class
+  use case. Its tagline is "Run AI agents like production jobs."
+  It has a built-in **harness step** that runs Claude Code headless,
+  with timeout, output capture, JSON schema validation of the output,
+  fallback providers, and approval gates.
+- Sources: github.com/dagucloud/dagu · github.com/dagucloud/docs
+
+### 13.2 What Dagu replaces, and what it does not
+
+`titan-loop.sh` is roughly 200 lines of bash scaffolding around the real
+logic. Dagu replaces the scaffolding. It does not replace the logic.
+
+What moves to Dagu YAML:
+- The while-loop → a `repeat_policy` (repeat until zero failing features,
+  with an iteration limit and a cooldown interval).
+- The Claude call → a harness step with a real timeout. Today a hung
+  session hangs the loop forever. Dagu kills it at the deadline.
+- The environment smoke test → a precondition.
+- Escalation → a failure handler that writes the report and sends mail
+  or a notification, with logs attached.
+- Flaky-test retries → a retry policy (TITAN has no transient-retry today).
+- Overnight runs → cron scheduling with overlap protection
+  (`max_active_runs: 1` stops two loops running at once).
+- Pause/stop/resume → the REST API.
+- Session logs and progress → per-step logs, run history, and the web
+  dashboard. This also delivers the "visible orchestration state" idea (F5)
+  without building anything.
+- Loop counters (thrash counts, budget totals) → Dagu's persistent state
+  store, which survives across runs and is version-checked.
+
+What stays in TITAN scripts and prompts:
+- Health rules (thrash, stall, regression detection) — a small script step.
+- Feature selection and the manifest format.
+- All prompts, and the Ralph safety rails from Section 7 (E1-E3).
+- Budget tracking. Dagu does not capture token costs from the harness.
+  A small step must parse Claude's JSON output and accumulate the numbers.
+
+### 13.3 The shape of the loop
+
+Two YAML files. A parent and a child.
+
+- **Parent (`titan-loop.yaml`):** one step that runs the child workflow,
+  repeating until the manifest shows zero failing features, with a hard
+  iteration limit. A final health gate decides pass or escalate.
+  A failure handler writes the escalation report.
+- **Child (`titan-session.yaml`):** orient → build (Claude harness step,
+  with timeout) → verify (E2E script, one retry allowed) → checkpoint
+  (git commit) → health check. The health script must separate two cases:
+  "feature failed, keep looping" (normal) and "loop is unhealthy, stop"
+  (exit with error, which triggers escalation).
+
+### 13.4 Cautions
+
+- **Pin the version.** Dagu is young in this role. The harness feature is
+  weeks old. The project has renamed twice and changed YAML style between
+  v1 (camelCase) and v2 (snake_case). Old blog posts — and model memory —
+  show the old syntax.
+- **No independent field reports yet.** We found no third-party accounts
+  of running Claude Code under Dagu. TITAN would be an early adopter.
+- **Keep outputs small.** Step outputs and state values cap near 1 MB.
+  Pass file paths between steps, never transcripts.
+- **License is fine for use, not for bundling.** GPL-3.0 allows TITAN to
+  *use* Dagu as an external tool. Do not ship the binary inside TITAN.
+  Document "install Dagu" as an optional dependency instead.
+- **Skip controller DAGs for now.** Dagu also has an LLM-driven mode that
+  picks the next step dynamically. Its own docs say: if you can draw the
+  graph, draw the graph. TITAN's graph is drawable.
+- **Headless auth.** Server/cron runs may need an API key rather than
+  subscription login. That changes the cost model. Check before committing
+  to overnight cron runs.
+
+### 13.5 How the pieces fit together
+
+The three loop ideas in this report stack cleanly:
+
+- **Dagu** is the outer skeleton. Deterministic steps, timeouts, retries,
+  schedule, dashboard, escalation.
+- **Ralph rails** (Section 7) live inside each session: one task per
+  iteration, fresh context, completion promise, search-before-implement.
+- **RLM** is a power tool a session reaches for when a task must touch
+  every item of something large.
+
+None of this conflicts with the prompt-based decision. Dagu and the RLM
+script are external tools the prompts call. The intelligence stays in
+markdown.
+
+---
+
+## 14. Updated Priority List
+
+The addendum items slot into the existing list like this:
+
+| # | Recommendation | Effort | Value |
+|---|----------------|--------|-------|
+| — | Items 1-3 from Section 9 unchanged | | |
+| 4a | R2, R4, R5: Never-read rule, depth cap, routing rule | Low | High — prompt-only, immediate |
+| 4b | E1-E3 + Dagu skeleton (13.2-13.3) | Medium | High — replaces titan-loop.sh wholesale |
+| — | Items 5-8 from Section 9 unchanged | | |
+| 9a | R1, R3: Port /titan:rlm and the map-reduce core doc | Medium | Medium — new capability, clear boundaries |
+| — | Remaining items unchanged | | |
+
+---
+
+## 15. Addendum Confidence Notes
+
+- brainqub3/RLM findings come from reading the repo's README, skill file,
+  and script source directly. High confidence.
+- RLM paper benchmark numbers come from secondary coverage only. The arXiv
+  page and the author's blog blocked our fetcher. Medium confidence.
+- The depth-2 failure reports come from search summaries of a third-party
+  study. Directionally credible, unverified. Medium-low confidence.
+- Dagu capabilities were verified from the docs source repository, not the
+  rendered docs site (which blocked our fetcher). High confidence on
+  features; the exact behavior of `repeat_policy` at its iteration limit
+  is unconfirmed — test it before relying on it.
+- Dagu token/cost capture: not documented; assumed absent.
+
+---
+
 *Research performed 2026-08-06 on branch `claude/titan-architecture-research-a0kwmg`.
-Four parallel research passes: GSD lineage; BMAD/PAUL/Ralph; Claude Code platform;
-wider ecosystem. No framework files were changed.*
+Six parallel research passes: GSD lineage; BMAD/PAUL/Ralph; Claude Code platform;
+wider ecosystem; RLM; Dagu. No framework files were changed.*
